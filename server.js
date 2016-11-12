@@ -2,9 +2,8 @@
 
 const http = require('http')
 const ws = require('ws')
-const game = require('./game.js')
-const Game = game.Game
-const User = game.User
+const Game = require('./game.js').Game
+const User = require('./game.js').User
 
 const PACKAGE = require('./package.json')
 const SERVER = PACKAGE.name + '/' + PACKAGE.version
