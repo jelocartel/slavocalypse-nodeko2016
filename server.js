@@ -122,7 +122,7 @@ wsServer.on('connection', s => {
       sendState(room)
     }
     else if (event === 'join') {
-      if (game.players.filter(p => p.user.id === s.id).length === 0) {
+      if (game.players.filter(p => p.id === s.id).length === 0) {
         const user = new User(s.id)
         game.addUser(user)
       }
