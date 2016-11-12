@@ -9,15 +9,15 @@ const skills = [{
   onbuy: function (game, players) {
   }
 }, {
-  name: 'War Thunder of Perun',
-  description: 'Trash this for +5 Attack agains Deities',
+  name: 'War Thunder',
+  description: 'At the end of turn choose a player for -1 wound, then -2 wound for you',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
   }
 }, {
-  name: 'Perun\'s Thunder rune',
-  description: 'When gained, +6 wounds',
+  name: 'Shield of Veles',
+  description: 'Change $1 for +1 Attack +1 Defense',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
