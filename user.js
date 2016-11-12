@@ -82,6 +82,7 @@ User.prototype.addCoins = function(val) {
 }
 User.prototype.getVictoryCoins = function() {
   //docelowo suma wszystkich victory pointow typeof int and typeof function(this) plus pary
+  var victoryPoints=0;
   return 33;
 }
 exports.User = User;
