@@ -59,9 +59,13 @@ var michal = C({
   type: 'monster',
   constAttach: 20
 })
+
+var guantanamo = {
+}
+
 var decks = {};
 decks.green = [ perun, wpierdol ]
 decks.red = [ wpierdol, wladyslaw ]
 decks.blue = [ michal, wpierdol ]
 exports.decks = decks;
-// exports.camps = [ guantanamo ]
+exports.camps = [ guantanamo ]
