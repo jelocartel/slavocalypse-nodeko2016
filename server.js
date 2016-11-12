@@ -22,10 +22,20 @@ function broadcast(msg) {
 }
 
 function sendState(room) {
+  var playerDecks = {}
+
+  games[room].players.forEach(p => {
+    if (!playerDecks[p.userID]) playerDecks[p.userID] = {}
+    Object.keys(p.deck).forEach(d => {
+      playerDecks[p.userID][d] = p.deck[d].map(serializeCard)
+    })
+  })
+
   roomcast(room, {
     event: 'state',
     activeDeck: games[room].activeDeck.map(serializeCard),
-    camp: games[room].campCard
+    campCard: games[room].campCard,
+    playerDecks: playerDecks
   })
 }
 
