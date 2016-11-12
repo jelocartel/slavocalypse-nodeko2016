@@ -1,28 +1,28 @@
 <span class="temp attack-value">
   <span class="icon"></span>
-  <span>5</span>
+  <span data-bind="text: cardData().tempAttack"></span>
 </span>
 <span class="temp defense-value">
-  <span>5</span>
+  <span data-bind="text: cardData().tempDefense"></span>
   <span class="icon"></span>
 </span>
 
 <div class="image">
 </div>
 
-<div class="name">ARTEM SKURWESYN</div>
+<div class="name" data-bind="text: cardData().name"></div>
 
-<div class="action">Kll yourself when picking this card</div>
+<div class="action" data-bind="text: cardData().action"></div>
 
 <span class="attack-value">
   <span class="icon"></span>
-  <span>5</span>
+  <span data-bind="text: cardData().attack"></span>
 </span>
 <span class="victory-points">
   <span class="icon"></span>
-  <span>5</span>
+  <span data-bind="text: cardData().victoryPoints"></span>
 </span>
 <span class="defense-value">
+  <span data-bind="text: cardData().defense"></span>
   <span class="icon"></span>
-  <span>5</span>
 </span>
