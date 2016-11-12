@@ -2,7 +2,7 @@
 
 function marcin() {}
 
-var TYPES = ['item', 'skill', 'monster', 'deity']
+const TYPES = ['item', 'skill', 'monster', 'deity']
 
 var C = function SerializableCardFactoryFactoryBeanFactory(o) {
   return {
