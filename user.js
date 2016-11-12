@@ -7,7 +7,7 @@ var User = function(id) {
    this.deck.skill = new Array();
    this.deck.deity = new Array();
    this.coins = 5;
-   this.userID = id;
+   this.id = id;
 };
 User.prototype.getHealth = function() {
   return this.health;
