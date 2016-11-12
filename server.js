@@ -127,7 +127,7 @@ wsServer.on('connection', s => {
       roomcast(room, { event: 'new-player', id: s.id })
     }
     else if (event === 'buy') {
-      game.gameLoop({ type: 'buy' })
+      game.gameLoop({ type: 'buy', activeCardNumber: event.activeCardNumber })
       sendState(room)
     }
     else if (event === 'finish') {
