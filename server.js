@@ -127,6 +127,7 @@ wsServer.on('connection', s => {
         game.addUser(user)
       }
       gamecast(room, { event: 'join', id: s.id })
+      broadcast({ event: 'discover', games: discovery() })
     }
     else if (event === 'buy') {
       game.gameLoop({ type: 'buy', activeCardNumber: event.activeCardNumber })
