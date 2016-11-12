@@ -1,26 +1,3 @@
-
-karat = {
-  health:
-  card_attack:
-  card_hp:
-  temporary_defense://tarcza
-  temporary_attack:
-  const_attack:
-  const_defense:
-  onFinishAction:
-  onBuyAction:
-  otherAction://funkcja-nazwa(obiekt)
-  {
-    name: "zrob cos tam",
-    choosePlayer: true,
-    action: defense/attack
-    clb:
-  }
-  vicotryPoints://funkcja-nazwa(obiekt)
-}
-
-//OBIEKT GRY
-
 var Game = function() {
   this.deck = new Array();
   this.activeDeck = new Array();
