@@ -1,9 +1,9 @@
 <!-- ko with: cardData-->
-  <span class="temp attack-value">
+  <span class="temp attack-value" data-bind="visible: tempAttack">
     <span class="icon"></span>
     <span data-bind="text: tempAttack"></span>
   </span>
-  <span class="temp defense-value">
+  <span class="temp defense-value" data-bind="visible: tempDefense">
     <span data-bind="text: tempDefense"></span>
     <span class="icon"></span>
   </span>
@@ -13,17 +13,17 @@
 
   <div class="name" data-bind="text: name"></div>
 
-  <div class="action" data-bind="text: action"></div>
+  <div class="action" data-bind="text: action, visible: action" ></div>
 
-  <span class="attack-value">
+  <span class="attack-value" data-bind="visible: attack">
     <span class="icon"></span>
     <span data-bind="text: attack"></span>
   </span>
-  <span class="victory-points">
+  <span class="victory-points" data-bind="visible: victoryPoints">
     <span class="icon"></span>
     <span data-bind="text: victoryPoints"></span>
   </span>
-  <span class="defense-value">
+  <span class="defense-value" data-bind="visible: defense">
     <span data-bind="text: defense"></span>
     <span class="icon"></span>
   </span>
