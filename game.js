@@ -89,26 +89,26 @@ Game.prototype.activePlayerBuys = function (action) {
 
  switch (this.activeDeck[action.activeCardNumber].type) {
    case "monsters":
-     deck.monsters.push(this.activeDeck[action.activeCardNumber]);
+     deck.monsters.unshift(this.activeDeck[action.activeCardNumber]);
      break;
    case "items":
-     deck.items.push(this.activeDeck[action.activeCardNumber]);
+     deck.items.unshift(this.activeDeck[action.activeCardNumber]);
      break;
    case "skill":
-     deck.skill.push(this.activeDeck[action.activeCardNumber]);
+     deck.skill.unshift(this.activeDeck[action.activeCardNumber]);
      break;
    case "deity":
-     deck.deity.push(this.activeDeck[action.activeCardNumber]);
+     deck.deity.unshift(this.activeDeck[action.activeCardNumber]);
      break;
  }
  this.activeDeck.splice(action.activeCardNumber, 1);
  this.activeDeck.push(this.deck.pop());
 
 
- if (deck.monsters.length) deck.monsters[deck.monsters.length - 1].onfinish(this, action);
- if (deck.items.length) deck.items[deck.items.length - 1].onfinish(this, action);
- if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
- if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
+ if (deck.monsters.length) deck.monsters[0].onfinish(this, action);
+ if (deck.items.length) deck.items[0].onfinish(this, action);
+ if (deck.skill.length) deck.skill[0].onfinish(this, action);
+ if (deck.deity.length) deck.deity[0].onfinish(this, action);
 
 };
 Game.prototype.activePlayerFinishGame = function (action) {
@@ -119,10 +119,10 @@ Game.prototype.activePlayerFinishGame = function (action) {
   this.campCard.selectAction(this, action.campCardActionId);
   //top stack cards actions
   var deck = this.players[this.activePlayer].getDeck();
-  if (deck.monsters.length) deck.monsters[deck.monsters.length - 1].onfinish(this, action);
-  if (deck.items.length) deck.items[deck.items.length - 1].onfinish(this, action);
-  if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
-  if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
+  if (deck.monsters.length) deck.monsters[0].onfinish(this, action);
+  if (deck.items.length) deck.items[0].onfinish(this, action);
+  if (deck.skill.length) deck.skill[0].onfinish(this, action);
+  if (deck.deity.length) deck.deity[0].onfinish(this, action);
 
   this.activeDeck.shift();
   this.activeDeck.push(this.deck.pop());
