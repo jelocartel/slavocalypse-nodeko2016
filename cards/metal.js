@@ -1,23 +1,23 @@
 const deck = 'metal';
 
 const skills = [{
-  name: 'Three of Gods',
+  name: 'Metal Kolovrot',
   victoryPoints: 1,
-  description: 'Chosen player trashes top Rune card',
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
-}, {
-  name: 'Grass Thunder',
   description: 'At start of the turn, -1 Wound',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
   }
 }, {
-  name: 'Triskelion',
-  description: 'Trash monster, +5 Attack',
+  name: 'Metal Snake',
+  description: 'Trash this, +5 Defense',
+  onact: function (game, players) {
+  },
+  onbuy: function (game, players) {
+  }
+}, {
+  name: 'Metal Hands of God',
+  description: 'Change $2 for 2 Attack',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
