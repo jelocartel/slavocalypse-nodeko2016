@@ -4,12 +4,12 @@ define(['knockout', 'text!./lobby-page.html'], function(ko, template) {
   function LobbyPage(params) {
     params = params;
 
-    var hello = function() {
-      alert('hello!!!');
+    var startGame = function() {
+      window.location.hash = "#!/game";
     };
 
     return {
-      hello: hello
+      startGame: startGame
     };
   }
 

@@ -14,7 +14,7 @@ define(['knockout'], function(ko) {
     var pageIndex;
     if (!page) {
       page = 'lobby';
-    } else if (pageIndex = pages.indexOf(page), pageIndex > -1) {
+    } else if (pageIndex = pages.indexOf(page)) {
       page = pages[pageIndex];
     } else if (itemId && slug) {
       routerData({
