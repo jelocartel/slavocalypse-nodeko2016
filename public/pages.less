@@ -1,0 +1,17 @@
+@pages: main-page, lobby-page;
+
+.pages(@iterator:1) when(@iterator <= length(@pages)) {
+    @name: extract(extract(@pages, @iterator),1);
+  	body[data-active-page="@{name}"] @{name}.page {
+      display: block;
+    }
+    .pages((@iterator + 1));
+}
+
+body {
+  .page {
+    display: none;
+  }
+}
+
+.pages();

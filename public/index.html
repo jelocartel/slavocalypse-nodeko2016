@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Slavocalypse</title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+
+    <link href="css/main.css" rel="stylesheet">
+
+    <script
+        src="https://code.jquery.com/jquery-3.1.0.min.js"
+        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+        crossorigin="anonymous"></script>
+    <script src='bower_modules/apress/apress.js'></script>
+    <script src="bower_modules/nanoajax/nanoajax.min.js"></script>
+    <script src="app/temp/require.config.js"></script>
+    <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>
+
+  </head>
+
+  <body data-bind="attr: {'data-active-page': $root.router.activePage}">
+    <example-component></example-component>
+  </body>
+</html>
