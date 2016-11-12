@@ -12,6 +12,7 @@ var games = {}
 var sockets = {}
 
 function roomcast(room, msg) {
+  msg.room = room
   sockets[room].forEach(s => s.send(JSON.stringify(msg)))
 }
 
@@ -44,7 +45,17 @@ wsServer.on('connection', s => {
     const event = parsed.event
 
     if (event === 'discover') {
-      s.send(JSON.stringify({ event: 'discover', games: Object.keys(games) }))
+      s.send(JSON.stringify({
+        event: 'discover',
+        games: Object.keys(games).map((g) => {
+          return {
+            players: games[g].players.length,
+            name: g,
+            started: games[g].started
+          }
+        })
+      }))
+      return
     }
 
     var game
