@@ -1,7 +1,4 @@
-<card class="city"></card>
-<card></card>
-<card></card>
-<card></card>
-<card></card>
-<card></card>
-<card></card>
+<card class="city" params="card: campCard()"></card>
+<!-- ko foreach: journeyDeck -->
+	<card params="card: $data"></card>
+<!-- /ko -->

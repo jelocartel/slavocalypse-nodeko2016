@@ -2,16 +2,20 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
   'use strict';
 
   function Card(params) {
-    params = params;
+    var card = params.card || {};
+
+    if (typeof card === 'function') {
+      card = card();
+    }
 
     var cardData = ko.observable({
-      name: 'artem skurwesyn z polis kurwa hue hue',
-      tempAttack: 4,
-      tempDefense: 1,
-      attack: 2,
-      defense: 2,
-      victoryPoints: 1,
-      action: 'Kill yourself when picking this card'
+      name: card.name,
+      tempAttack: card.temporaryAttack,
+      tempDefense: card.temporaryDefense,
+      attack: card.constAttack,
+      defense: card.constDefense,
+      victoryPoints: card.victoryPoints,
+      action: 'zajeb komuś wpierdol'
     });
 
     return {

@@ -37,8 +37,9 @@ Game.prototype.gameLoop = function(action) {
 }
 
 Game.prototype.start = function () {
-  this.started = false
+  this.started = true
 }
+
 Game.prototype.activePlayerBuys = function (action) {
   var activePlayerObj = this.players[this.activePlayer];
  if (activePlayerObj.conis< action.activeCardNumber) {

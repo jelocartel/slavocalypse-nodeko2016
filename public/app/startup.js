@@ -3,9 +3,10 @@
 define([
   'knockout',
   './router',
+  './network',
   './components'
 ], function(
-  ko, router
+  ko, router, network
 ) {
   'use strict';
 
@@ -16,10 +17,14 @@ define([
   //   window.apiurl = window.apiurl || requirejs.s.contexts._.config.apiURL;
   // }
 
+  var games = network.games;
   var isMobile = $(window).width() <= 560 ? true : false;
 
   ko.applyBindings({
     isMobile: isMobile,
-    router: router
+    router: router,
+    network: network,
+    games: games,
+    joinGame: network.join
   });
 });
