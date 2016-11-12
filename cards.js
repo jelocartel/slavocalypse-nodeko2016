@@ -25,7 +25,7 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
   }
 }
 
-exports.perun = C({
+var perun = C({
   amount: 1,
   victoryPoints: 1,
   type: 'monster',
@@ -37,14 +37,14 @@ exports.perun = C({
   }
 });
 
-exports.wpierdol = C({
+var wpierdol = C({
   amount: 2,
   type: 'skill',
   name: 'wpierdol!',
   constAttack: 3
 })
 
-exports.wladyslaw = C({
+var wladyslaw = C({
   amount: 3,
   type: 'deity',
   name: 'wladyslaw',
@@ -54,5 +54,13 @@ exports.wladyslaw = C({
   constDefense: 1
 })
 
-exports.green = [ exports.perun, exports.wpierdol ]
-exports.red = [ exports.wpierdol, exports.wladyslaw ]
+var michal = C({
+  amount: 1,
+  type: 'monster',
+  constAttach: 20
+})
+
+exports.green = [ perun, wpierdol ]
+exports.red = [ wpierdol, wladyslaw ]
+exports.blue = [ michal, wpierdol ]
+// exports.camps = [ guantanamo ]
