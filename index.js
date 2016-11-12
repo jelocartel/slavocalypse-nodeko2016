@@ -11,4 +11,14 @@ const server = http.createServer((req, res) => {
   res.end()
 })
 
+const wsServer = new ws.Server({ server: server })
+
+wsServer.on('connection', s => {
+  s.on('message', msg => {
+    const parsed = JSON.parse(msg)
+    const game = parsed.topic
+
+  })
+})
+
 server.listen(process.env.PORT || 5000)
