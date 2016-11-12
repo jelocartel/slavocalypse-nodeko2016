@@ -4,12 +4,7 @@ define(['knockout', 'text!./game-page.html'], function(ko, template) {
   function GamePage(params) {
     params = params;
 
-    var hello = function() {
-      alert('hello!!!');
-    };
-
     return {
-      hello: hello
     };
   }
 
