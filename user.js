@@ -14,6 +14,7 @@ User.prototype.getHealth = function() {
 }
 User.prototype.addHealth = function(val) {
   this.health += val;
+  if (this.health>0) this.health = 0;
 }
 User.prototype.getDefense = function() {
   var points = 0;
@@ -67,7 +68,7 @@ User.prototype.getAttack = function() {
 }
 
 User.prototype.addCard = function(card) {
-
+  //not working yet...  ...working in game object its so wrong...
 }
 
 User.prototype.getDeck = function() {

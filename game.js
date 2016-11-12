@@ -75,8 +75,8 @@ Game.prototype.activePlayerBuys = function (action) {
      if(this.activeDeck[action.activeCardNumber].cardAttack < activePlayerObj.getDefense()) {
        this.activeDeck[action.activeCardNumber].onbuy(this, action);
      } else {
-       console.log("za malo obeony");
-       return;
+       console.log("za malo obrony");
+       activePlayerObj.addHealth(activePlayerObj.getDefense() - this.activeDeck[action.activeCardNumber].cardAttack)
      }
    } else {
      console.log("za malo ataku");
