@@ -14,11 +14,12 @@ define(libs.concat(requirejs.s.contexts._.config.components), function(ko) {
   };
 
   var components = Array.prototype.slice.call(arguments, libs.length);
-
+  // console.log(components)
   var name;
   components.forEach(function(component) {
     if (typeof component === 'object' && 'viewModel' in component) {
       name = slugify(component.viewModel.name);
+      // console.log(name, component);
       ko.components.register(name, component);
     } else if (typeof component === 'string') {
       name = component.match(/MODULE\:(.*?) /);
