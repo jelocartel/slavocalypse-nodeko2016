@@ -51,15 +51,12 @@ var shuffle = function (arr) {
 Game.prototype.start = function () {
   this.started = true;
 
-  var decksNames = Object.keys(cards.decks)
+  var decksNames = Object.keys(cards.decks);
   shuffle(decksNames);
-  console.log('shuffled', decksNames, this.players.length)
-  decksNames = decksNames.slice(0, this.players.length)
-  console.log('trimmed', decksNames)
+  decksNames = decksNames.slice(0, this.players.length);
   decksNames.forEach(deck => {
     Array.prototype.push.apply(this.deck, cards.decks[deck]);
   })
-  console.log(cards, decksNames, this.deck)
   shuffle(this.deck);
   for (var i=0;i<6;i++) {
     this.activeDeck.push(this.deck.pop());
