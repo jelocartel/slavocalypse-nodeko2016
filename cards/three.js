@@ -3,21 +3,21 @@ const deck = 'three';
 const skills = [{
   name: 'Three of Gods',
   victoryPoints: 1,
-  description: 'When gaining a monster, -1 wound',
+  description: 'Chosen player trashes top Rune card',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
   }
 }, {
   name: 'Grass Thunder',
-  description: 'At the end of turn choose a player for -1 wound, then -2 wound for you',
+  description: 'At start of the turn, -1 Wound',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
   }
 }, {
   name: 'Triskelion',
-  description: 'Change $1 for +1 Attack +1 Defense',
+  description: 'Trash monster, +5 Attack',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
