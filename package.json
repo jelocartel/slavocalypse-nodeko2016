@@ -21,7 +21,7 @@
     "ws": "~1.1.1"
   },
   "engines": {
-    "node": "4.4.5"
+    "node": "6.9.1"
   },
   "repository": {
     "type": "git",
