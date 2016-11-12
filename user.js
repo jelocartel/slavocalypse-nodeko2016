@@ -66,6 +66,10 @@ User.prototype.getAttack = function() {
   return points;
 }
 
+User.prototype.addCard = function(card) {
+
+}
+
 User.prototype.getDeck = function() {
   return this.deck;
 }

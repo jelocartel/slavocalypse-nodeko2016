@@ -67,18 +67,23 @@ Game.prototype.activePlayerBuys = function (action) {
  if (activePlayerObj.coins < action.activeCardNumber) {
    console.log("chujnia nie stac cie!");
    return;
+   return;
  } else {
    if (this.activeDeck[action.activeCardNumber].cardHealth < activePlayerObj.getAttack()) {
      if(this.activeDeck[action.activeCardNumber].cardAttack < activePlayerObj.getDefense()) {
        this.activeDeck[action.activeCardNumber].onbuy(this, action);
      } else {
        console.log("za malo obeony");
+       return;
      }
    } else {
      console.log("za malo ataku");
+     return;
    }
  }
  var deck = activePlayerObj.getDeck();
+
+ activePlayerObj.addCoins(-parseInt(action.activeCardNumber));
 
  switch (this.activeDeck[action.activeCardNumber].type) {
    case "monsters":
