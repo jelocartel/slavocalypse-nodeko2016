@@ -2,7 +2,9 @@
 
 const http = require('http')
 const ws = require('ws')
-const Game = require('./game.js')
+const game = require('./game.js')
+const Game = game.Game
+const User = game.User
 
 const PACKAGE = require('./package.json')
 const SERVER = PACKAGE.name + '/' + PACKAGE.version
@@ -25,6 +27,8 @@ const server = http.createServer((req, res) => {
 
 const wsServer = new ws.Server({ server: server })
 
+var id = 0
+
 wsServer.on('connection', s => {
   s.on('message', msg => {
     const parsed = JSON.parse(msg)
@@ -45,7 +49,18 @@ wsServer.on('connection', s => {
 
     if (event === 'start') {
       game.start()
-      roomcast({ event: 'start', activeDeck: game.activeDeck.map(serializeCard) })
+      roomcast({
+        event: 'start',
+        activeDeck: game.activeDeck.map(serializeCard),
+        camp: game.kartaKurwaWioski
+      })
+    }
+    else if (event === 'join') {
+      const user = new User({ id: id++ })
+      game.addUser(user)
+    }
+    else if (event === 'discover') {
+      s.send({ event: 'discover', rooms: Object.keys(rooms) })
     }
   })
 })
