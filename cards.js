@@ -40,14 +40,14 @@ var perun = C({
 var wpierdol = C({
   amount: 2,
   type: 'skill',
-  name: 'wpierdol!',
+  name: 'Wpierdol',
   constAttack: 3
 })
 
 var wladyslaw = C({
   amount: 3,
   type: 'deity',
-  name: 'wladyslaw',
+  name: 'Władysław',
   temporaryAttack: 5,
   temporaryDefense: 3,
   constAttack: 1,
@@ -57,45 +57,52 @@ var wladyslaw = C({
 var michal = C({
   amount: 1,
   type: 'monster',
-  constAttack: 20
+  constAttack: 20,
+  name: 'Michał'
 })
 
 var zenek = C({
   amount: 5,
   type: 'monster',
   constAttack: 10,
-  constDefense: 20
+  constDefense: 20,
+  name: 'Zenek'
 })
 
 var piwko = C({
   amount: 10,
   type: 'item',
-  constAttack: 5
+  constAttack: 5,
+  name: 'Piwko'
 })
 
 var kolczanPrawilnosci = C({
   amount: 3,
   type: 'item',
-  temporaryDefense: 3
+  temporaryDefense: 3,
+  name: 'Kolczan Prawilnosci'
 })
 
 var alko = C({
   amount: 5,
   type: 'deity',
-  temporaryAttack: 1
+  temporaryAttack: 1,
+  name: 'alko'
 })
 
 var napierdalanko = C({
   amount: 12,
   type: 'skill',
   constAttach: 3,
-  temporaryDefense: 3
+  temporaryDefense: 3,
+  name: 'napierdalanko'
 })
 
 var przemyslanko = C({
   amount: 2,
   type: 'skill',
-  constDefense: 10
+  constDefense: 10,
+  name: 'przemyslanko'
 })
 
 var guantanamo = {
