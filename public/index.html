@@ -16,24 +16,10 @@
     <script src="bower_modules/nanoajax/nanoajax.min.js"></script>
     <script src="app/temp/require.config.js"></script>
     <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>
-    
+
   </head>
 
-  <body data-bind="attr:{'data-active-page': $root.router.activePage}, css: {loading: !$root.loaded() || $root.searchBarVisibility()}">
-    <preloader params="loaded: $root.loaded" data-bind="css:{hidden: $root.loaded}"></preloader>
-    <top-bar data-bind="css: { hidden: !$root.loaded()}"></top-bar>
-    <cart-icon params="products: $root.cart.products" data-bind="css: { 'scroll-buttons-visible': $root.cart.products().length > 3, 'visible': $root.cart.products().length > 0 && $root.loaded() }"></cart-icon>
-    <main-page class="page"></main-page>
-    <product-page class="page" params="routerData: $root.router.routerData"></product-page>
-    <category-page class="page" params="routerData: $root.router.routerData"></category-page>
-    <text-page class="page"></text-page>
-    <lookbook-page class="page"></lookbook-page>
-    <checkout-page class="page" params="products: $root.cart.products"></checkout-page>
-    <bottom-bar></bottom-bar>
-    <!-- build:template
-    <script>
-        require(['app/startup']);
-    </script>
-    /build -->
+  <body data-bind="attr: {'data-active-page': $root.router.activePage}">
+    <example-component></example-component>
   </body>
 </html>

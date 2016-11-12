@@ -2,9 +2,10 @@
 
 define([
   'knockout',
+  './router',
   './components'
 ], function(
-  ko
+  ko, router
 ) {
   'use strict';
 
@@ -18,6 +19,7 @@ define([
   var isMobile = $(window).width() <= 560 ? true : false;
 
   ko.applyBindings({
-    isMobile: isMobile
+    isMobile: isMobile,
+    router: router
   });
 });
