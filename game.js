@@ -21,11 +21,12 @@ Game.prototype.gameLoop = function(action) {
     } else if (action.type === "buy") {
 
     }
-    this.hooks.onTurnFinish(this);
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {
       this.activePlayer = 0;
       this.hooks.onRoundFinish(this);
+    } else {
+      this.hooks.onTurnFinish(this);
     }
   } else {
     //Game FINISH
@@ -37,7 +38,9 @@ Game.prototype.gameLoop = function(action) {
 
 Game.prototype.init = function () {
 }
+Game.prototype.activePlayerBuys = function () {
 
+};
 Game.prototype.activePlayerFinishGame = function (action) {
   if (this.activeDeck.length) {
     this.trash.push(this.activeDeck[0]);
