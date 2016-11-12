@@ -1,3 +1,6 @@
+'use strict';
+const cards = require('./cards.js');
+
 var Game = function() {
   this.deck = new Array();
   this.activeDeck = new Array();
@@ -35,9 +38,28 @@ Game.prototype.gameLoop = function(action) {
   }
 
 }
+var shuffle = function (arr) {
+  var i = 0, j = 0, temp = null;
 
+  for (i = arr.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+}
 Game.prototype.start = function () {
-  this.started = true
+  this.started = true;
+  var decksNames = cards.decks.keys();
+  shuffle(decksNames);
+  for(var i=0;i<this.players.length && i< decksNames.length;i++) {
+    this.deck = this.deck.concat(cards.decks[decksNames[i]]);
+  }
+  shuffle(this.deck);
+  for (var i=0;i<6;i++) {
+    this.activeDeck.push(this.deck.pop());
+  }
+
 }
 
 Game.prototype.activePlayerBuys = function (action) {
@@ -95,11 +117,11 @@ Game.prototype.activePlayerFinishGame = function (action) {
   if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
   if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
 
-  this.activeDeck = shift(this.activeDeck);
+  this.activeDeck.shift());
   this.activeDeck.push(this.deck.pop());
 }
 
 Game.prototype.addUser = function (val) {
-
+  this.players.push(val);
 }
 exports.Game = Game;

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 function marcin() {}
 
@@ -59,8 +59,9 @@ var michal = C({
   type: 'monster',
   constAttach: 20
 })
-
-exports.green = [ perun, wpierdol ]
-exports.red = [ wpierdol, wladyslaw ]
-exports.blue = [ michal, wpierdol ]
+var decks = {};
+decks.green = [ perun, wpierdol ]
+decks.red = [ wpierdol, wladyslaw ]
+decks.blue = [ michal, wpierdol ]
+exports.decks = decks;
 // exports.camps = [ guantanamo ]
