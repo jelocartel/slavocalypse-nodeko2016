@@ -20,7 +20,8 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
     constAttack: o.constAttack || 0,
     constDefense: o.constDefense || 0,
     name: o.name,
-    description: o.description
+    description: o.description,
+    cardID: o.cardID,
   }
 }
 

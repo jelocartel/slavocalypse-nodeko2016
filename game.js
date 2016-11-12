@@ -19,7 +19,7 @@ Game.prototype.gameLoop = function(action) {
     if (action.type === "finish") {
       this.activePlayerFinishGame(action);
     } else if (action.type === "buy") {
-
+      activePlayerBuys(action);
     }
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {
@@ -39,7 +39,46 @@ Game.prototype.gameLoop = function(action) {
 Game.prototype.start = function () {
   this.started = false
 }
-Game.prototype.activePlayerBuys = function () {
+Game.prototype.activePlayerBuys = function (action) {
+  var activePlayerObj = this.players[this.activePlayer];
+ if (activePlayerObj.conis< action.activeCardNumber) {
+   console.log("chujnia nie stac cie!");
+   return;
+ } else {
+   if (this.activeDeck[action.activeCardNumber].cardHealth < activePlayerObj.getAttack()) {
+     if(this.activeDeck[action.activeCardNumber].cardAttack < activePlayerObj.getDefense()) {
+       this.activeDeck[action.activeCardNumber].onbuy(this, action);
+     } else {
+       console.log("za malo obeony");
+     }
+   } else {
+     console.log("za malo ataku");
+   }
+ }
+ var deck = activePlayerObj.getDeck();
+
+ switch (this.activeDeck[action.activeCardNumber].type) {
+   case "monsters":
+     deck.monsters.push(this.activeDeck[action.activeCardNumber]);
+     break;
+   case "dragons":
+     deck.dragons.push(this.activeDeck[action.activeCardNumber]);
+     break;
+   case "skill":
+     deck.skill.push(this.activeDeck[action.activeCardNumber]);
+     break;
+   case "deity":
+     deck.deity.push(this.activeDeck[action.activeCardNumber]);
+     break;
+ }
+ this.activeDeck.splice(action.activeCardNumber, 1);
+ this.activeDeck.push(this.deck.pop());
+
+
+ if (deck.monsters.length) deck.monsters[deck.monsters.length - 1].onfinish(this, action);
+ if (deck.dragons.length) deck.dragons[deck.dragons.length - 1].onfinish(this, action);
+ if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
+ if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
 
 };
 Game.prototype.activePlayerFinishGame = function (action) {
