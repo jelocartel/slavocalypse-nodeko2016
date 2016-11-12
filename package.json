@@ -1,6 +1,6 @@
 {
   "name": "Slavocalypse",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Multiplayer card game placed in post apocaliptic East Europe.",
   "main": "index.js",
   "scripts": {
