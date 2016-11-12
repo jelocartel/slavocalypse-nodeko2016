@@ -120,3 +120,6 @@ User.prototype.getVictoryCoins = function() {
   //docelowo suma wszystkich victory pointow typeof int and typeof function(this) plus pary
   return 33;
 }
+
+exports.Game = Game;
+exports.User = User;
