@@ -34,7 +34,7 @@ define([
     router: router,
     network: network,
     games: games,
-    joinGame: network.join,
+    joinGame: network.joinGame,
     createGame: network.createGame
   });
 });

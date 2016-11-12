@@ -27,6 +27,14 @@ define(['knockout'], function(ko) {
     }));
   };
 
+  var joinGame = function(game) {
+    console.log('tryin to join: ', game);
+    socket.send(JSON.stringify({
+      event: 'join',
+      game: game.name
+    }));
+  };
+
   setTimeout(getRooms, 1000);
 
   ko.computed(function() {
@@ -38,7 +46,7 @@ define(['knockout'], function(ko) {
           console.log(parsedEvent.games);
           games(parsedEvent.games);
           break;
-        case 'new-player':
+        case 'join':
           GAMESTATE(STATES.GAME);
           break;
         default:
@@ -51,6 +59,7 @@ define(['knockout'], function(ko) {
   return {
     games: games,
     createGame: createGame,
+    joinGame: joinGame,
     GAMESTATE: GAMESTATE,
     STATES: STATES
   };
