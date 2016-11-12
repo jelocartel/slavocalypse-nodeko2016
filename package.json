@@ -1,14 +1,37 @@
 {
-  "name": "slavocalypse",
+  "name": "Slavocalypse",
   "version": "0.0.1",
-  "description": "An apocalypse of sorts",
+  "description": "Multiplayer card game placed in post apocaliptic East Europe.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-requirejs": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-execute": "^0.2.2",
+    "grunt-processhtml": "^0.4.1",
+    "jit-grunt": "^0.10.0",
+    "requirejs": "^2.3.2"
+  },
+  "engines": {
+    "node": "4.4.5"
+  },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/rumblex-community/nodeknockout2016-gtnm"
   },
+  "author": "Twoj stary",
+  "contributors": [
+    "Michal Budzynski <michal@virtualdesign.pl>",
+    "Maciej Malecki <me@mmalecki.com>",
+    "Jakub Wasiak <qbawasiak@wp.pl>",
+    "Wojciech Wozniak <wwozniak92@gmail.com>"
+  ],
   "license": "MIT"
 }
