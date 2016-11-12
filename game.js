@@ -6,10 +6,10 @@ var Game = function() {
   this.activePlayer = 0;
   this.startHooks = new Array();
   this.campCard = {};
-  this.Hooks =  {
-    onTurnFinish: function(){},
-    onRoundFinish: function(){},
-    onGameFinish: function(){}
+  this.hooks =  {
+    onTurnFinish: function(self){},
+    onRoundFinish: function(self){},
+    onGameFinish: function(winObj){}
   }
 
 };
@@ -21,14 +21,16 @@ Game.prototype.gameLoop = function(action) {
     } else if (action.type === "buy") {
 
     }
-
+    this.hooks.onTurnFinish(this);
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {
       this.activePlayer = 0;
-      //round end (make some actions from kartaKurwaWioski)
+      this.hooks.onRoundFinish(this);
     }
   } else {
     //Game FINISH
+    //podlicz punkty i przygotuj obiekt :D
+    this.hooks.onGameFinish("dupaDupa");
   }
 
 }
