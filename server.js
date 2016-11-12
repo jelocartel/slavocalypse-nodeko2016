@@ -33,7 +33,7 @@ function sendState(room) {
     event: 'state',
     activeDeck: games[room].activeDeck.map(serializeCard),
     campCard: games[room].campCard,
-    activePlayer: games[room].players[games[room].activePlayer],
+    activePlayer: games[room].players[games[room].activePlayer].id,
     players: players
   })
 }
