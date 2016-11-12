@@ -10,10 +10,15 @@ const SERVER = PACKAGE.name + '/' + PACKAGE.version
 
 var games = {}
 var sockets = {}
+var socketList = []
 
 function roomcast(room, msg) {
   msg.room = room
   sockets[room].forEach(s => s.send(JSON.stringify(msg)))
+}
+
+function broadcast(msg) {
+  socketList.forEach(s => s.send(JSON.stringify(msg)))
 }
 
 function sendState(room) {
@@ -24,6 +29,15 @@ function sendState(room) {
   })
 }
 
+function discovery() {
+  return Object.keys(games).map((g) => {
+    return {
+      players: games[g].players.length,
+      name: g,
+      started: games[g].started
+    }
+  })
+}
 
 function serializeCard(card) {
   return card
@@ -39,6 +53,8 @@ const wsServer = new ws.Server({ server: server })
 var id = 0
 
 wsServer.on('connection', s => {
+  socketList.push(s)
+
   s.on('message', msg => {
     const parsed = JSON.parse(msg)
     const room = parsed.game
@@ -47,13 +63,7 @@ wsServer.on('connection', s => {
     if (event === 'discover') {
       s.send(JSON.stringify({
         event: 'discover',
-        games: Object.keys(games).map((g) => {
-          return {
-            players: games[g].players.length,
-            name: g,
-            started: games[g].started
-          }
-        })
+        games: discovery()
       }))
       return
     }
@@ -71,6 +81,7 @@ wsServer.on('connection', s => {
       game.hooks.onRoundFinish = () => sendState(room)
       game.hooks.onGameFinish = () => sendState(room)
       sockets[room] = [ s ]
+      broadcast({ event: 'discover', games: discovery() })
     }
 
     if (event === 'start') {
@@ -83,7 +94,7 @@ wsServer.on('connection', s => {
     else if (event === 'join') {
       const user = new User({ id: id++ })
       game.addUser(user)
-      roomcast(room, { event: 'new-player' })
+      roomcast(room, { event: 'new-player', id: id })
     }
     else if (event === 'buy') {
       game.gameLoop({ type: 'buy' })
