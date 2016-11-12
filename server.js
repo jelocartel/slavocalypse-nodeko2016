@@ -121,6 +121,7 @@ wsServer.on('connection', s => {
         event: 'start'
       })
       sendState(room)
+      broadcast({ event: 'discover', games: discovery() })
     }
     else if (event === 'join') {
       if (game.players.filter(p => p.id === s.id).length === 0) {
