@@ -26,7 +26,7 @@ function sendState(room) {
   var playerDecks = {}
 
   games[room].players.forEach(p => {
-    if (!playerDecks[p.userID]) playerDecks[p.userID] = {}
+    if (!playerDecks[p.id]) playerDecks[p.id] = {}
     Object.keys(p.deck).forEach(d => {
       playerDecks[p.id][d] = p.deck[d].map(serializeCard)
     })
@@ -123,7 +123,7 @@ wsServer.on('connection', s => {
     }
     else if (event === 'join') {
       if (game.players.filter(p => p.user.id === s.id).length === 0) {
-        const user = new User({ id: s.id })
+        const user = new User(s.id)
         game.addUser(user)
       }
       gamecast(room, { event: 'join', id: s.id })
