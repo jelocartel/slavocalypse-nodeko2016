@@ -5,12 +5,12 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
     params = params;
 
     var cardData = ko.observable({
-      name: 'artem skurwesyn',
-      tempAttack: 5,
-      tempDefense: 3,
-      attack: 0,
+      name: 'artem skurwesyn z polis kurwa hue hue',
+      tempAttack: 4,
+      tempDefense: 1,
+      attack: 2,
       defense: 2,
-      victoryPoints: 1,
+      victoryPoints: 0,
       action: 'Kill yourself when picking this card'
     });
 
