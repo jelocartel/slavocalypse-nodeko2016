@@ -1,15 +1,15 @@
 const deck = 'war';
 
 const skills = [{
-  name: 'Hands of God rune',
+  name: 'Hands of War God',
   victoryPoints: 1,
-  description: 'At the en of the turn chose player that -$1',
+  description: 'When gaining a monster, -1 wound',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
   }
 }, {
-  name: 'Shield of Perun rune',
+  name: 'War Thunder of Perun',
   description: 'Trash this for +5 Attack agains Deities',
   onact: function (game, players) {
   },
