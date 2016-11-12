@@ -62,8 +62,8 @@ Game.prototype.activePlayerBuys = function (action) {
    case "monsters":
      deck.monsters.push(this.activeDeck[action.activeCardNumber]);
      break;
-   case "dragons":
-     deck.dragons.push(this.activeDeck[action.activeCardNumber]);
+   case "items":
+     deck.items.push(this.activeDeck[action.activeCardNumber]);
      break;
    case "skill":
      deck.skill.push(this.activeDeck[action.activeCardNumber]);
@@ -77,7 +77,7 @@ Game.prototype.activePlayerBuys = function (action) {
 
 
  if (deck.monsters.length) deck.monsters[deck.monsters.length - 1].onfinish(this, action);
- if (deck.dragons.length) deck.dragons[deck.dragons.length - 1].onfinish(this, action);
+ if (deck.items.length) deck.items[deck.items.length - 1].onfinish(this, action);
  if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
  if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
 
@@ -91,7 +91,7 @@ Game.prototype.activePlayerFinishGame = function (action) {
   //top stack cards actions
   var deck = this.players[this.activePlayer].getDeck();
   if (deck.monsters.length) deck.monsters[deck.monsters.length - 1].onfinish(this, action);
-  if (deck.dragons.length) deck.dragons[deck.dragons.length - 1].onfinish(this, action);
+  if (deck.items.length) deck.items[deck.items.length - 1].onfinish(this, action);
   if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
   if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
 

@@ -3,7 +3,7 @@ var User = function(id) {
    this.health = 0;
    this.deck = {};
    this.deck.monsters = new Array();
-   this.deck.dragons = new Array();
+   this.deck.items = new Array();
    this.deck.skill = new Array();
    this.deck.deity = new Array();
    this.coins = 5;
@@ -23,10 +23,10 @@ User.prototype.getDefense = function() {
   }
   if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporaryDefense;
 
-  for(let i=0;i < this.deck.dragons.length;i++) {
-    points += this.deck.dragons[i].constDefense;
+  for(let i=0;i < this.deck.items.length;i++) {
+    points += this.deck.items[i].constDefense;
   }
-  if (this.deck.dragons.length) points += this.deck.dragons[this.deck.dragons.length -1].temporaryDefense;
+  if (this.deck.items.length) points += this.deck.items[this.deck.items.length -1].temporaryDefense;
 
   for(let i=0;i < this.deck.skill.length;i++) {
     points += this.deck.skill[i].constDefense;
@@ -48,10 +48,10 @@ User.prototype.getAttack = function() {
   }
   if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporaryAttack;
 
-  for(let i=0;i < this.deck.dragons.length;i++) {
-    points += this.deck.dragons[i].constAttack;
+  for(let i=0;i < this.deck.items.length;i++) {
+    points += this.deck.items[i].constAttack;
   }
-  if (this.deck.dragons.length) points += this.deck.dragons[this.deck.dragons.length -1].temporaryAttack;
+  if (this.deck.items.length) points += this.deck.items[this.deck.items.length -1].temporaryAttack;
 
   for(let i=0;i < this.deck.skill.length;i++) {
     points += this.deck.skill[i].constAttack;
