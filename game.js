@@ -30,9 +30,14 @@ var Game = function() {
   this.startHooks = new Array();
   this.kartaKurwaWioski = {};
 };
+
 Game.prototype.gameLoop = function() {
 
 }
+
+Game.prototype.init = function () {
+}
+
 Game.prototype.activePlayerFinishGame = function () {
   if (this.activeDeck.length) {
     this.trash.push(this.activeDeck[0]);
