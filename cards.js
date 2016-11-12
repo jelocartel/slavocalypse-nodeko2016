@@ -19,6 +19,8 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
     temporaryDefense: o.temporaryDefense || 0,
     constAttack: o.constAttack || 0,
     constDefense: o.constDefense || 0,
+    name: o.name,
+    description: o.description
   }
 }
 
@@ -26,6 +28,8 @@ exports.EvilCaptain = C({
   amount: 1,
   victoryPoints: 1,
   type: 'monster',
+  name: 'Evil Captain',
+  description: 'Aye aye captain!',
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
