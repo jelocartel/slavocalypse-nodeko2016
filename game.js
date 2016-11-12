@@ -6,10 +6,26 @@ var Game = function() {
   this.activePlayer = 0;
   this.startHooks = new Array();
   this.kartaKurwaWioski = {};
+
 };
 
-Game.prototype.gameLoop = function() {
+Game.prototype.gameLoop = function(action) {
+  if (this.deck.length+this.activeDeck.length) {
+    if (action.type === "finish") {
+      this.activePlayerFinishGame();
+    } else if (action.type === "buy") {
 
+    }
+
+
+    this.activePlayer++;
+    if (this.activePlayer === this.players.length) {
+      this.activePlayer = 0;
+      //round end (make some actions from kartaKurwaWioski)
+    }
+  } else {
+    //Game FINISH
+  }
 }
 
 Game.prototype.init = function () {
@@ -18,14 +34,13 @@ Game.prototype.init = function () {
 Game.prototype.activePlayerFinishGame = function () {
   if (this.activeDeck.length) {
     this.trash.push(this.activeDeck[0]);
-  } else {
-    //finishGame
   }
+
   this.activeDeck = shift(this.activeDeck);
   this.activeDeck.push(this.deck.pop());
 }
 
-var User = function() {
+var User = function(id) {
    this.health = 0;
    this.deck = {};
    this.deck.monsters = new Array();
@@ -33,6 +48,7 @@ var User = function() {
    this.deck.skill = new Array();
    this.deck.deity = new Array();
    this.coins = 5;
+   this.userID = id;
 };
 User.prototype.getHealth = function() {
   return this.health;
