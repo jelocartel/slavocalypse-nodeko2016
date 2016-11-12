@@ -1,4 +1,4 @@
-const deck = 'stone';
+const deck = 'war';
 
 const skills = [{
   name: 'Hands of God rune',
