@@ -57,7 +57,7 @@ Game.prototype.start = function () {
   decksNames = decksNames.slice(0, this.players.length)
   console.log('trimmed', decksNames)
   decksNames.forEach(deck => {
-    Array.prototype.push.call(this.deck, cards.decks[deck])
+    Array.prototype.push.apply(this.deck, cards.decks[deck])
   })
   console.log(cards, decksNames, this.deck)
   shuffle(this.deck);
