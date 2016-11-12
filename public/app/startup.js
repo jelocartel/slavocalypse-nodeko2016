@@ -20,11 +20,21 @@ define([
   var games = network.games;
   var isMobile = $(window).width() <= 560 ? true : false;
 
+  ko.computed(function() {
+    switch (network.GAMESTATE()) {
+      case network.STATES.LOBBY:
+        break;
+      case network.STATES.GAME:
+        window.location.hash = "#!/game";
+        break;
+    }
+  });
   ko.applyBindings({
     isMobile: isMobile,
     router: router,
     network: network,
     games: games,
-    joinGame: network.join
+    joinGame: network.join,
+    createGame: network.createGame
   });
 });

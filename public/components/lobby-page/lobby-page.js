@@ -4,13 +4,7 @@ define(['knockout', 'text!./lobby-page.html'], function(ko, template) {
   function LobbyPage(params) {
     params = params;
 
-    var startGame = function() {
-      window.location.hash = "#!/game";
-    };
-
-    return {
-      startGame: startGame
-    };
+    return {};
   }
 
   return { viewModel: LobbyPage, template: template };

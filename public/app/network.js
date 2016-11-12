@@ -7,13 +7,19 @@ define(['knockout'], function(ko) {
 
   var socket = new WebSocket(url);
 
+  var STATES = {
+    LOBBY: '1',
+    GAME: '2'
+  };
+
+  var GAMESTATE = ko.observable(STATES.LOBBY);
   var getRooms = function() {
     socket.send(JSON.stringify({
       event: 'discover'
     }));
   };
 
-  var join = function() {
+  var createGame = function() {
     var name = prompt('Game name:');
     socket.send(JSON.stringify({
       event: 'join',
@@ -33,7 +39,7 @@ define(['knockout'], function(ko) {
           games(parsedEvent.games);
           break;
         case 'new-player':
-          games(parsedEvent.games);
+          GAMESTATE(STATES.GAME);
           break;
         default:
           console.log('Unknown event: ' + event.data);
@@ -44,6 +50,8 @@ define(['knockout'], function(ko) {
 
   return {
     games: games,
-    join: join
+    createGame: createGame,
+    GAMESTATE: GAMESTATE,
+    STATES: STATES
   };
 });
