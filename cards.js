@@ -44,4 +44,15 @@ exports.wpierdol = C({
   constAttack: 3
 })
 
+exports.wladyslaw = C({
+  amount: 3,
+  type: 'deity',
+  name: 'wladyslaw',
+  temporaryAttack: 5,
+  temporaryDefense: 3,
+  constAttack: 1,
+  constDefense: 1
+})
+
 exports.green = [ exports.perun, exports.wpierdol ]
+exports.red = [ exports.wpierdol, exports.wladyslaw ]
