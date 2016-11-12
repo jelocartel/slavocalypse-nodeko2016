@@ -21,7 +21,7 @@
 =======
 <div data-bind="visible: !($root.network.gameStarted())">
   Players: <span data-bind="text: $root.network.enemies().length + 1"></span>
-  <button>Start</button>
+  <button data-bind="click: $root.network.startGame">Start</button>
 </div>
 
 <div data-bind="visible: $root.network.gameStarted">

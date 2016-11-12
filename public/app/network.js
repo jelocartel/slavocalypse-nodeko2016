@@ -88,6 +88,10 @@ define(['knockout'], function(ko) {
           activeDeck(parsedEvent.activeDeck);
           campCard(parsedEvent.campCard);
           playerDecks(parsedEvent.playerDecks);
+        case 'start':
+          if (parsedEvent.game === gameName()) {
+            gameStarted(true);
+          }
           break;
         default:
           console.log('Unknown event: ' + event.data);
