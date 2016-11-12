@@ -11,6 +11,10 @@ const skills = [{
 }, {
   name: 'Metal Snake',
   description: 'Trash this, +5 Defense',
+  temporaryAttack: 1,
+  temporaryDefense: 1,
+  constAttack: 1,
+  constDefense: 2,
   onact: function (game, players) {
   },
   onbuy: function (game, players) {

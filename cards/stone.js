@@ -18,6 +18,10 @@ const skills = [{
 }, {
   name: 'Perun\'s Thunder',
   description: 'When gained, +6 Wounds',
+  temporaryAttack: 1,
+  temporaryDefense: 2,
+  constAttack: 2,
+  constDefense: 2,
   onact: function (game, players) {
   },
   onbuy: function (game, players) {

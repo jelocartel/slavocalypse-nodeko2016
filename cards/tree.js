@@ -11,6 +11,10 @@ const skills = [{
 }, {
   name: 'Grass Thunder',
   description: 'At start of the turn, -1 Wound',
+  temporaryAttack: 1,
+  temporaryDefense: 1,
+  constAttack: 4,
+  constDefense: 1,
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
