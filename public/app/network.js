@@ -52,9 +52,9 @@ define(['knockout'], function(ko) {
           break;
         case 'join':
           GAMESTATE(STATES.GAME);
-          if (parsedEvent.id !== playerID()) {
-            enemyPlayers.push({id: parsedEvent.id});
-          }
+          enemyPlayers(parsedEvent.players.filter(function(id) {
+            return id !== playerID();
+          }));
           break;
         case 'set-id':
           playerID(parsedEvent.id);
