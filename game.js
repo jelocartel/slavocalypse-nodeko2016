@@ -69,22 +69,22 @@ User.prototype.getAttack = function() {
   var points = 0;
 
   for(var i=0;i < this.deck.monsters.length;i++) {
-    points += this.deck.monsters[i].const_attack;
+    points += this.deck.monsters[i].constAttack;
   }
   if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporaryAttack;
 
   for(var i=0;i < this.deck.dragons.length;i++) {
-    points += this.deck.dragons[i].const_attack;
+    points += this.deck.dragons[i].constAttack;
   }
   if (this.deck.dragons.length) points += this.deck.dragons[this.deck.dragons.length -1].temporaryAttack;
 
   for(var i=0;i < this.deck.skill.length;i++) {
-    points += this.deck.skill[i].const_attack;
+    points += this.deck.skill[i].constAttack;
   }
   if (this.deck.skill.length) points += this.deck.skill[this.deck.skill.length -1].temporaryAttack;
 
   for(var i=0;i < this.deck.deity.length;i++) {
-    points += this.deck.deity[i].const_attack;
+    points += this.deck.deity[i].constAttack;
   }
   if (this.deck.deity.length) points += this.deck.deity[this.deck.deity.length -1].temporaryAttack;
 
