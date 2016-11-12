@@ -1,13 +1,14 @@
-var express = require('express')
-var app = express()
+'use strict'
 
-app.set('port', (process.env.PORT || 5000))
-app.use(express.static(__dirname + '/public'))
+const http = require('http')
+const ws = require('ws')
 
-app.get('/', function(request, response) {
-  response.send('Hello from Node Knockout 2016!')
+const PACKAGE = require('./package.json')
+const SERVER = PACKAGE.name + '/' + PACKAGE.version
+
+const server = http.createServer((req, res) => {
+  res.setHeader('server', SERVER)
+  res.end()
 })
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-})
+server.listen(process.env.PORT || 5000)
