@@ -124,7 +124,7 @@ var przemyslanko = C({
 })
 
 var guantanamo = Camp({
-  type: 'spokojnie Andrzeju...',
+  name: 'spokojnie Andrzeju...',
   onfinish: [
     {
       id: 1,
