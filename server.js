@@ -65,6 +65,11 @@ var id = 0
 wsServer.on('connection', s => {
   socketList.push(s)
 
+  s.on('close', () => {
+    const index = socketList.indexOf(s)
+    socketList.splice(index, 1)
+  })
+
   s.on('message', msg => {
     const parsed = JSON.parse(msg)
     const room = parsed.game
