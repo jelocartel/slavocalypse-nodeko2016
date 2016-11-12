@@ -8,6 +8,15 @@ const PACKAGE = require('./package.json')
 const SERVER = PACKAGE.name + '/' + PACKAGE.version
 
 var games = {}
+var sockets = {}
+
+function roomcast(room, msg) {
+  sockets[room].forEach(s => s.send(JSON.stringify(msg)))
+}
+
+function serializeCard(card) {
+  return card
+}
 
 const server = http.createServer((req, res) => {
   res.setHeader('server', SERVER)
@@ -25,12 +34,18 @@ wsServer.on('connection', s => {
     var game
 
     // Whatever you say goes, boss.
-    if (games[room]) game = games[room]
-    else game = games[room] = new Game()
+    if (games[room]) {
+      game = games[room]
+      sockets[room].push(s)
+    }
+    else {
+      game = games[room] = new Game()
+      sockets[room] = [ s ]
+    }
 
     if (event === 'start') {
-      game.init()
-
+      game.start()
+      roomcast({ event: 'start', activeDeck: game.activeDeck.map(serializeCard) })
     }
   })
 })
