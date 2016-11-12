@@ -8,7 +8,7 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       name: 'artem skurwesyn',
       tempAttack: 5,
       tempDefense: 3,
-      attack: 1,
+      attack: 0,
       defense: 2,
       victoryPoints: 1,
       action: 'Kill yourself when picking this card'

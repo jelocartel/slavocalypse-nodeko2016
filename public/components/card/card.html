@@ -1,28 +1,30 @@
-<span class="temp attack-value">
-  <span class="icon"></span>
-  <span data-bind="text: cardData().tempAttack"></span>
-</span>
-<span class="temp defense-value">
-  <span data-bind="text: cardData().tempDefense"></span>
-  <span class="icon"></span>
-</span>
+<!-- ko with: cardData-->
+  <span class="temp attack-value">
+    <span class="icon"></span>
+    <span data-bind="text: tempAttack"></span>
+  </span>
+  <span class="temp defense-value">
+    <span data-bind="text: tempDefense"></span>
+    <span class="icon"></span>
+  </span>
 
-<div class="image">
-</div>
+  <div class="image">
+  </div>
 
-<div class="name" data-bind="text: cardData().name"></div>
+  <div class="name" data-bind="text: name"></div>
 
-<div class="action" data-bind="text: cardData().action"></div>
+  <div class="action" data-bind="text: action"></div>
 
-<span class="attack-value">
-  <span class="icon"></span>
-  <span data-bind="text: cardData().attack"></span>
-</span>
-<span class="victory-points">
-  <span class="icon"></span>
-  <span data-bind="text: cardData().victoryPoints"></span>
-</span>
-<span class="defense-value">
-  <span data-bind="text: cardData().defense"></span>
-  <span class="icon"></span>
-</span>
+  <span class="attack-value">
+    <span class="icon"></span>
+    <span data-bind="text: attack"></span>
+  </span>
+  <span class="victory-points">
+    <span class="icon"></span>
+    <span data-bind="text: victoryPoints"></span>
+  </span>
+  <span class="defense-value">
+    <span data-bind="text: defense"></span>
+    <span class="icon"></span>
+  </span>
+<!-- /ko -->
