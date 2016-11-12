@@ -5,7 +5,12 @@ var Game = function() {
   this.players = new Array();
   this.activePlayer = 0;
   this.startHooks = new Array();
-  this.kartaKurwaWioski = {};
+  this.campCard = {};
+  this.Hooks =  {
+    onTurnFinish: function(){},
+    onRoundFinish: function(){},
+    onGameFinish: function(){}
+  }
 
 };
 
@@ -17,9 +22,7 @@ Game.prototype.gameLoop = function(action) {
 
     }
 
-
     this.activePlayer++;
-    //cbk updateDecks
     if (this.activePlayer === this.players.length) {
       this.activePlayer = 0;
       //round end (make some actions from kartaKurwaWioski)
@@ -27,6 +30,7 @@ Game.prototype.gameLoop = function(action) {
   } else {
     //Game FINISH
   }
+
 }
 
 Game.prototype.init = function () {
@@ -36,8 +40,15 @@ Game.prototype.activePlayerFinishGame = function (action) {
   if (this.activeDeck.length) {
     this.trash.push(this.activeDeck[0]);
   }
-  this.players[this.activePlayer].setCoins(action.coinStatus);
-  this.players[this.activePlayer].setHealth(action.healthStaus);
+  //kartaKurwaWioski
+  this.campCard.selectAction(this, action.campCardActionId);
+  //top stack cards actions
+  var deck = this.players[this.activePlayer].getDeck();
+  if (deck.monsters.length) deck.monsters[deck.monsters.length - 1].onfinish(this, action);
+  if (deck.dragons.length) deck.dragons[deck.dragons.length - 1].onfinish(this, action);
+  if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
+  if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
+
   this.activeDeck = shift(this.activeDeck);
   this.activeDeck.push(this.deck.pop());
 }
