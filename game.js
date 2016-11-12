@@ -44,24 +44,24 @@ User.prototype.getDefense = function() {
   var points = 0;
 
   for(var i=0;i < this.deck.monsters.length;i++) {
-    points += this.deck.monsters[i].const_defense;
+    points += this.deck.monsters[i].constDefense;
   }
-  if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporary_defense;
+  if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporaryDefense;
 
   for(var i=0;i < this.deck.dragons.length;i++) {
-    points += this.deck.dragons[i].const_defense;
+    points += this.deck.dragons[i].constDefense;
   }
-  if (this.deck.dragons.length) points += this.deck.dragons[this.deck.dragons.length -1].temporary_defense;
+  if (this.deck.dragons.length) points += this.deck.dragons[this.deck.dragons.length -1].temporaryDefense;
 
   for(var i=0;i < this.deck.skill.length;i++) {
-    points += this.deck.skill[i].const_defense;
+    points += this.deck.skill[i].constDefense;
   }
-  if (this.deck.skill.length) points += this.deck.skill[this.deck.skill.length -1].temporary_defense;
+  if (this.deck.skill.length) points += this.deck.skill[this.deck.skill.length -1].temporaryDefense;
 
   for(var i=0;i < this.deck.deity.length;i++) {
-    points += this.deck.deity[i].const_defense;
+    points += this.deck.deity[i].constDefense;
   }
-  if (this.deck.deity.length) points += this.deck.deity[this.deck.deity.length -1].temporary_defense;
+  if (this.deck.deity.length) points += this.deck.deity[this.deck.deity.length -1].temporaryDefense;
 
   return points;
 }
@@ -71,22 +71,22 @@ User.prototype.getAttack = function() {
   for(var i=0;i < this.deck.monsters.length;i++) {
     points += this.deck.monsters[i].const_attack;
   }
-  if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporary_attack;
+  if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporaryAttack;
 
   for(var i=0;i < this.deck.dragons.length;i++) {
     points += this.deck.dragons[i].const_attack;
   }
-  if (this.deck.dragons.length) points += this.deck.dragons[this.deck.dragons.length -1].temporary_attack;
+  if (this.deck.dragons.length) points += this.deck.dragons[this.deck.dragons.length -1].temporaryAttack;
 
   for(var i=0;i < this.deck.skill.length;i++) {
     points += this.deck.skill[i].const_attack;
   }
-  if (this.deck.skill.length) points += this.deck.skill[this.deck.skill.length -1].temporary_attack;
+  if (this.deck.skill.length) points += this.deck.skill[this.deck.skill.length -1].temporaryAttack;
 
   for(var i=0;i < this.deck.deity.length;i++) {
     points += this.deck.deity[i].const_attack;
   }
-  if (this.deck.deity.length) points += this.deck.deity[this.deck.deity.length -1].temporary_attack;
+  if (this.deck.deity.length) points += this.deck.deity[this.deck.deity.length -1].temporaryAttack;
 
   return points;
 }

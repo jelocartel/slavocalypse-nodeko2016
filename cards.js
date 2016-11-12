@@ -11,14 +11,13 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
     cardHealth: o.cardHealth,
     amount: o.amount,
     victoryPoints: o.victoryPoints || 0,
-    type: o.type,
     // Called when a card gets to act.
     onact: o.onact || marcin,
     onbuy: o.buy || marcin,
     onfinish: o.onfinish || marcin,
     temporaryAttack: o.temporaryAttack || 0,
     temporaryDefense: o.temporaryDefense || 0,
-    constAttach: o.constAttack || 0,
+    constAttack: o.constAttack || 0,
     constDefense: o.constDefense || 0,
   }
 }
