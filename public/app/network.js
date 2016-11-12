@@ -6,6 +6,9 @@ define(['knockout'], function(ko) {
   var games = ko.observableArray([]);
   var playerID = ko.observable();
   var enemyPlayers = ko.observableArray([]);
+  var activeDeck = ko.observableArray([]);
+  var campCard = ko.observable({});
+  var playerDecks = ko.observableArray([]);
 
   var socket = new WebSocket(url);
   var gameStarted = ko.observable(false);
@@ -75,6 +78,12 @@ define(['knockout'], function(ko) {
             gameStarted(true);
           }
           break;
+        case 'state':
+          console.log('elo state')
+          activeDeck(parsedEvent.activeDeck);
+          campCard(parsedEvent.campCard);
+          playerDecks(parsedEvent.playerDecks);
+          break;
         default:
           console.log('Unknown event: ' + event.data);
           break;
@@ -90,6 +99,9 @@ define(['knockout'], function(ko) {
     enemies: enemyPlayers,
     startGame: startGame,
     GAMESTATE: GAMESTATE,
-    STATES: STATES
+    STATES: STATES,
+    activeDeck: activeDeck,
+    campCard: campCard,
+    playerDecks: playerDecks
   };
 });

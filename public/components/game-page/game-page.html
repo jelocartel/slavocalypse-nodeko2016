@@ -4,8 +4,10 @@
 </div>
 
 <div data-bind="visible: $root.network.gameStarted">
-  <journey-panel></journey-panel>
-  <turn-control-panel></turn-control-panel>
-  <stats-panel></stats-panel>
-  <cards-stacks></cards-stacks>
+	<journey-panel params="activeDeck: $root.network.activeDeck, campCard: $root.network.campCard"></journey-panel>
+	<turn-control-panel></turn-control-panel>
+	<stats-panel></stats-panel>
+	<cards-stacks params="playerDecks: $root.network.playerDecks"></cards-stacks>
 </div>
+=======
+
