@@ -50,11 +50,16 @@ var shuffle = function (arr) {
 }
 Game.prototype.start = function () {
   this.started = true;
-  var decksNames = cards.decks.keys();
+
+  var decksNames = Object.keys(cards.decks)
   shuffle(decksNames);
-  for(var i=0;i<this.players.length && i< decksNames.length;i++) {
-    this.deck = this.deck.concat(cards.decks[decksNames[i]]);
-  }
+  console.log('shuffled', decksNames, this.players.length)
+  decksNames = decksNames.slice(0, this.players.length)
+  console.log('trimmed', decksNames)
+  decksNames.forEach(deck => {
+    Array.prototype.push.apply(this.deck, cards.decks[deck])
+  })
+  console.log(cards, decksNames, this.deck)
   shuffle(this.deck);
   for (var i=0;i<6;i++) {
     this.activeDeck.push(this.deck.pop());
@@ -122,7 +127,7 @@ Game.prototype.activePlayerFinishGame = function (action) {
   if (deck.skill.length) deck.skill[deck.skill.length - 1].onfinish(this, action);
   if (deck.deity.length) deck.deity[deck.deity.length - 1].onfinish(this, action);
 
-  this.activeDeck.shift());
+  this.activeDeck.shift();
   this.activeDeck.push(this.deck.pop());
 }
 

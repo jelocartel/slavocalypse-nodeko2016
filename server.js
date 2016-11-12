@@ -13,9 +13,9 @@ var games = {}
 var sockets = {}
 var socketList = []
 
-function roomcast(room, msg) {
-  msg.room = room
-  sockets[room].forEach(s => s.send(JSON.stringify(msg)))
+function gamecast(game, msg) {
+  msg.game = game
+  sockets[game].forEach(s => s.send(JSON.stringify(msg)))
 }
 
 function broadcast(msg) {
@@ -26,13 +26,13 @@ function sendState(room) {
   var playerDecks = {}
 
   games[room].players.forEach(p => {
-    if (!playerDecks[p.userID]) playerDecks[p.userID] = {}
+    if (!playerDecks[p.id]) playerDecks[p.id] = {}
     Object.keys(p.deck).forEach(d => {
-      playerDecks[p.userID][d] = p.deck[d].map(serializeCard)
+      playerDecks[p.id][d] = p.deck[d].map(serializeCard)
     })
   })
 
-  roomcast(room, {
+  gamecast(room, {
     event: 'state',
     activeDeck: games[room].activeDeck.map(serializeCard),
     campCard: games[room].campCard,
@@ -116,17 +116,17 @@ wsServer.on('connection', s => {
 
     if (event === 'start') {
       game.start()
-      roomcast(room, {
+      gamecast(room, {
         event: 'start'
       })
       sendState(room)
     }
     else if (event === 'join') {
-      if (game.players.filter(p => p.user.id === s.id).length === -1) {
-        const user = new User({ id: s.id })
+      if (game.players.filter(p => p.id === s.id).length === 0) {
+        const user = new User(s.id)
         game.addUser(user)
       }
-      roomcast(room, { event: 'join', id: s.id })
+      gamecast(room, { event: 'join', id: s.id })
     }
     else if (event === 'buy') {
       game.gameLoop({ type: 'buy', activeCardNumber: event.activeCardNumber })
