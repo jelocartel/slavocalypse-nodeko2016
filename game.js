@@ -11,7 +11,7 @@ var Game = function() {
     onRoundFinish: function(self){},
     onGameFinish: function(winObj){}
   }
-
+  this.started = false
 };
 
 Game.prototype.gameLoop = function(action) {
@@ -35,7 +35,8 @@ Game.prototype.gameLoop = function(action) {
 
 }
 
-Game.prototype.init = function () {
+Game.prototype.start = function () {
+  this.started = false
 }
 
 Game.prototype.activePlayerFinishGame = function (action) {
@@ -58,5 +59,4 @@ Game.prototype.activePlayerFinishGame = function (action) {
 Game.prototype.addUser = function (val) {
 
 }
-
 exports.Game = Game;
