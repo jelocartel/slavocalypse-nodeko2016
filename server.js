@@ -56,11 +56,11 @@ function serializePlayer(player) {
   var ret = {
     health: player.health,
     coins: player.coins,
-    decks: {}
+    deck: {}
   }
 
   Object.keys(player.deck).forEach(key => {
-    ret.decks[key] = player.deck[key].map(serializeCard)
+    ret.deck[key] = player.deck[key].map(serializeCard)
   })
 
   return ret
