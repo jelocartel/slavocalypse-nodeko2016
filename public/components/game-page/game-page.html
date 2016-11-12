@@ -1,4 +1,11 @@
-<journey-panel></journey-panel>
-<turn-control-panel></turn-control-panel>
-<stats-panel></stats-panel>
-<cards-stacks></cards-stacks>
+<div data-bind="visible: !($root.network.gameStarted())">
+  Players: <span data-bind="text: $root.network.enemies().length + 1"></span>
+  <button>Start</button>
+</div>
+
+<div data-bind="visible: $root.network.gameStarted">
+  <journey-panel></journey-panel>
+  <turn-control-panel></turn-control-panel>
+  <stats-panel></stats-panel>
+  <cards-stacks></cards-stacks>
+</div>

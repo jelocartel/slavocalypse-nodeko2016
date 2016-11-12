@@ -57,15 +57,54 @@ var wladyslaw = C({
 var michal = C({
   amount: 1,
   type: 'monster',
-  constAttach: 20
+  constAttack: 20
+})
+
+var zenek = C({
+  amount: 5,
+  type: 'monster',
+  constAttack: 10,
+  constDefense: 20
+})
+
+var piwko = C({
+  amount: 10,
+  type: 'item',
+  constAttack: 5
+})
+
+var kolczanPrawilnosci = C({
+  amount: 3,
+  type: 'item',
+  temporaryDefense: 3
+})
+
+var alko = C({
+  amount: 5,
+  type: 'deity',
+  temporaryAttack: 1
+})
+
+var napierdalanko = C({
+  amount: 12,
+  type: 'skill',
+  constAttach: 3,
+  temporaryDefense: 3
+})
+
+var przemyslanko = C({
+  amount: 2,
+  type: 'skill',
+  constDefense: 10
 })
 
 var guantanamo = {
+
 }
 
 var decks = {};
-decks.green = [ perun, wpierdol ]
-decks.red = [ wpierdol, wladyslaw ]
-decks.blue = [ michal, wpierdol ]
+decks.green = [ perun, wpierdol, zenek, piwko, alko, przemyslanko ]
+decks.red = [ wpierdol, wladyslaw, zenek, piwko, alko, przemyslanko ]
+decks.blue = [ michal, wpierdol, zenek, kolczanPrawilnosci, alko, napierdalanko ]
 exports.decks = decks;
 exports.camps = [ guantanamo ]

@@ -4,8 +4,11 @@ define(['knockout'], function(ko) {
   var url = 'ws://127.0.0.1:5000';
 
   var games = ko.observableArray([]);
+  var playerID = ko.observable();
+  var enemyPlayers = ko.observableArray([]);
 
   var socket = new WebSocket(url);
+  var gameStarted = ko.observable(false);
 
   var STATES = {
     LOBBY: '1',
@@ -27,6 +30,14 @@ define(['knockout'], function(ko) {
     }));
   };
 
+  var joinGame = function(game) {
+    console.log('tryin to join: ', game);
+    socket.send(JSON.stringify({
+      event: 'join',
+      game: game.name
+    }));
+  };
+
   setTimeout(getRooms, 1000);
 
   ko.computed(function() {
@@ -37,9 +48,16 @@ define(['knockout'], function(ko) {
         case 'discover':
           console.log(parsedEvent.games);
           games(parsedEvent.games);
+          gameStarted(!!parsedEvent.started);
           break;
-        case 'new-player':
+        case 'join':
           GAMESTATE(STATES.GAME);
+          enemyPlayers(parsedEvent.players.filter(function(id) {
+            return id !== playerID();
+          }));
+          break;
+        case 'set-id':
+          playerID(parsedEvent.id);
           break;
         default:
           console.log('Unknown event: ' + event.data);
@@ -51,6 +69,9 @@ define(['knockout'], function(ko) {
   return {
     games: games,
     createGame: createGame,
+    joinGame: joinGame,
+    gameStarted: gameStarted,
+    enemies: enemyPlayers,
     GAMESTATE: GAMESTATE,
     STATES: STATES
   };
