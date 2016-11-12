@@ -21,22 +21,22 @@ User.prototype.getDefense = function() {
   for(let i=0;i < this.deck.monsters.length;i++) {
     points += this.deck.monsters[i].constDefense;
   }
-  if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporaryDefense;
+  if (this.deck.monsters.length) points += this.deck.monsters[0].temporaryDefense;
 
   for(let i=0;i < this.deck.items.length;i++) {
     points += this.deck.items[i].constDefense;
   }
-  if (this.deck.items.length) points += this.deck.items[this.deck.items.length -1].temporaryDefense;
+  if (this.deck.items.length) points += this.deck.items[0].temporaryDefense;
 
   for(let i=0;i < this.deck.skill.length;i++) {
     points += this.deck.skill[i].constDefense;
   }
-  if (this.deck.skill.length) points += this.deck.skill[this.deck.skill.length -1].temporaryDefense;
+  if (this.deck.skill.length) points += this.deck.skill[0].temporaryDefense;
 
   for(let i=0;i < this.deck.deity.length;i++) {
     points += this.deck.deity[i].constDefense;
   }
-  if (this.deck.deity.length) points += this.deck.deity[this.deck.deity.length -1].temporaryDefense;
+  if (this.deck.deity.length) points += this.deck.deity[0].temporaryDefense;
 
   return points;
 }
@@ -46,22 +46,22 @@ User.prototype.getAttack = function() {
   for(let i=0;i < this.deck.monsters.length;i++) {
     points += this.deck.monsters[i].constAttack;
   }
-  if (this.deck.monsters.length) points += this.deck.monsters[this.deck.monsters.length -1].temporaryAttack;
+  if (this.deck.monsters.length) points += this.deck.monsters[0].temporaryAttack;
 
   for(let i=0;i < this.deck.items.length;i++) {
     points += this.deck.items[i].constAttack;
   }
-  if (this.deck.items.length) points += this.deck.items[this.deck.items.length -1].temporaryAttack;
+  if (this.deck.items.length) points += this.deck.items[0].temporaryAttack;
 
   for(let i=0;i < this.deck.skill.length;i++) {
     points += this.deck.skill[i].constAttack;
   }
-  if (this.deck.skill.length) points += this.deck.skill[this.deck.skill.length -1].temporaryAttack;
+  if (this.deck.skill.length) points += this.deck.skill[0].temporaryAttack;
 
   for(let i=0;i < this.deck.deity.length;i++) {
     points += this.deck.deity[i].constAttack;
   }
-  if (this.deck.deity.length) points += this.deck.deity[this.deck.deity.length -1].temporaryAttack;
+  if (this.deck.deity.length) points += this.deck.deity[0].temporaryAttack;
 
   return points;
 }
