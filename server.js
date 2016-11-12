@@ -61,6 +61,12 @@ wsServer.on('connection', s => {
     else if (event === 'discover') {
       s.send({ event: 'discover', rooms: Object.keys(rooms) })
     }
+    else if (event === 'buy') {
+      game.gameLoop({ type: 'buy' })
+    }
+    else if (event === 'finish') {
+      game.gameLoop({ type: 'finish', campCardActionId: parsed.campCardActionId })
+    }
   })
 })
 
