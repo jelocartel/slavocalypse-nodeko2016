@@ -1,13 +1,67 @@
 card {
-
+  position: relative;
+  padding: 5px;
+  font-family: 'VT323', monospace;
   width: 142px;
   height: 220px;
   display: inline-block;
-  border: 1px solid black;
-  background-color: #ff00ff;
   text-align: center;
+  background-image: url('@{img-path}/cardbg.png');
+  background-size: cover;
+  border-radius: 2px;
+  color: white;
+  text-shadow:
+   -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 
-  h3 {
-    color: black;
+  .image {
+    width: 80px;
+    height: 80px;
+    background-image: url('@{img-path}/img.png');
+    background-size: cover;
+    margin-top: 22px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+  }
+
+  .name {
+    margin-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .action {
+    font-size: 8px;
+    margin-bottom: 15px;
+  }
+
+  .attack-value {
+    float: left;
+    position: relative;
+    bottom: 0;
+
+    .icon {
+      width: 10px;
+      height: 10px;
+      background-size: cover;
+      background-image: url('@{img-path}/attack-icon.png');
+      display: inline-block;
+    }
+  }
+
+  .defense-value {
+    float: right;
+    position: relative;
+    bottom: 0;
+
+    .icon {
+      width: 10px;
+      height: 10px;
+      background-size: cover;
+      background-image: url('@{img-path}/shield-icon.png');
+      display: inline-block;
+    }
   }
 }
