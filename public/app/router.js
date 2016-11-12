@@ -3,9 +3,7 @@ define(['knockout'], function(ko) {
   'use strict';
 
   var pages = [
-    // 'checkout',
-    // 'cart',
-    // 'summary'
+    'game'
   ];
 
   var routerData = ko.observable({});
@@ -15,7 +13,7 @@ define(['knockout'], function(ko) {
     // TU CZA ZMIENIAC
     var pageIndex;
     if (!page) {
-      page = 'main';
+      page = 'lobby';
     } else if (pageIndex = pages.indexOf(page), pageIndex > -1) {
       page = pages[pageIndex];
     } else if (itemId && slug) {
