@@ -6,9 +6,15 @@ define(['knockout'], function(ko) {
   var games = ko.observableArray([]);
   var playerID = ko.observable();
   var enemyPlayers = ko.observableArray([]);
+  var activeDeck = ko.observableArray([]);
+  var campCard = ko.observable({});
+  var playerDecks = ko.observableArray([]);
+  var playerID = ko.observable();
+  var enemyPlayers = ko.observableArray([]);
 
   var socket = new WebSocket(url);
   var gameStarted = ko.observable(false);
+  var gameName = ko.observable();
 
   var STATES = {
     LOBBY: '1',
@@ -24,14 +30,24 @@ define(['knockout'], function(ko) {
 
   var createGame = function() {
     var name = prompt('Game name:');
+    gameName(name);
     socket.send(JSON.stringify({
       event: 'join',
       game: name
     }));
   };
 
+  var startGame = function() {
+    console.log('START GRY ', gameName());
+    socket.send(JSON.stringify({
+      event: 'start',
+      game: gameName()
+    }));
+  };
+
   var joinGame = function(game) {
     console.log('tryin to join: ', game);
+    gameName(game.name);
     socket.send(JSON.stringify({
       event: 'join',
       game: game.name
@@ -59,6 +75,25 @@ define(['knockout'], function(ko) {
         case 'set-id':
           playerID(parsedEvent.id);
           break;
+        case 'start':
+          if (parsedEvent.game === gameName()) {
+            gameStarted(true);
+          }
+          break;
+        case 'set-id':
+          playerID(parsedEvent.id);
+          break;
+        case 'state':
+          console.log('elo state');
+          console.log(parsedEvent.activeDeck);
+          activeDeck(parsedEvent.activeDeck);
+          campCard(parsedEvent.campCard);
+          playerDecks(parsedEvent.playerDecks);
+        case 'start':
+          if (parsedEvent.game === gameName()) {
+            gameStarted(true);
+          }
+          break;
         default:
           console.log('Unknown event: ' + event.data);
           break;
@@ -72,7 +107,11 @@ define(['knockout'], function(ko) {
     joinGame: joinGame,
     gameStarted: gameStarted,
     enemies: enemyPlayers,
+    startGame: startGame,
     GAMESTATE: GAMESTATE,
-    STATES: STATES
+    STATES: STATES,
+    activeDeck: activeDeck,
+    campCard: campCard,
+    playerDecks: playerDecks
   };
 });
