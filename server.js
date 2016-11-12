@@ -23,21 +23,18 @@ function broadcast(msg) {
 }
 
 function sendState(room) {
-  var playerDecks = {}
+  var players = {}
 
-  games[room].players.forEach(p => {
-    if (!playerDecks[p.id]) playerDecks[p.id] = {}
-    Object.keys(p.deck).forEach(d => {
-      playerDecks[p.id][d] = p.deck[d].map(serializeCard)
-    })
+  games[room].players.forEach(player => {
+    players[player.id] = serializePlayer(player)
   })
 
   gamecast(room, {
     event: 'state',
     activeDeck: games[room].activeDeck.map(serializeCard),
     campCard: games[room].campCard,
-    playerDecks: playerDecks,
-    activePlayer: games[room].players[games[room].activePlayer].id
+    activePlayer: games[room].players[games[room].activePlayer].id,
+    players: players
   })
 }
 
@@ -53,6 +50,20 @@ function discovery() {
 
 function serializeCard(card) {
   return card
+}
+
+function serializePlayer(player) {
+  var ret = {
+    health: player.health,
+    coins: player.coins,
+    decks: {}
+  }
+
+  Object.keys(player.deck).forEach(key => {
+    ret.decks[key] = player.deck[key].map(serializeCard)
+  })
+
+  return ret
 }
 
 const server = http.createServer((req, res) => {
