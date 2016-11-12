@@ -10,7 +10,7 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       tempDefense: 1,
       attack: 2,
       defense: 2,
-      victoryPoints: 0,
+      victoryPoints: 1,
       action: 'Kill yourself when picking this card'
     });
 

@@ -1,4 +1,4 @@
-@pages: main-page, lobby-page;
+@pages: main-page, lobby-page, game-page;
 
 .pages(@iterator:1) when(@iterator <= length(@pages)) {
     @name: extract(extract(@pages, @iterator),1);
