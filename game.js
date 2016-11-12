@@ -19,7 +19,7 @@ var Game = function() {
 
 Game.prototype.gameLoop = function(action) {
   if (this.deck.length+this.activeDeck.length) {
-    if (action.type === "finish") {
+    if (action.type === "endTurn") {
       this.activePlayerFinishGame(action);
     } else if (action.type === "buy") {
       activePlayerBuys(action);
@@ -68,7 +68,6 @@ Game.prototype.activePlayerBuys = function (action) {
   var activePlayerObj = this.players[this.activePlayer];
  if (activePlayerObj.coins < action.activeCardNumber) {
    console.log("chujnia nie stac cie!");
-   return;
    return;
  } else {
    if (this.activeDeck[action.activeCardNumber].cardHealth < activePlayerObj.getAttack()) {
