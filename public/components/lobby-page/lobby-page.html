@@ -1,3 +1,7 @@
-<button data-bind="click: startGame">
+<button data-bind="click: $root.joinGame">
   Create New Game
 </button>
+
+<div data-bind="foreach: $root.games">
+  <span data-bind="$data"></span>
+</div>
