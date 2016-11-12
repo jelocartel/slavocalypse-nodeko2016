@@ -2,6 +2,11 @@
   Create New Game
 </button>
 
+<div data-bind="if: $root.games().length === 0">No games available...</div>
 <div data-bind="foreach: $root.games">
-  <span data-bind="$data"></span>
+  <div class="room">
+    <div class="name" data-bind="text: name + ' room'"></div>
+    Players: <span data-bind="text: players"></span>
+    <button>JOIN</button>
+  </div>
 </div>

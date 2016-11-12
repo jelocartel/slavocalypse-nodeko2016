@@ -21,17 +21,20 @@ define(['knockout'], function(ko) {
     }));
   };
 
-  // setTimeout(getRooms, 300);
+  setTimeout(getRooms, 1000);
 
   ko.computed(function() {
     socket.onmessage = function(event) {
       console.log('new message: ', event.data);
-      switch (event.event) {
+      var parsedEvent = JSON.parse(event.data);
+      switch (parsedEvent.event) {
         case 'discover':
-          games(event.games);
+          console.log(parsedEvent.games);
+          games(parsedEvent.games);
           break;
         case 'new-player':
-          games
+          games(parsedEvent.games);
+          break;
         default:
           console.log('Unknown event: ' + event.data);
           break;
