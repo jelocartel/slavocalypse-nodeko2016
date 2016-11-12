@@ -74,7 +74,6 @@ define(['knockout'], function(ko) {
         case 'discover':
           console.log(parsedEvent.games);
           games(parsedEvent.games);
-          gameStarted(!!parsedEvent.started);
           break;
         case 'join':
           GAMESTATE(STATES.GAME);
@@ -98,7 +97,8 @@ define(['knockout'], function(ko) {
           console.log(parsedEvent.activeDeck);
           activeDeck(parsedEvent.activeDeck);
           campCard(parsedEvent.campCard);
-          playerDecks(parsedEvent.playerDecks);
+          playerDecks(parsedEvent.players[parsedEvent.activePlayer].decks);
+
         case 'start':
           if (parsedEvent.game === gameName()) {
             gameStarted(true);
