@@ -1,1 +1,39 @@
-SLAVICOCALYPSE
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Slavocalypse</title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+
+    <link href="css/main.css" rel="stylesheet">
+
+    <script
+        src="https://code.jquery.com/jquery-3.1.0.min.js"
+        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+        crossorigin="anonymous"></script>
+    <script src='bower_modules/apress/apress.js'></script>
+    <script src="bower_modules/nanoajax/nanoajax.min.js"></script>
+    <script src="app/temp/require.config.js"></script>
+    <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>
+    
+  </head>
+
+  <body data-bind="attr:{'data-active-page': $root.router.activePage}, css: {loading: !$root.loaded() || $root.searchBarVisibility()}">
+    <preloader params="loaded: $root.loaded" data-bind="css:{hidden: $root.loaded}"></preloader>
+    <top-bar data-bind="css: { hidden: !$root.loaded()}"></top-bar>
+    <cart-icon params="products: $root.cart.products" data-bind="css: { 'scroll-buttons-visible': $root.cart.products().length > 3, 'visible': $root.cart.products().length > 0 && $root.loaded() }"></cart-icon>
+    <main-page class="page"></main-page>
+    <product-page class="page" params="routerData: $root.router.routerData"></product-page>
+    <category-page class="page" params="routerData: $root.router.routerData"></category-page>
+    <text-page class="page"></text-page>
+    <lookbook-page class="page"></lookbook-page>
+    <checkout-page class="page" params="products: $root.cart.products"></checkout-page>
+    <bottom-bar></bottom-bar>
+    <!-- build:template
+    <script>
+        require(['app/startup']);
+    </script>
+    /build -->
+  </body>
+</html>

@@ -10,22 +10,18 @@ module.exports = function(grunt) {
       dist: 'dist',
       images: 'images'
     },
+    less: {
+      dev: {
+        options: {
+          compress: false,
+          yuicompress: false
+        },
+        files: {
+          '<%= config.src %>/css/main.css': '<%= config.src %>/app/temp/main.less'
+        }
+      }
+    },
     watch: {
-      livereload: {
-         options: {
-           livereload: '<%= connect.options.livereload %>'
-         },
-         files: [
-           '<%= config.src %>/*.html',
-           '<%= config.src %>/**/**/*.js',
-           '<%= config.src %>/**/**/*.html',
-           '<%= config.src %>/**/**/*.less',
-           '<%= config.src %>/<%= config.images %>/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
-         ],
-         tasks: [
-           'build'
-         ]
-      },
       dev: {
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -36,46 +32,8 @@ module.exports = function(grunt) {
           '<%= config.src %>/**/**/*.html',
           '<%= config.src %>/**/**/*.less',
           '<%= config.src %>/<%= config.images %>/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
-        ],
-        tasks: [
-          'less:dev'
         ]
       }
-    },
-    processhtml: {
-      dist: {
-        files: {
-          '<%= config.dist %>/index.html': ['<%= config.src %>/index.html']
-        }
-      }
-    },
-    // requirejs: {
-    //   compile: {
-    //     options: {
-    //       'baseUrl': 'src',
-    //       'mainConfigFile': 'src/app/temp/require.config.dist.js',
-    //       'paths': {
-    //           'knockout': 'bower_modules/knockout/dist/knockout',
-    //           'text':     'bower_modules/requirejs-text/text'
-    //       },
-    //
-    //       'name': 'app/startup',
-    //       'out': 'dist/js/hyanza.js',
-    //       preserveLicenseComments: false,
-    //       include: [
-    //         'bower_modules/requirejs/require.js',
-    //         'bower_modules/apress/apress.js',
-    //         'bower_modules/nanoajax/nanoajax.min.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    copy: {
-      main: {
-        files: [
-          {expand: true, src: ['<%= config.src %>/<%= config.images %>/**'], flatten: true, dest: '<%= config.dist %>/<%= config.images %>/', filter: 'isFile'}
-        ]
-      },
     },
     connect: {
       options: {
@@ -100,10 +58,15 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+    execute: {
+        target: {
+            src: ['./utils/build-components-and-less.js']
+        }
     }
   });
 
-  grunt.registerTask('dev', ['connect:dev', 'watch:dev']);
+  grunt.registerTask('dev', ['execute', 'less:dev', 'connect:dev', 'watch:dev']);
   // grunt.registerTask('html', ['processhtml']);
   // grunt.registerTask('build', ['copy', 'html', 'js', 'css']);
   // grunt.registerTask('serve', ['build', 'connect:livereload', 'watch:livereload']);
