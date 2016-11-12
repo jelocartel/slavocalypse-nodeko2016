@@ -9,6 +9,8 @@ define(['knockout'], function(ko) {
   var activeDeck = ko.observableArray([]);
   var campCard = ko.observable({});
   var playerDecks = ko.observableArray([]);
+  var playerID = ko.observable();
+  var enemyPlayers = ko.observableArray([]);
 
   var socket = new WebSocket(url);
   var gameStarted = ko.observable(false);
@@ -77,6 +79,9 @@ define(['knockout'], function(ko) {
           if (parsedEvent.game === gameName()) {
             gameStarted(true);
           }
+          break;
+        case 'set-id':
+          playerID(parsedEvent.id);
           break;
         case 'state':
           console.log('elo state')
