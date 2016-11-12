@@ -42,7 +42,7 @@ Game.prototype.start = function () {
 
 Game.prototype.activePlayerBuys = function (action) {
   var activePlayerObj = this.players[this.activePlayer];
- if (activePlayerObj.conis< action.activeCardNumber) {
+ if (activePlayerObj.coins < action.activeCardNumber) {
    console.log("chujnia nie stac cie!");
    return;
  } else {
