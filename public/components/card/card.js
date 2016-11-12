@@ -8,17 +8,14 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       card = card();
     }
 
-    var randName = ['jerylo', 'perun', 'svetovit', 'veles', 'svarog'];
-    var name = randName[~~(Math.random() * randName.length)];
-
     var cardData = ko.observable({
-      name: name,//card.name,
+      name: card.name,
       tempAttack: card.temporaryAttack,
       tempDefense: card.temporaryDefense,
       attack: card.constAttack,
       defense: card.constDefense,
       victoryPoints: card.victoryPoints,
-      action: 'zajeb komuś wpierdol',
+      action: card.description || '',
       image: 'd/' + name + '.png'
     });
 

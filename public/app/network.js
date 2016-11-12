@@ -54,6 +54,16 @@ define(['knockout'], function(ko) {
     }));
   };
 
+  var endTurn = function() {
+    // tu wybor radio z camp card, show pop-up etc
+    
+    socket.send(JSON.stringify({
+      event: 'endTurn',
+      // campCardActionId from radio button 
+      campCardActionId: campCardActionId
+    }));
+  };
+
   setTimeout(getRooms, 1000);
 
   ko.computed(function() {
