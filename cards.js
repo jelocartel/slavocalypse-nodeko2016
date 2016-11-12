@@ -20,12 +20,12 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
     constAttack: o.constAttack || 0,
     constDefense: o.constDefense || 0,
     name: o.name,
-    description: o.description,
+    description: o.description || '',
     cardID: o.cardID,
   }
 }
 
-exports.EvilCaptain = C({
+exports.perun = C({
   amount: 1,
   victoryPoints: 1,
   type: 'monster',
@@ -36,3 +36,12 @@ exports.EvilCaptain = C({
   onbuy: function (game, players) {
   }
 });
+
+exports.wpierdol = C({
+  amount: 2,
+  type: 'skill',
+  name: 'wpierdol!',
+  constAttack: 3
+})
+
+exports.green = [ exports.perun, exports.wpierdol ]
