@@ -32,6 +32,9 @@ module.exports = function(grunt) {
           '<%= config.src %>/**/**/*.html',
           '<%= config.src %>/**/**/*.less',
           '<%= config.src %>/<%= config.images %>/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
+        ],
+        tasks: [
+          'less:dev'
         ]
       }
     },
