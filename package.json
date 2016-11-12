@@ -8,6 +8,7 @@
     "dev": "grunt dev"
   },
   "dependencies": {
+    "randomstring": "~1.1.5",
     "ws": "~1.1.1"
   },
   "devDependencies": {
@@ -21,8 +22,7 @@
     "grunt-processhtml": "^0.4.1",
     "jit-grunt": "^0.10.0",
     "requirejs": "^2.3.2",
-    "eval": "^0.1.1",
-    "grunt-execute": "^0.2.2"
+    "eval": "^0.1.1"
   },
   "engines": {
     "node": "5.11.x"

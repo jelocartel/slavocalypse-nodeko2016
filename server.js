@@ -4,6 +4,7 @@ const http = require('http')
 const ws = require('ws')
 const Game = require('./game.js').Game
 const User = require('./user.js').User
+const randomstring = require('randomstring')
 
 const PACKAGE = require('./package.json')
 const SERVER = PACKAGE.name + '/' + PACKAGE.version
@@ -60,10 +61,23 @@ const server = http.createServer((req, res) => {
 
 const wsServer = new ws.Server({ server: server })
 
-var id = 0
-
 wsServer.on('connection', s => {
   socketList.push(s)
+
+  function id() {
+    if (s.id) return s.id
+    else return setId(randomstring.generate(8))
+  }
+
+  function setId(id) {
+    s.id = id
+    s.send(JSON.stringify({
+      event: 'set-id',
+      id: id
+    }))
+  }
+
+  id()
 
   s.on('close', () => {
     const index = socketList.indexOf(s)
@@ -82,6 +96,7 @@ wsServer.on('connection', s => {
       }))
       return
     }
+    else if (event === 'set-id') return setId(event.id)
 
     var game
 
@@ -109,7 +124,7 @@ wsServer.on('connection', s => {
     else if (event === 'join') {
       const user = new User({ id: id++ })
       game.addUser(user)
-      roomcast(room, { event: 'new-player', id: id })
+      roomcast(room, { event: 'new-player', id: s.id })
     }
     else if (event === 'buy') {
       game.gameLoop({ type: 'buy' })
