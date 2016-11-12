@@ -84,7 +84,8 @@ define(['knockout'], function(ko) {
           playerID(parsedEvent.id);
           break;
         case 'state':
-          console.log('elo state')
+          console.log('elo state');
+          console.log(parsedEvent.activeDeck);
           activeDeck(parsedEvent.activeDeck);
           campCard(parsedEvent.campCard);
           playerDecks(parsedEvent.playerDecks);
