@@ -6,7 +6,7 @@ const skills = [{
   onbuy: function (game) {
     const player = game.players[game.activePlayer]
     game.on('turnFinish', () => {
-      player.health += 1
+      if (player.deck.skill[0].name === 'Kolovrot') player.health += 1
     })
   }
 }, {
@@ -29,25 +29,14 @@ const monsters = [{
   cardAttack: 2,
   cardHealth: 2,
   constAttack: -1,
-  constDefense: -1,
-  // description: 'When gained, chosen player gets -$2',
-  // onbuy: function (game, players) {
-  //   players[0].coins = Math.max(0, p.coins - 1)
-  // }
+  constDefense: -1
 },
 {
   amount: 4,
   name: 'Mountain Wolf',
   cardAttack: 6,
   cardHealth: 3,
-  victoryPoints: 5,
-  // description: 'When gained, +$3 for you and -$1 for others',
-  // onbuy: function (game, players) {
-  //   game.players.each(p => {
-  //     p.coins = Math.max(0, p.coins - 1)
-  //   })
-  //   game.players[game.activePlayer].coins += 4
-  // }
+  victoryPoints: 5
 }];
 
 const items = [{
@@ -56,6 +45,7 @@ const items = [{
   temporaryAttack: 1,
   constDefense: 1,
   victoryPoints: 1,
+  description: 'When gained, heal 2',
   onbuy: function (game, players) {
     game.players[game.activePlayer].health += 2
   }
@@ -64,6 +54,7 @@ const items = [{
   description: '',
   temporaryDefense: 1,
   constDefense: 1,
+  description: 'Stay in camp for +$ 4',
   onfinish: function (game) {
     game.players[game.activePlayer].coins += 4
   }
