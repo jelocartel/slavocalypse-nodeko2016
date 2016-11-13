@@ -76,12 +76,15 @@ User.prototype.addCard = function(card) {
 User.prototype.getDeck = function() {
   return this.deck;
 }
+
 User.prototype.getCoins = function() {
   return this.coins;
 }
+
 User.prototype.addCoins = function(val) {
   this.coins += val;
 }
+
 User.prototype.getVictoryCoins = function(game) {
   var vicotryPoints = this.health
   victoryPoints += Math.min(this.deck.skill.length, this.deck.monsters.lenght);
@@ -104,5 +107,22 @@ User.prototype.getVictoryCoins = function(game) {
   vicotryPoints += game.campCard.victoryPointsAction(game, this);
 
   return vicotryPoints;
+}
+
+User.prototype.trashCard = function (type) {
+  switch (type) {
+    case "monster":
+      this.deck.monsters.shift();
+      break;
+    case "item":
+      this.deck.items.shift();
+      break;
+    case "skill":
+      this.deck.skill.shift();
+      break;
+    case "deity":
+      this.deck.deity.shift();
+      break;
+  }
 }
 exports.User = User;
