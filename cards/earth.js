@@ -4,10 +4,10 @@ const skills = [{
   name: 'Kolovrot',
   victoryPoints: 1,
   description: 'Change $2 for 1 Defense',
-  temporaryAttack: 1,
-  temporaryDefense: 1,
+  temporaryAttack: -2,
+  temporaryDefense: -1,
   constAttack: 2,
-  constDefense: -1,
+  constDefense: 1,
   onact: function (game, players) {
   },
   onbuy: function (game, players) {
@@ -29,3 +29,4 @@ const skills = [{
 }];
 
 module.exports.skills = skills;
+module.exports.name = deck;

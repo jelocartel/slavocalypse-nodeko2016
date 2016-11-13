@@ -33,3 +33,4 @@ const skills = [{
 }];
 
 module.exports.skills = skills;
+module.exports.name = deck;

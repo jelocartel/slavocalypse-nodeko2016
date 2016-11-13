@@ -59,21 +59,23 @@ var guantanamo = Camp({
   ]
 })
 
-var deckDefinitions = {
+var decksDefinitions = {
   earth: require('./cards/earth'),
   metal: require('./cards/metal'),
   stone: require('./cards/stone'),
   tree: require('./cards/tree'),
   war: require('./cards/war')
 };
-
-var createSkills = function(skill) {
-  const skillAmount = 3;
-  
-}
 var decks = {};
-decks.green = [ perun, wpierdol, zenek, piwko, alko, przemyslanko ]
-decks.red = [ wpierdol, wladyslaw, zenek, piwko, alko, przemyslanko ]
-decks.blue = [ michal, wpierdol, zenek, kolczanPrawilnosci, alko, napierdalanko ]
+
+for (let deck in decksDefinitions) {
+  let deckName = decksDefinitions[deck].name;
+  decks[deckName] = [];
+  decksDefinitions[deck].skills.forEach(function(skill) {
+    skill.amount = 3;
+    decks[deckName] = C(skill);
+  });
+}
+
 exports.decks = decks;
 exports.camps = [ guantanamo ]
