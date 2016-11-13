@@ -4,8 +4,8 @@
 </div>
 
 <div data-bind="visible: $root.network.gameStarted">
-  <journey-panel params="activeDeck: $root.network.activeDeck, campCard: $root.network.campCard"></journey-panel>
-  <turn-control-panel params="campCard: $root.network.campCard"></turn-control-panel>
+  <journey-panel params="activeDeck: $root.network.activeDeck, campCard: $root.network.campCard, pickingCardActive: $root.pickingCardActive, gameName: $root.network.game, socket: $root.network.socket"></journey-panel>
+  <turn-control-panel params="campCard: $root.network.campCard, pickingCardActive: $root.pickingCardActive"></turn-control-panel>
   <stats-panel></stats-panel>
   <cards-stacks params="playerDecks: $root.network.playerDecks"></cards-stacks>
 </div>

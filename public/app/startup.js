@@ -19,6 +19,7 @@ define([
 
   var games = network.games;
   var isMobile = $(window).width() <= 560 ? true : false;
+  var pickingCardActive = ko.observable(false);
 
   if (router.routerData().game) network.joinGame({ name: router.routerData().game });
 
@@ -37,6 +38,7 @@ define([
     network: network,
     games: games,
     joinGame: network.joinGame,
-    createGame: network.createGame
+    createGame: network.createGame,
+    pickingCardActive: pickingCardActive
   });
 });

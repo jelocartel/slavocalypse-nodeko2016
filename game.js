@@ -20,7 +20,7 @@ Game.prototype.gameLoop = function(action) {
     if (action.type === "endTurn") {
       this.activePlayerFinishGame(action);
     } else if (action.type === "buy") {
-      activePlayerBuys(action);
+      this.activePlayerBuys(action);
     }
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {

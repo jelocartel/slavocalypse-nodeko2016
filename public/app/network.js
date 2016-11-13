@@ -55,10 +55,11 @@ define(['knockout'], function(ko) {
   };
 
   var endTurn = function(actionId) {
-    console.log('network endTurn run, and id', actionId);
+    $('#camp-actions-container').removeClass('visible');
     socket.send(JSON.stringify({
       event: 'endTurn',
-      campCardActionId: actionId
+      campCardActionId: actionId,
+      game: gameName()
     }));
   };
 
@@ -91,9 +92,9 @@ define(['knockout'], function(ko) {
           playerID(parsedEvent.id);
           break;
         case 'state':
-          console.log('elo state');
-          console.log('active deck', parsedEvent.activeDeck);
-          console.log('camp card', parsedEvent.campCard);
+          // console.log('elo state');
+          // console.log('active deck', parsedEvent.activeDeck);
+          // console.log('camp card', parsedEvent.campCard);
           activeDeck(parsedEvent.activeDeck);
           campCard(parsedEvent.campCard);
           playerDecks(parsedEvent.players[parsedEvent.activePlayer].decks);
@@ -123,6 +124,7 @@ define(['knockout'], function(ko) {
     campCard: campCard,
     playerDecks: playerDecks,
     game: gameName,
-    endTurn: endTurn
+    endTurn: endTurn,
+    socket: socket
   };
 });
