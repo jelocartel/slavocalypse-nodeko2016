@@ -81,10 +81,7 @@ function serializePlayer(player) {
   return ret
 }
 
-const server = http.createServer((req, res) => {
-  res.setHeader('server', SERVER)
-  res.end()
-})
+const server = http.createServer()
 
 const wsServer = new ws.Server({ server: server, path: '/ws' })
 
