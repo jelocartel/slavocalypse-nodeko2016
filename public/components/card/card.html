@@ -8,6 +8,15 @@
     <span class="icon"></span>
   </span>
 
+  <span class="temp card-attack-value" data-bind="visible: cardAttack">
+    <span class="icon"></span>
+    <span data-bind="text: cardAttack"></span>
+  </span>
+  <span class="temp card-health-value" data-bind="visible: cardHealth">
+    <span data-bind="text: cardHealth"></span>
+    <span class="icon"></span>
+  </span>
+
   <div class="image" data-bind="style: {'background-image': 'url(../images/' + image + ')'}">
   </div>
 
