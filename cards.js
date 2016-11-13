@@ -13,11 +13,12 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
       cardAttack: o.cardAttack || 0,
       cardHealth: o.cardHealth || 0,
       amount: o.amount || 1,
-      victoryPoints: o.victoryPoints || 0,
+      victoryPoints: o.victoryPoints || marcin,
       // Called when a card gets to act.
       onact: o.onact || marcin,
       onbuy: o.buy || marcin,
       onfinish: o.onfinish || marcin,
+      ontrash: o.ontrash || marcin,
       temporaryAttack: o.temporaryAttack || 0,
       temporaryDefense: o.temporaryDefense || 0,
       constAttack: o.constAttack || 0,
@@ -34,7 +35,7 @@ var Camp = function SerializableCampFactoryFactoryBeanFactory(o) {
   return {
     type: "camp",
     amount: 0,
-    victoryPoints: o.victoryPoints || 0,
+    victoryPoints: o.victoryPoints || marcin,
     // Called when a card gets to a
     onact: o.onact || marcin,
     onfinish: o.onfinish || [{}],
@@ -76,11 +77,21 @@ var i = 1;
 for (let deck in decksDefinitions) {
   let deckName = decksDefinitions[deck].name;
   decks[deckName] = [];
+
+  // SKILLS
   decksDefinitions[deck].skills.forEach(function(skill) {
     skill.type = 'skill';
     skill.cardID = i;
     skill.amount = 3;
     Array.prototype.push.apply(decks[deckName],C(skill));
+    i++;
+  });
+
+  // MONSTERS
+  decksDefinitions[deck].monsters.forEach(function(monster) {
+    monster.type = 'monster';
+    monster.cardID = i;
+    Array.prototype.push.apply(decks[deckName],C(monster));
     i++;
   });
 }

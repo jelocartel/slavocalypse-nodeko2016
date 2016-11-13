@@ -2,10 +2,6 @@
 define(['knockout'], function(ko) {
   'use strict';
 
-  var pages = [
-    'game'
-  ];
-
   var routerData = ko.observable({});
   var activePage = ko.observable('main-page');
 
@@ -14,8 +10,11 @@ define(['knockout'], function(ko) {
     var pageIndex;
     if (!page) {
       page = 'lobby';
-    } else if (pageIndex = pages.indexOf(page)) {
-      page = pages[pageIndex];
+    } else if (page === 'game' && itemId) {
+      routerData({
+        page: 'game',
+        game: itemId
+      })
     } else if (itemId && slug) {
       routerData({
         page: page,
@@ -29,6 +28,7 @@ define(['knockout'], function(ko) {
 
   // I TU JAK BEDZIEMY MIEC STRONU JUZ
   apress.addRoute('/%', parseRoute);
+  apress.addRoute('/%/%', parseRoute);
   apress.addRoute('/%/%/%', parseRoute);
   apress.addRoute('/', parseRoute);
   apress.hashTest();

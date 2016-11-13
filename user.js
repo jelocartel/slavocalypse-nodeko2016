@@ -7,6 +7,8 @@ var User = function(id) {
    this.deck.skill = new Array();
    this.deck.deity = new Array();
    this.coins = 5;
+   this.additionalDefense = 0
+   this.additionalAttack = 0
    this.id = id;
 };
 User.prototype.getHealth = function() {
@@ -39,7 +41,7 @@ User.prototype.getDefense = function() {
   }
   if (this.deck.deity.length) points += this.deck.deity[0].temporaryDefense;
 
-  return points;
+  return points + this.additionalDefense;
 }
 User.prototype.getAttack = function() {
   var points = 0;
@@ -64,7 +66,7 @@ User.prototype.getAttack = function() {
   }
   if (this.deck.deity.length) points += this.deck.deity[0].temporaryAttack;
 
-  return points;
+  return points + this.additionalAttack;
 }
 
 User.prototype.addCard = function(card) {
@@ -80,9 +82,27 @@ User.prototype.getCoins = function() {
 User.prototype.addCoins = function(val) {
   this.coins += val;
 }
-User.prototype.getVictoryCoins = function() {
-  //docelowo suma wszystkich victory pointow typeof int and typeof function(this) plus pary
-  var victoryPoints=0;
-  return 33;
+User.prototype.getVictoryCoins = function(game) {
+  var vicotryPoints = this.health
+  victoryPoints += Math.min(this.deck.skill.length, this.deck.monsters.lenght);
+
+  for(let i=0;i < this.deck.monsters.length;i++) {
+    victoryPoints += this.deck.monsters[i].victoryPoints(game, this);
+  }
+
+  for(let i=0;i < this.deck.items.length;i++) {
+    victoryPoints += this.deck.items[i].victoryPoints(game, this);
+  }
+
+  for(let i=0;i < this.deck.skill.length;i++) {
+    victoryPoints += this.deck.skill[i].victoryPoints(game, this);
+  }
+
+  for(let i=0;i < this.deck.deity.length;i++) {
+    victoryPoints += this.deck.deity[i].victoryPoints(game, this);
+  }
+  vicotryPoints += game.campCard.victoryPoints(game, this);
+
+  return vicotryPoints;
 }
 exports.User = User;

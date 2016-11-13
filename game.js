@@ -1,4 +1,6 @@
 'use strict';
+const util = require('util')
+const EventEmitter = require('events').EventEmitter
 const cards = require('./cards.js');
 
 var Game = function() {
@@ -7,15 +9,11 @@ var Game = function() {
   this.trash = new Array();
   this.players = new Array();
   this.activePlayer = 0;
-  this.startHooks = new Array();
   this.campCard = {};
-  this.hooks =  {
-    onTurnFinish: function(self){},
-    onRoundFinish: function(self){},
-    onGameFinish: function(winObj){}
-  }
   this.started = false
+  EventEmitter.call(this)
 };
+util.inherits(Game, EventEmitter)
 
 Game.prototype.gameLoop = function(action) {
   if (this.deck.length+this.activeDeck.length) {
@@ -27,14 +25,18 @@ Game.prototype.gameLoop = function(action) {
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {
       this.activePlayer = 0;
-      this.hooks.onRoundFinish(this);
+      this.players.forEach(p => {
+        p.additonalDefense = 0
+        p.additonalAttack = 0
+      })
+      this.emit('roundFinish')
     } else {
-      this.hooks.onTurnFinish(this);
+      this.emit('turnFinish')
     }
   } else {
     //Game FINISH
     //podlicz punkty i przygotuj obiekt :D
-    this.hooks.onGameFinish("dupaDupa");
+    this.emit('gameFinish')
   }
 
 }
@@ -49,21 +51,24 @@ var shuffle = function (arr) {
   }
 }
 Game.prototype.start = function () {
-  this.started = true;
+  if (!this.started) {
+    this.started = true;
 
-  var decksNames = Object.keys(cards.decks);
-  shuffle(decksNames);
-  decksNames = decksNames.slice(0, this.players.length);
-  decksNames.forEach(deck => {
-    Array.prototype.push.apply(this.deck, cards.decks[deck]);
-  })
-  shuffle(this.deck);
-  for (var i=0;i<6;i++) {
-    this.activeDeck.push(this.deck.pop());
+    var decksNames = Object.keys(cards.decks);
+    shuffle(decksNames);
+    decksNames = decksNames.slice(0, this.players.length);
+    decksNames.forEach(deck => {
+      Array.prototype.push.apply(this.deck, cards.decks[deck]);
+    });
+
+    shuffle(this.deck);
+    for (var i=0;i<6;i++) {
+      this.activeDeck.push(this.deck.pop());
+    }
+
+    shuffle(cards.camps);
+    this.campCard = cards.camps.slice(0, 1)[0];
   }
-
-  shuffle(cards.camps);
-  this.campCard = cards.camps.slice(0, 1);
 }
 
 Game.prototype.activePlayerBuys = function (action) {

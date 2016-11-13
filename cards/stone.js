@@ -28,5 +28,30 @@ const skills = [{
   }
 }];
 
+const monsters = [{
+  amount: 4,
+  name: 'Golem',
+  victoryPoints: 1,
+  cardAttack: 2,
+  cardHealth: 4,
+  description: 'When gained, -3 Wounds',
+  onact: function (game, players) {
+  },
+  onbuy: function (game, players) {
+  }
+},
+{
+  amount: 8,
+  name: 'Miner',
+  cardAttack: 1,
+  cardHealth: 2,
+  description: 'When gained, +2 Wounds to everyone but you',
+  onact: function (game, players) {
+  },
+  onbuy: function (game, players) {
+  }
+}];
+
+module.exports.monsters = monsters;
 module.exports.skills = skills;
 module.exports.name = deck;

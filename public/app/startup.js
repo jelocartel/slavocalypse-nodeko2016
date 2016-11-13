@@ -20,12 +20,15 @@ define([
   var games = network.games;
   var isMobile = $(window).width() <= 560 ? true : false;
 
+  console.log(router.routerData())
+  if (router.routerData().game) network.joinGame({ name: router.routerData().game });
+
   ko.computed(function() {
     switch (network.GAMESTATE()) {
       case network.STATES.LOBBY:
         break;
       case network.STATES.GAME:
-        window.location.hash = "#!/game";
+        window.location.hash = "#!/game/" + network.game()
         break;
     }
   });
