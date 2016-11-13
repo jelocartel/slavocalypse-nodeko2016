@@ -26,7 +26,7 @@ const monsters = [{
   amount: 8,
   name: 'Earth Mutant',
   victoryPoints: 4,
-  cardAttack: 2,
+  cardAttack: 4,
   cardHealth: 2,
   constAttack: -1,
   constDefense: -1
@@ -34,7 +34,7 @@ const monsters = [{
 {
   amount: 4,
   name: 'Mountain Wolf',
-  cardAttack: 6,
+  cardAttack: 7,
   cardHealth: 3,
   victoryPoints: 5
 }];
