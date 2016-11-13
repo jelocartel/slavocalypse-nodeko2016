@@ -111,6 +111,7 @@ define(['knockout'], function(ko) {
         }
         break;
       case 'state':
+        console.log('pszyszet state, ja mam ID: ', playerID());
         // console.log('elo state');
         // console.log('active deck', parsedEvent.activeDeck);
         // console.log('camp card', parsedEvent.campCard);
