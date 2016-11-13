@@ -6,14 +6,14 @@ define(['knockout', 'text!./stats-panel.html'], function(ko, template) {
     var cash = ko.observable(5);
     var wounds = ko.observable(0);
     var attack = ko.observable(0);
-    var defence = ko.observable(0);
-    console.log(params);
+    var defense = ko.observable(0);
+    // console.log(params);
 
     ko.computed(function() {
       cash(params.player().coins);
-      wounds(param.player().health * -1);
-      attack(param.player().attack);
-      defence(param.player().defence);
+      wounds(params.player().health * -1);
+      attack(params.player().attack);
+      defense(params.player().defense);
       // console.log(cash())
     });
 
@@ -21,7 +21,7 @@ define(['knockout', 'text!./stats-panel.html'], function(ko, template) {
       cash: cash,
       wounds: wounds,
       attack: attack,
-      defence: defence
+      defense: defense
     };
   }
 
