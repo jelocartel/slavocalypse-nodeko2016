@@ -31,8 +31,8 @@ const skills = [{
 const monsters = [{
   amount: 4,
   name: 'Scavenger',
-  victoryPoints: 1,
-  cardAttack: 2,
+  victoryPoints: 2,
+  cardAttack: 1,
   cardHealth: 4,
   description: 'Trash this for +2 Attack',
   onact: function (game, players) {
@@ -53,27 +53,21 @@ const monsters = [{
 }];
 
 const items = [{
-  name: 'Pipe',
+  name: 'Chair',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
+  victoryPoints: 2,
+  ontrash: function (game) {
+    game.players[game.activePlayer].coins += 6
   }
 }, {
   name: 'Machete',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  temporaryAttack: 2,
+  victoryPoints: 1,
+}, {
+  name: 'Pipe',
+  temporaryAttack: 1,
+  constAttack: 1
 }];
 
 module.exports.items = items;
