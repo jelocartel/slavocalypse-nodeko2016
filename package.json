@@ -4,6 +4,7 @@
   "description": "Multiplayer card game placed in post apocaliptic East Europe.",
   "main": "index.js",
   "scripts": {
+    "postinstall": "bower install",
     "start": "node server.js",
     "dev": "grunt dev"
   },
@@ -12,6 +13,8 @@
     "ws": "~1.1.1"
   },
   "devDependencies": {
+    "bower": "~1.8.0",
+    "eval": "^0.1.1",
     "grunt": "^1.0.1",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
@@ -21,8 +24,7 @@
     "grunt-execute": "^0.2.2",
     "grunt-processhtml": "^0.4.1",
     "jit-grunt": "^0.10.0",
-    "requirejs": "^2.3.2",
-    "eval": "^0.1.1"
+    "requirejs": "^2.3.2"
   },
   "engines": {
     "node": "5.11.x"
