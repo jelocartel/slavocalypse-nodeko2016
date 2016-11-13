@@ -21,10 +21,13 @@ define(['knockout', 'text!./journey-panel.html'], function(ko, template) {
       // "constAttack": "1",
       // "constDefense": "1"
     });
-    campCard(params.campCard);
+    
 
     ko.computed(function() {
-      journeyDeck(params.activeDeck());;
+      journeyDeck(params.activeDeck());
+      campCard(params.campCard());
+      console.log('cc', campCard);
+      console.log('cc2', campCard().onfinish);
     });
     return {
       journeyDeck: journeyDeck,

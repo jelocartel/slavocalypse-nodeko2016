@@ -1,4 +1,13 @@
-<div class='button' data-bind="click: endTurn">end turn</div>
+<div class='button' data-bind="click: endActionChoice">end turn</div>
 <div class='button' data-bind="click: pickCard">pick card</div>
 <div class='button' data-bind="click: stayInCity">stay in city</div>
 <div class='button' data-bind="click: useCard">use card</div>
+
+<div id="camp-actions-container">
+  <div class="camp-actions">
+    <!-- ko foreach: campCard().onfinish -->
+      <div class="button" data-bind="text: $data.name, attr: { id: $data.id }, click: $root.network.endTurn($data.id)"></div>
+    <!-- /ko -->
+    <div class="button" data-bind="">SKIP</div>
+  </div>
+</div>
