@@ -101,9 +101,9 @@ define(['knockout'], function(ko) {
           // console.log('camp card', parsedEvent.campCard);
           activeDeck(parsedEvent.activeDeck);
           campCard(parsedEvent.campCard);
-          playerDecks(parsedEvent.players[parsedEvent.activePlayer].deck);
+          playerDecks(parsedEvent.players[playerID()].deck);
           activePlayer(parsedEvent.activePlayer);
-          player(parsedEvent.players[parsedEvent.activePlayer]);
+          player(parsedEvent.players[playerID()]);
           console.log('STATE PLAYER', player())
         case 'start':
           if (parsedEvent.game === gameName()) {

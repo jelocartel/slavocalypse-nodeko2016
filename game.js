@@ -40,6 +40,10 @@ Game.prototype.gameLoop = function(action) {
   } else {
     //Game FINISH
     //podlicz punkty i przygotuj obiekt :D
+    console.log("koniec gry");
+    this.players.forEach(function(p) {
+      console.log(p.getVictoryPoints());
+    })
     this.emit('gameFinish')
   }
 
@@ -128,7 +132,8 @@ Game.prototype.activePlayerBuys = function (action) {
      break;
  }
  this.activeDeck.splice(action.activeCardNumber, 1);
- this.activeDeck.push(this.deck.pop());
+ if(this.deck.length > 0)
+  this.activeDeck.push(this.deck.pop());
 
 
  if (deck.monsters.length) deck.monsters[0].onfinish(this, action);
@@ -161,7 +166,8 @@ Game.prototype.activePlayerFinishGame = function (action) {
   if (deck.deity.length) deck.deity[0].onfinish(this, action);
 
   this.activeDeck.shift();
-  this.activeDeck.push(this.deck.pop());
+  if(this.deck.length > 0)
+    this.activeDeck.push(this.deck.pop());
 }
 
 Game.prototype.addUser = function (val) {
