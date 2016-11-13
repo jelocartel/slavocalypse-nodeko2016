@@ -40,6 +40,7 @@ function sendState(room) {
     players: players,
     deckCardsLeft: games[room].deck.length,
     victory: games[room].vicotry,
+    gameLog: games[room].gameLog,
   }
 
   const activePlayer = games[room].activePlayer
