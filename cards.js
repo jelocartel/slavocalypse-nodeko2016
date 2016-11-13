@@ -7,8 +7,8 @@ const TYPES = ['item', 'skill', 'monster', 'deity']
 var C = function SerializableCardFactoryFactoryBeanFactory(o) {
   return {
     type: o.type,
-    cardAttack: o.cardAttack,
-    cardHealth: o.cardHealth,
+    cardAttack: o.cardAttack || 0,
+    cardHealth: o.cardHealth || 0,
     amount: o.amount,
     victoryPoints: o.victoryPoints || 0,
     // Called when a card gets to act.
@@ -21,7 +21,7 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
     constDefense: o.constDefense || 0,
     name: o.name,
     description: o.description || '',
-    cardID: o.cardID,
+    cardID: o.cardID || 0,
   }
 }
 
@@ -67,15 +67,17 @@ var decksDefinitions = {
   war: require('./cards/war')
 };
 var decks = {};
-
+var i = 1;
 for (let deck in decksDefinitions) {
   let deckName = decksDefinitions[deck].name;
   decks[deckName] = [];
   decksDefinitions[deck].skills.forEach(function(skill) {
-    skill.amount = 3;
-    decks[deckName] = C(skill);
+    skill.type = 'skill';
+    skill.cardID = i;
+    decks[deckName].push(C(skill));
+    i++;
   });
 }
-
+console.log(decks);
 exports.decks = decks;
 exports.camps = [ guantanamo ]

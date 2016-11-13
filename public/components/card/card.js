@@ -8,6 +8,10 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       card = card();
     }
 
+    var nameToImage = function(name) {
+      return name.replace(/[^a-zA-Z]/g, "").toLowerCase();
+    };
+
     var cardData = ko.observable({
       name: card.name,
       tempAttack: card.temporaryAttack,
@@ -16,7 +20,7 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       defense: card.constDefense,
       victoryPoints: card.victoryPoints,
       action: card.description || '',
-      image: 'd/' + name + '.png'
+      image: card.type.charAt(0) + '/' + nameToImage(card.name) + '.png'
     });
 
     return {
