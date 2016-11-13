@@ -31,60 +31,45 @@ const skills = [{
 const monsters = [{
   amount: 4,
   name: 'Golem',
-  victoryPoints: 1,
+  victoryPoints: 6,
   cardAttack: 2,
-  cardHealth: 4,
+  cardHealth: 8,
   description: 'When gained, -3 Wounds',
-  onact: function (game, players) {
-  },
   onbuy: function (game, players) {
+    game.players[game.activePlayer].addCoins(-2)
   }
 },
 {
   amount: 8,
   name: 'Miner',
-  cardAttack: 1,
-  cardHealth: 2,
-  description: 'When gained, +2 Wounds to everyone but you',
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  cardAttack: 3,
+  cardHealth: 3,
+  victoryPoints: 3
 }];
 
 const items = [{
   name: 'Knife',
-  description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  temporaryDefense: 1,
+  constDefense: 1,
+  victoryPoints: 2
 }, {
   name: 'Lighter',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
+  constDefense: 1,
   onbuy: function (game, players) {
+    // XXX
   }
 },{
   name: 'Rock',
-  description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
+  description: 'Pay $ 2 for 3 Defense',
+  constDefense: 1,
   onact: function (game, players) {
+    const p = game.players[game.activePlayer]
+    if (p.coins >= 2) {
+      p.addCoins(-2)
+      p.additionalDefense += 3
+    }
   },
-  onbuy: function (game, players) {
-  }
 }];
 
 module.exports.items = items;

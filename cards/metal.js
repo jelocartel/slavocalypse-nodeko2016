@@ -34,7 +34,7 @@ const monsters = [{
   victoryPoints: 2,
   cardAttack: 1,
   cardHealth: 4,
-  description: 'Trash this for +2 Attack',
+  description: 'When gained, take $ 6 from each player',
   onbuy: function (game, players) {
     const active = game.players[game.activePlayer]
     players.forEach((p) => {
@@ -59,7 +59,7 @@ const items = [{
   name: 'Chair',
   description: '',
   victoryPoints: 2,
-  description: 'When gaining this, +$6',
+  description: 'Trash this for +$ 6',
   ontrash: function (game) {
     game.players[game.activePlayer].coins += 6
   }
