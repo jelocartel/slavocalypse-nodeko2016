@@ -171,6 +171,7 @@ Game.prototype.activePlayerFinishGame = function (action) {
 }
 
 Game.prototype.addUser = function (val) {
-  this.players.push(val);
+  if(!this.started)
+    this.players.push(val);
 }
 exports.Game = Game;
