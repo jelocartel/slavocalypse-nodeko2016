@@ -3,5 +3,7 @@
   <card params="card: $data"></card>
 <!-- /ko -->
 <div class'camp-actions'>
-  <label><input type='radio' name='campEndAction' value=""></label>
+  <!-- ko foreach: campCard().onfinish -->
+    <label><input type='radio' name='campEndAction' value="$data.id" data-bind="text: $data.name"></label>
+  <!-- /ko -->
 </div>
