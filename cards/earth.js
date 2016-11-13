@@ -9,6 +9,8 @@ const skills = [{
   constAttack: 2,
   constDefense: 1,
   onact: function (game, players) {
+    game.players[game.activePlayer].coins -= 2
+    game.players[game.activePlayer].additionalDefense += 2
   },
   onbuy: function (game, players) {
   }
