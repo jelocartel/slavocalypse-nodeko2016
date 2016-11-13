@@ -4,7 +4,7 @@
   "description": "Multiplayer card game placed in post apocaliptic East Europe.",
   "main": "index.js",
   "scripts": {
-    "build:less": "lessc public/app/temp/main.less > public/css/main.css && node ./utils/build-components-and-less.js",
+    "build:less": "node ./utils/build-components-and-less.js",
     "postinstall": "bower install && npm run build:less",
     "start": "node server.js",
     "dev": "grunt dev"
