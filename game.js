@@ -117,12 +117,22 @@ Game.prototype.activePlayerBuys = function (action) {
  if (deck.deity.length) deck.deity[0].onfinish(this, action);
 
 };
+
+Game.prototype.selcetCampAction = function(action) {
+  this.campCard.onfinish.forEach(function(elem) {
+    if (elem.id == action.campCardActionId) {
+      elem.action(this);
+    }
+  });
+}
+
 Game.prototype.activePlayerFinishGame = function (action) {
   if (this.activeDeck.length) {
     this.trash.push(this.activeDeck[0]);
   }
   //kartaKurwaWioski
-  this.campCard.selectAction(this, action.campCardActionId);
+  if (0 < action.campCardActionId)
+    this.selcetCampAction(action);
   //top stack cards actions
   var deck = this.players[this.activePlayer].getDeck();
   if (deck.monsters.length) deck.monsters[0].onfinish(this, action);
