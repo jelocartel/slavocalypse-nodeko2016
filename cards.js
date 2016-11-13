@@ -100,6 +100,15 @@ for (let deck in decksDefinitions) {
     Array.prototype.push.apply(decks[deckName],C(monster));
     i++;
   });
+
+  //items
+  decksDefinitions[deck].items.forEach(function(item) {
+    item.type = 'item';
+    item.cardID = i;
+    item.amount = 2;
+    Array.prototype.push.apply(decks[deckName],C(item));
+    i++;
+  });
 }
 //console.log(decks);
 exports.decks = decks;

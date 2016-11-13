@@ -52,6 +52,42 @@ const monsters = [{
   }
 }];
 
+const items = [{
+  name: 'Granade',
+  description: '',
+  temporaryAttack: 5,
+  temporaryDefense: 3,
+  constAttack: 3,
+  constDefense: 2,
+  onact: function (game, players) {
+  },
+  onbuy: function (game, players) {
+  }
+}, {
+  name: 'Trashbin',
+  description: '',
+  temporaryAttack: 5,
+  temporaryDefense: 3,
+  constAttack: 3,
+  constDefense: 2,
+  onact: function (game, players) {
+  },
+  onbuy: function (game, players) {
+  }
+},{
+  name: 'Soda Can',
+  description: '',
+  temporaryAttack: 5,
+  temporaryDefense: 3,
+  constAttack: 3,
+  constDefense: 2,
+  onact: function (game, players) {
+  },
+  onbuy: function (game, players) {
+  }
+}];
+
+module.exports.items = items;
 module.exports.monsters = monsters;
 module.exports.skills = skills;
 module.exports.name = deck;
