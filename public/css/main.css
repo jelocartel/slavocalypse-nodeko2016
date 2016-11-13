@@ -235,6 +235,7 @@ stats-panel #score-container {
   background-color: rgba(0, 0, 0, 0.7);
   transition: transform 0.3s;
   transform: scale(0);
+  z-index: 9999;
 }
 stats-panel #score-container .score-board {
   display: block;
@@ -245,6 +246,28 @@ stats-panel #score-container .score-board {
   background-color: #fff;
   text-align: center;
   padding: 30px;
+}
+stats-panel #score-container .button {
+  display: block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #ccc;
+  margin: auto;
+  margin-top: 20px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+stats-panel #score-container .button a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #fff;
+}
+stats-panel #score-container .button:hover {
+  background-color: #a49999;
 }
 stats-panel #score-container.visible {
   transform: scale(1);
