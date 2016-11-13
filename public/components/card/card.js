@@ -13,10 +13,12 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
     ko.computed(function() {
       cardObs(typeof params.card === 'function' ? params.card() : params.card);
 
-      
+
       var card = cardObs();
       var image = card.type && card.name ? card.type.charAt(0) + '/' + nameToImage(card.name) + '.png' : '';
+      var type = card.type === 'skill' ? 'rune' : card.type;
       cardData({
+        type: type,
         name: card.name,
         tempAttack: card.temporaryAttack,
         tempDefense: card.temporaryDefense,
@@ -24,12 +26,12 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
         defense: card.constDefense,
         victoryPoints: card.victoryPoints,
         action: card.description || '',
-        image:  image, 
+        image:  image,
         cardAttack: card.cardAttack || 0,
         cardHealth: card.cardHealth || 0
       });
     });
-    
+
     return {
       cardData: cardData
     };
