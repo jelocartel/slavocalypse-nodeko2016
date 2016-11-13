@@ -9,4 +9,3 @@ temp
 # Don't track build output
 dist/
 wiki
-public/css/main.css

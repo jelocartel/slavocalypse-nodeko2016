@@ -1,0 +1,289 @@
+body {
+  font-family: 'VT323', monospace;
+  color: white;
+  font-size: 20px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+button {
+  font-family: 'VT323', monospace;
+  font-size: 15px;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  -moz-appearance: none;
+}
+body .page {
+  display: none;
+}
+body[data-active-page="main-page"] main-page.page {
+  display: block;
+}
+body[data-active-page="lobby-page"] lobby-page.page {
+  display: block;
+}
+body[data-active-page="game-page"] game-page.page {
+  display: block;
+}
+card {
+  position: relative;
+  padding: 7px;
+  font-family: 'VT323', monospace;
+  width: 144px;
+  height: 220px;
+  display: inline-block;
+  text-align: center;
+  background-image: url('../images/cardbg.png');
+  background-size: cover;
+}
+card .image {
+  width: 80px;
+  height: 80px;
+  background-image: url('../images/img.png');
+  background-size: cover;
+  margin-top: 22px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+}
+card .name {
+  margin-bottom: 3px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+card .action {
+  font-size: 10px;
+  margin-bottom: 15px;
+  padding: 2px;
+}
+card .bottom {
+  position: absolute;
+  bottom: 0;
+  width: 82%;
+  padding: 5px;
+}
+card .type {
+  font-size: 12px;
+  text-transform: uppercase;
+  line-height: 19px;
+  vertical-align: top;
+}
+card .attack-value {
+  float: left;
+}
+card .attack-value .icon {
+  width: 10px;
+  height: 10px;
+  background-size: cover;
+  background-image: url('../images/attack-icon.png');
+  display: inline-block;
+}
+card .defense-value {
+  float: right;
+  position: relative;
+}
+card .defense-value .icon {
+  width: 10px;
+  height: 10px;
+  background-size: cover;
+  background-image: url('../images/shield-icon.png');
+  display: inline-block;
+}
+card .card-health-value {
+  float: right;
+  position: relative;
+}
+card .card-health-value .icon {
+  width: 10px;
+  height: 10px;
+  background-size: cover;
+  background-image: url('../images/health.png');
+  display: inline-block;
+}
+card .card-attack-value {
+  float: left;
+}
+card .card-attack-value .icon {
+  width: 10px;
+  height: 10px;
+  background-size: cover;
+  background-image: url('../images/mon-attack.png');
+  display: inline-block;
+}
+cards-stacks {
+  display: inline-block;
+  width: 70%;
+  min-height: 200px;
+  box-sizing: border-box;
+  float: left;
+}
+cards-stacks .stack {
+  display: inline-block;
+  width: 150px;
+  margin-left: 20px;
+}
+cards-stacks .stack card {
+  display: block;
+  position: absolute;
+  border-bottom: solid 2px #000;
+  transition: transform 0.3s;
+  transform-origin: 50% 0;
+}
+cards-stacks .stack card:first-child:hover {
+  transform: scale(1.5);
+  z-index: 9 !important;
+}
+cards-stacks .stack:first-child card {
+  transform-origin: 0 0;
+}
+example-component h2 {
+  color: red;
+}
+journey-panel {
+  display: block;
+  width: 100%;
+  border-bottom: solid 1px #000;
+  padding-bottom: 70px;
+  height: 200px;
+  position: relative;
+}
+journey-panel card {
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+journey-panel card:last-child {
+  margin-right: 0;
+}
+journey-panel card:hover {
+  transform: scale(1.5);
+  z-index: 2;
+  transform-origin: 50% 0;
+  box-shadow: 0px 0px 34px 0px rgba(255, 255, 255, 0.75);
+}
+journey-panel card:hover:first-child {
+  transform-origin: 0 0;
+}
+journey-panel card:hover:last-child {
+  transform-origin: 100% 0;
+}
+journey-panel card.city {
+  margin-top: 40px;
+}
+lobby-page {
+  text-align: center;
+}
+lobby-page .logo {
+  margin: auto;
+  display: block;
+  padding: 20px;
+}
+lobby-page .room {
+  border: 2px black dashed;
+  margin: 10px;
+  display: block;
+  margin: 10px auto 10px auto;
+  width: 150px;
+  padding: 10px;
+}
+lobby-page .room .name {
+  text-transform: uppercase;
+}
+lobby-page .room.started {
+  opacity: 0.3;
+  pointer-events: none;
+}
+stats-panel {
+  display: inline-block;
+  width: 70%;
+  height: 70px;
+  box-sizing: border-box;
+  border-bottom: solid 1px #000;
+  float: left;
+}
+stats-panel .param {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #ccc;
+  box-sizing: border-box;
+  padding: 10px;
+  line-height: 30px;
+  text-align: center;
+}
+stats-panel .param span {
+  display: inline-block;
+}
+stats-panel .param span:nth-child(2) {
+  font-size: 13px;
+}
+turn-control-panel {
+  display: inline-block;
+  width: 30%;
+  float: right;
+  margin-top: 10px;
+}
+turn-control-panel .button {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  background-color: #ccc;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  width: 100px;
+  cursor: pointer;
+}
+turn-control-panel .button:hover {
+  background-color: #a49999;
+}
+turn-control-panel #camp-actions-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: block;
+  transition: transform 0.3s;
+  transform: scale(0);
+  z-index: 999;
+}
+turn-control-panel #camp-actions-container.visible {
+  transform: scale(1);
+}
+turn-control-panel #camp-actions-container .camp-actions {
+  display: block;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  border: solid 2px #000;
+  color: #000;
+  background-color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+turn-control-panel #camp-actions-container .camp-actions .button {
+  display: block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #ccc;
+  margin: auto;
+  margin-top: 20px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+turn-control-panel #camp-actions-container .camp-actions .button:hover {
+  background-color: #a49999;
+}
+turn-control-panel #camp-actions-container .camp-actions .button:first-child {
+  margin-top: 0;
+}
