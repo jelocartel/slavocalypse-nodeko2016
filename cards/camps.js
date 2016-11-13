@@ -5,13 +5,23 @@ module.exports = [{
   onfinish: [
     {
       id: 1,
-      name: "Get rusty trombone from Mia Malkova",
-      action: marcin,
+      name: "Get $5, others -1 Wound",
+      action: function(game) {
+        game.players[game.activePlayer].coins += 5;
+        game.players.forEach(function(player) {
+          player.addHealth(1);
+        });
+      }
     },
     {
       id: 2,
-      name: "Give rimmjob to Rocco Sciffredi",
-      action: marcin,
+      name: "Heal 2 Wounds, other players +$2",
+      action: function(game) {
+        game.players[game.activePlayer].addHealth(2);
+        game.players.forEach(function(player) {
+          player.coins += 2;
+        });
+      }
     }
   ]
 }, {
@@ -19,23 +29,17 @@ module.exports = [{
   onfinish: [
     {
       id: 1,
-      name: "Bij Kojaka",
-      action: marcin,
+      name: "Get +$3",
+      action: function(game) {
+        game.players[game.activePlayer].coins += 3;
+      },
     },
     {
       id: 2,
-      name: "Zrob rozpierdol w kebabie",
-      action: marcin,
-    },
-    {
-      id: 3,
-      name: "Przyznaj sie ze masz starego w ministerstwie",
-      action: marcin,
-    },
-    {
-      id: 4,
-      name: "Ukradnij wózek z tesco",
-      action: marcin,
+      name: "Heal 1 Wound",
+      action: function(game) {
+        game.players[game.activePlayer].addHealth(1);
+      },
     }
   ]
 }, {
@@ -43,56 +47,77 @@ module.exports = [{
   onfinish: [
     {
       id: 1,
-      name: "Rozjeb Samolot",
-      action: marcin,
+      name: "Get +$1 for each Defense",
+      action: function(game) {
+        game.players[game.activePlayer].addHealth(
+          game.players[game.activePlayer].getDefense()
+        );
+      },
     },
     {
       id: 2,
-      name: "Pracuj 5h nad schematem gry ktorego nikt nie uzyje",
-      action: marcin,
+      name: "Get +$3",
+      action: function(game) {
+        game.players[game.activePlayer].coins += 3;
+      },
     },
-    {
-      id: 3,
-      name: "Zrob nic",
-      action: marcin,
-    }
   ]
 }, {
   name: 'E.T. Ylman Sewers',
   onfinish: [
     {
+      id: 3,
+      name: "Trash Item, get $8",
+      action: function(game) {
+        if (game.players[game.activePlayer].trashCard('item')) {
+          game.players[game.activePlayer].coins += 8;
+        }
+      },
+    },
+    {
       id: 1,
-      name: "Umrzyj",
-      action: marcin,
+      name: "Get +$2",
+      action: function(game) {
+        game.players[game.activePlayer].coins += 2;
+      },
     },
     {
       id: 2,
-      name: "Zniknij",
-      action: marcin,
+      name: "Trash Rune, heal 4 Wounds",
+      action: function(game) {
+        if (game.players[game.activePlayer].trashCard('skill')) {
+          game.players[game.activePlayer].addHealth(4);
+        }
+      },
     },
-    {
-      id: 3,
-      name: "Wrzuc zdjecie drzwi maleckiego na insta",
-      action: marcin,
-    }
   ]
 }, {
   name: 'Przestrzen Park',
   onfinish: [
     {
       id: 1,
-      name: "Pij",
-      action: marcin,
+      name: "Everyone heals 1 Wound, you get +$5",
+      action: function(game) {
+        game.players[game.activePlayer].coins += 5;
+        game.players.forEach(function(player) {
+          player.addHealth(1);
+        });
+      }
     },
     {
       id: 2,
-      name: "Grilluj",
-      action: marcin,
+      name: "Get +$2",
+      action: function(game) {
+        game.players[game.activePlayer].coins += 2;
+      }
     },
     {
       id: 3,
-      name: "Tranzytuj do domu",
-      action: marcin,
-    }
+      name: "Heal 1 Wound, Get +$1",
+      action: function(game) {
+        game.players[game.activePlayer].coins += 1;
+        game.players[game.activePlayer].addHealth(1);
+      }
+    },
   ]
 }];
