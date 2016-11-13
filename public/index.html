@@ -8,6 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
+    <style>
+      .rules {
+        width: 300px;
+        text-align: center;
+        margin: auto;
+        padding: 30px;
+      }
+    </style>
     <script
         src="https://code.jquery.com/jquery-3.1.0.min.js"
         integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
@@ -22,5 +30,8 @@
   <body data-bind="attr: {'data-active-page': $root.router.activePage}">
     <lobby-page class="page"></lobby-page>
     <game-page class="page"></game-page>
+    <div class="rules">
+      <a href="rules.html">HOW TO PLAY</a>
+    </div>
   </body>
 </html>
