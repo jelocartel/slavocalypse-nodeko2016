@@ -5,6 +5,11 @@
   <div class='button' data-bind="click: useCard">use card</div>
 </span>
 <span data-bind="visible: playerId() !== activePlayer()">Your oponent move</span>
+<div class='log'>
+  <!-- ko foreach: logs -->
+    <span data-bind="text: 'Player ' + playerId + ': ' + userMsg"></span>
+  <!-- /ko -->
+</div>
 
 <div id="camp-actions-container">
   <div class="camp-actions">

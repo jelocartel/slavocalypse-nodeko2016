@@ -124,7 +124,7 @@ Game.prototype.activePlayerBuys = function (action) {
  } else {
    if (this.activeDeck[action.activeCardNumber].cardHealth <= activePlayerObj.getAttack()) {
      if(this.activeDeck[action.activeCardNumber].cardAttack <= activePlayerObj.getDefense()) {
-       logAdd(this, "Just both new item");
+       logAdd(this, "Just bought new item");
        this.activeDeck[action.activeCardNumber].onbuy(this, action);
      } else {
        logAdd(this, "got " +(this.activeDeck[action.activeCardNumber].cardAttack - activePlayerObj.getDefense()) +
@@ -136,7 +136,7 @@ Game.prototype.activePlayerBuys = function (action) {
      return false;
    }
  }
- logAdd(this, "You both card!")
+ logAdd(this, "You bought a card!")
  var deck = activePlayerObj.getDeck();
 
  activePlayerObj.addCoins(-parseInt(action.activeCardNumber));

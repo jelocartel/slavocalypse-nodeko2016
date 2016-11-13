@@ -44,7 +44,8 @@ define(['knockout', 'text!./turn-control-panel.html'], function(ko, template) {
       useCard: useCard,
       campCard: campCard,
       playerId: playerId,
-      activePlayer: activePlayer
+      activePlayer: activePlayer,
+      logs: params.logs
     };
   }
 
