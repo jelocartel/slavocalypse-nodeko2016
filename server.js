@@ -123,7 +123,7 @@ wsServer.on('connection', s => {
       }))
       return
     }
-    else if (event === 'set-id') return setId(event.id)
+    else if (event === 'set-id') return setId(parsed.id)
 
     var game
 
