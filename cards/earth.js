@@ -11,15 +11,12 @@ const skills = [{
   onact: function (game, players) {
     game.players[game.activePlayer].coins -= 2
     game.players[game.activePlayer].additionalDefense += 2
-  },
-  onbuy: function (game, players) {
   }
 }, {
   name: 'Rune of Earth',
   description: 'Trash this for 5 Defense',
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
+  ontrash: function (game) {
+    game.players[game.activePlayer].additionalDefense += 5
   }
 }, {
   name: 'Snake sign',
@@ -37,9 +34,8 @@ const monsters = [{
   cardAttack: 2,
   cardHealth: 4,
   description: 'When gained, chosen player gets -$2',
-  onact: function (game, players) {
-  },
   onbuy: function (game, players) {
+    players[0].coins = Math.max(0, p.coins - 1)
   }
 },
 {
@@ -48,9 +44,11 @@ const monsters = [{
   cardAttack: 1,
   cardHealth: 2,
   description: 'When gained, +$3 for you and -$1 for others',
-  onact: function (game, players) {
-  },
   onbuy: function (game, players) {
+    game.players.each(p => {
+      p.coins = Math.max(0, p.coins - 1)
+    })
+    game.players[game.activePlayer].coins += 4
   }
 }];
 
