@@ -16,7 +16,7 @@ var Game = function() {
 util.inherits(Game, EventEmitter)
 
 Game.prototype.gameLoop = function(action) {
-  if (this.deck.length+this.activeDeck.length) {
+  if ((this.deck.length+this.activeDeck.length) > 0) {
     if (action.type === "endTurn") {
       this.activePlayerFinishGame(action);
     } else if (action.type === "buy") {
