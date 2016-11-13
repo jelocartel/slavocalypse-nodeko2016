@@ -122,6 +122,7 @@ define(['knockout'], function(ko) {
     STATES: STATES,
     activeDeck: activeDeck,
     campCard: campCard,
-    playerDecks: playerDecks
+    playerDecks: playerDecks,
+    game: gameName
   };
 });

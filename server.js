@@ -13,13 +13,17 @@ var games = {}
 var sockets = {}
 var socketList = []
 
+function openSockets(s) {
+  return s.readyState === ws.OPEN
+}
+
 function gamecast(game, msg) {
   msg.game = game
-  sockets[game].forEach(s => s.send(JSON.stringify(msg)))
+  sockets[game].filter(openSockets).forEach(s => s.send(JSON.stringify(msg)))
 }
 
 function broadcast(msg) {
-  socketList.forEach(s => s.send(JSON.stringify(msg)))
+  socketList.filter(openSockets).forEach(s => s.send(JSON.stringify(msg)))
 }
 
 function sendState(room) {
@@ -91,9 +95,9 @@ wsServer.on('connection', s => {
 
   id()
 
-  s.on('close', () => {
-    const index = socketList.indexOf(s)
-    socketList.splice(index, 1)
+  s.once('close', () => {
+    const listIndex = socketList.indexOf(s)
+    socketList.splice(listIndex, 1)
   })
 
   s.on('message', msg => {
