@@ -109,7 +109,7 @@ define(['knockout'], function(ko) {
             });
             if (myGame.length !== 0) {
               myGame = myGame[0];
-              GAMESTATE(STATES.GAME);
+              joinGame(myGame);
             }
           }
 
