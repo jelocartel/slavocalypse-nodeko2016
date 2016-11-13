@@ -14,6 +14,7 @@ define(['knockout'], function(ko) {
   var activePlayer = ko.observable();
   var player = ko.observable({});
   var cardsLeft = ko.observable();
+  var score = ko.observableArray([]);
 
   var socket = new WebSocket(url);
   var gameStarted = ko.observable(false);
@@ -123,6 +124,10 @@ define(['knockout'], function(ko) {
         cardsLeft(parsedEvent.deckCardsLeft);
         console.log('STATE PLAYER', player());
         break;
+      case 'finish':
+        $('#score-container').addClass('visible');
+        score(parsedEvent.victory);
+        break;  
       default:
         console.log('Unknown event: ' + event.data);
         break;
@@ -147,6 +152,7 @@ define(['knockout'], function(ko) {
     playerID: playerID,
     activePlayer: activePlayer,
     player: player,
-    cardsLeft: cardsLeft
+    cardsLeft: cardsLeft,
+    score: score
   };
 });

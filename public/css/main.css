@@ -247,6 +247,23 @@ stats-panel #score-container .score-board {
   text-align: center;
   padding: 30px;
 }
+stats-panel #score-container .list {
+  display: block;
+  width: 100%;
+}
+stats-panel #score-container .list .player {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+stats-panel #score-container .list .player span {
+  display: inline-block;
+}
+stats-panel #score-container .list .player span:first-child {
+  border-right: solid 1px #000;
+  padding-right: 20px;
+  margin-right: 20px;
+}
 stats-panel #score-container .button {
   display: block;
   width: 200px;
