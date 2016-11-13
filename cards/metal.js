@@ -59,6 +59,7 @@ const items = [{
   name: 'Chair',
   description: '',
   victoryPoints: 2,
+  description: 'When gaining this, +$6',
   ontrash: function (game) {
     game.players[game.activePlayer].coins += 6
   }

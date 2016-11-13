@@ -66,6 +66,8 @@ function serializePlayer(player) {
   var ret = {
     health: player.health,
     coins: player.coins,
+    attack: player.getAttack(),
+    defense: player.getDefense(),
     deck: {}
   }
 

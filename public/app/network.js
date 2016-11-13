@@ -32,11 +32,13 @@ define(['knockout'], function(ko) {
 
   var createGame = function() {
     var name = prompt('Game name:');
-    gameName(name);
-    socket.send(JSON.stringify({
-      event: 'join',
-      game: name
-    }));
+    if (name) {
+      gameName(name);
+      socket.send(JSON.stringify({
+        event: 'join',
+        game: name
+      }));
+    }
   };
 
   var startGame = function() {
@@ -69,7 +71,7 @@ define(['knockout'], function(ko) {
 
   ko.computed(function() {
     socket.onmessage = function(event) {
-      
+
       var parsedEvent = JSON.parse(event.data);
       console.log('new message: ', parsedEvent);
       switch (parsedEvent.event) {
