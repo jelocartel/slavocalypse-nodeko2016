@@ -3,87 +3,56 @@ const deck = 'three';
 const skills = [{
   name: 'Three of Gods',
   victoryPoints: 1,
-  description: 'Chosen player trashes top Rune card',
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
 }, {
   name: 'Grass Thunder',
-  description: 'At start of the turn, -1 Wound',
   temporaryAttack: 1,
   temporaryDefense: 1,
   constAttack: 4,
   constDefense: 1,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
 }, {
   name: 'Triskelion',
-  description: 'Trash monster, +5 Attack',
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
 }];
 
 const monsters = [{
-  amount: 4,
+  amount: 8,
   name: 'Dziad',
-  victoryPoints: 1,
-  cardAttack: 2,
-  cardHealth: 4,
-  description: '',
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
+  victoryPoints: 6,
+  cardAttack: 8,
+  cardHealth: 3,
+  description: 'When trashed, gain 3 Attack',
+  ontrash: function (game) {
+    game.players[game.activePlayer].additionalAttack += 3
   }
 },
 {
-  amount: 8,
+  amount: 4,
   name: 'Ent',
-  cardAttack: 1,
-  cardHealth: 2,
-  description: 'When gained, +1 Wound to the chosen player',
-  onact: function (game, players) {
-  },
+  cardAttack: 2,
+  cardHealth: 5,
   onbuy: function (game, players) {
+    game.players[game.activePlayer].health += 4
   }
 }];
 
 const items = [{
   name: 'Slingshot',
-  description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
+  description: 'When staying in the camp, heal 2',
+  temporaryAttack: 1,
+  constDefense: 1,
+  onfinish: function (game) {
+    game.players[game.activePlayer].health += 2
   }
 }, {
   name: 'Wooden Club',
-  description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  temporaryAttack: 1,
+  temporaryDefense: 1,
 },{
   name: 'Stick',
-  description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
+  temporaryDefense: 1,
+  constAttack: 1,
+  victoryPoints: 1,
+  ontrash: function (game) {
+    game.players[game.activePlayer].addCoins(10)
   }
 }];
 
