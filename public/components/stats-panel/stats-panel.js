@@ -8,8 +8,12 @@ define(['knockout', 'text!./stats-panel.html'], function(ko, template) {
     var attack = ko.observable(0);
     var defense = ko.observable(0);
     var cardsLeft = ko.observable(0);
-    var score = ko.observableArray([]);;
+    var score = ko.observableArray([]);
     // console.log(params);
+    var closeScore = function() {
+      $('#score-container').removeClass('visible');
+      window.location.hash = '#';
+    };
 
     ko.computed(function() {
       cash(params.player().coins);
@@ -27,7 +31,8 @@ define(['knockout', 'text!./stats-panel.html'], function(ko, template) {
       attack: attack,
       defense: defense,
       cardsLeft: cardsLeft,
-      score: score
+      score: score,
+      closeScore: closeScore
     };
   }
 
