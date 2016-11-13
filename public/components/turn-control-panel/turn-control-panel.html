@@ -6,8 +6,8 @@
 <div id="camp-actions-container">
   <div class="camp-actions">
     <!-- ko foreach: campCard().onfinish -->
-      <div class="button" data-bind="text: $data.name, attr: { id: $data.id }, click: $root.network.endTurn($data.id)"></div>
+      <div class="button" data-bind="text: $data.name, attr: { id: $data.id }, click: function() { $root.network.endTurn($data.id); }"></div>
     <!-- /ko -->
-    <div class="button" data-bind="">SKIP</div>
+    <div class="button">SKIP</div>
   </div>
 </div>
