@@ -32,7 +32,7 @@ const monsters = [{
   amount: 4,
   name: 'Golem',
   victoryPoints: 6,
-  cardAttack: 2,
+  cardAttack: 3,
   cardHealth: 8,
   description: 'When gained, -3 Wounds',
   onbuy: function (game, players) {
@@ -42,7 +42,7 @@ const monsters = [{
 {
   amount: 8,
   name: 'Miner',
-  cardAttack: 3,
+  cardAttack: 5,
   cardHealth: 3,
   victoryPoints: 3
 }];

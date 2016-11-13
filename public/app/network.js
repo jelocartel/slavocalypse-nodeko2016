@@ -3,8 +3,8 @@
 define(['knockout'], function(ko) {
   var url
   if (['127.0.0.1', 'localhost'].indexOf(window.location.hostname) !== -1)
-    url = 'ws://127.0.0.1:5000'
-  else url = 'ws://' + window.location.host;
+    url = 'ws://127.0.0.1:5000/ws';
+  else url = 'ws://' + window.location.host + '/ws';
 
   var games = ko.observableArray([]);
   var playerID = ko.observable();

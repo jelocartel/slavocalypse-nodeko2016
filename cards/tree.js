@@ -27,7 +27,7 @@ const monsters = [{
 {
   amount: 4,
   name: 'Ent',
-  cardAttack: 2,
+  cardAttack: 5,
   cardHealth: 5,
   onbuy: function (game, players) {
     game.players[game.activePlayer].health += 4
