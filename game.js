@@ -127,7 +127,7 @@ Game.prototype.activePlayerBuys = function (action) {
        logAdd(this, "Just both new item");
        this.activeDeck[action.activeCardNumber].onbuy(this, action);
      } else {
-       logAdd(this, "got " +(this.activeDeck[action.activeCardNumber].cardAttack - addHealth(activePlayerObj.getDefense())) +
+       logAdd(this, "got " +(this.activeDeck[action.activeCardNumber].cardAttack - activePlayerObj.getDefense()) +
                      " new wounds");
        activePlayerObj.addHealth(activePlayerObj.getDefense() - this.activeDeck[action.activeCardNumber].cardAttack)
      }
