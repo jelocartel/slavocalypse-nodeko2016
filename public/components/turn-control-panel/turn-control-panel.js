@@ -6,6 +6,7 @@ define(['knockout', 'text!./turn-control-panel.html'], function(ko, template) {
     
     var campCard = ko.observable({});
     var pickingActive = params.pickingCardActive;
+    var useCardActive = params.useCardActive;
     var playerId = params.playerID;
     var activePlayer = params.activePlayer;
 
@@ -25,14 +26,16 @@ define(['knockout', 'text!./turn-control-panel.html'], function(ko, template) {
     };
 
     var useCard = function() {
+      useCardActive(true);
+      console.log('now use card', useCardActive());
       // use one of your card
     };
 
     ko.computed(function() {
       campCard(params.campCard());
     });
-    console.log('playerId', playerId());
-    console.log('activePlayerId', activePlayer());
+    // console.log('playerId', playerId());
+    // console.log('activePlayerId', activePlayer());
 
     return {
       endTurn: endTurn,
