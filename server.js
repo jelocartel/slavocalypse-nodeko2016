@@ -156,6 +156,10 @@ wsServer.on('connection', s => {
       game.gameLoop({ type: 'buy', activeCardNumber: event.activeCardNumber })
       sendState(room)
     }
+    else if (event === 'act') {
+      game.gameLoop({ type: 'act', deck: event.deck })
+      sendState(room)
+    }
     else if (event === 'endTurn') {
       game.gameLoop({ type: 'endTurn', campCardActionId: parsed.campCardActionId })
       sendState(room)
