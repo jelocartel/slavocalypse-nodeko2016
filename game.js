@@ -154,9 +154,10 @@ Game.prototype.activePlayerBuys = function (action) {
 };
 
 Game.prototype.selcetCampAction = function(action) {
+  var gameObj = this;
   this.campCard.onfinish.forEach(function(elem) {
     if (elem.id == action.campCardActionId) {
-      elem.action(this);
+      elem.action(gameObj);
     }
   });
 }
