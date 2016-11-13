@@ -37,7 +37,8 @@ function sendState(room) {
     event: 'state',
     activeDeck: games[room].activeDeck.map(serializeCard),
     campCard: games[room].campCard,
-    players: players
+    players: players,
+    deckCardsLeft: games[room].deck.length,
   }
 
   const activePlayer = games[room].activePlayer
@@ -101,6 +102,7 @@ wsServer.on('connection', s => {
     }))
   }
 
+  broadcast({ event: 'discover', games: discovery() })
   id()
 
   s.once('close', () => {
@@ -158,6 +160,7 @@ wsServer.on('connection', s => {
         started: game.started
       })
       broadcast({ event: 'discover', games: discovery() })
+      if (game.started) sendState(room)
     }
     else if (event === 'buy') {
       game.gameLoop({ type: 'buy', activeCardNumber: parsed.activeCardNumber })
