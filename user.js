@@ -87,21 +87,21 @@ User.prototype.getVictoryCoins = function(game) {
   victoryPoints += Math.min(this.deck.skill.length, this.deck.monsters.lenght);
 
   for(let i=0;i < this.deck.monsters.length;i++) {
-    victoryPoints += this.deck.monsters[i].victoryPoints(game, this);
+    victoryPoints += this.deck.monsters[i].victoryPointsAction(game, this);
   }
 
   for(let i=0;i < this.deck.items.length;i++) {
-    victoryPoints += this.deck.items[i].victoryPoints(game, this);
+    victoryPoints += this.deck.items[i].victoryPointsAction(game, this);
   }
 
   for(let i=0;i < this.deck.skill.length;i++) {
-    victoryPoints += this.deck.skill[i].victoryPoints(game, this);
+    victoryPoints += this.deck.skill[i].victoryPointsAction(game, this);
   }
 
   for(let i=0;i < this.deck.deity.length;i++) {
-    victoryPoints += this.deck.deity[i].victoryPoints(game, this);
+    victoryPoints += this.deck.deity[i].victoryPointsAction(game, this);
   }
-  vicotryPoints += game.campCard.victoryPoints(game, this);
+  vicotryPoints += game.campCard.victoryPointsAction(game, this);
 
   return vicotryPoints;
 }
