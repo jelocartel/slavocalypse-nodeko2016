@@ -159,7 +159,7 @@ wsServer.on('connection', s => {
         started: game.started
       })
       broadcast({ event: 'discover', games: discovery() })
-      sendState(room)
+      if (game.started) sendState(room)
     }
     else if (event === 'buy') {
       game.gameLoop({ type: 'buy', activeCardNumber: parsed.activeCardNumber })
