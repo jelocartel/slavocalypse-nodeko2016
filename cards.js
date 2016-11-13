@@ -76,11 +76,21 @@ var i = 1;
 for (let deck in decksDefinitions) {
   let deckName = decksDefinitions[deck].name;
   decks[deckName] = [];
+
+  // SKILLS
   decksDefinitions[deck].skills.forEach(function(skill) {
     skill.type = 'skill';
     skill.cardID = i;
     skill.amount = 3;
     Array.prototype.push.apply(decks[deckName],C(skill));
+    i++;
+  });
+
+  // MONSTERS
+  decksDefinitions[deck].monsters.forEach(function(monster) {
+    monster.type = 'monster';
+    monster.cardID = i;
+    Array.prototype.push.apply(decks[deckName],C(monster));
     i++;
   });
 }
