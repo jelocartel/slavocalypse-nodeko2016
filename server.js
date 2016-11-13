@@ -102,6 +102,7 @@ wsServer.on('connection', s => {
   }
 
   id()
+  broadcast({ event: 'discover', games: discovery() })
 
   s.once('close', () => {
     const listIndex = socketList.indexOf(s)
