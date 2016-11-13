@@ -55,11 +55,37 @@ card {
   .defense-value {
     float: right;
     position: relative;
+
     .icon {
       width: 10px;
       height: 10px;
       background-size: cover;
       background-image: url('@{img-path}/shield-icon.png');
+      display: inline-block;
+    }
+  }
+
+  .card-health-value {
+    float: right;
+    position: relative;
+
+    .icon {
+      width: 10px;
+      height: 10px;
+      background-size: cover;
+      background-image: url('@{img-path}/health.png');
+      display: inline-block;
+    }
+  }
+
+  .card-attack-value {
+    float: left;
+
+    .icon {
+      width: 10px;
+      height: 10px;
+      background-size: cover;
+      background-image: url('@{img-path}/mon-attack.png');
       display: inline-block;
     }
   }

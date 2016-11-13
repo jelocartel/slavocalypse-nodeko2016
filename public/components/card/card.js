@@ -20,7 +20,9 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       defense: card.constDefense,
       victoryPoints: card.victoryPoints,
       action: card.description || '',
-      image: card.type.charAt(0) + '/' + nameToImage(card.name) + '.png'
+      image: card.type.charAt(0) + '/' + nameToImage(card.name) + '.png',
+      cardAttack: card.cardAttack || 0,
+      cardHealth: card.cardHealth || 0
     });
 
     return {
