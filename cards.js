@@ -5,24 +5,30 @@ function marcin() {}
 const TYPES = ['item', 'skill', 'monster', 'deity']
 
 var C = function SerializableCardFactoryFactoryBeanFactory(o) {
-  return {
-    type: o.type,
-    cardAttack: o.cardAttack || 0,
-    cardHealth: o.cardHealth || 0,
-    amount: o.amount,
-    victoryPoints: o.victoryPoints || 0,
-    // Called when a card gets to act.
-    onact: o.onact || marcin,
-    onbuy: o.buy || marcin,
-    onfinish: o.onfinish || marcin,
-    temporaryAttack: o.temporaryAttack || 0,
-    temporaryDefense: o.temporaryDefense || 0,
-    constAttack: o.constAttack || 0,
-    constDefense: o.constDefense || 0,
-    name: o.name,
-    description: o.description || '',
-    cardID: o.cardID || 0,
+  let array = [];
+  var amount = o.amount || 1;
+  for(let i=0;i<amount;i++) {
+    array.push({
+      type: o.type,
+      cardAttack: o.cardAttack || 0,
+      cardHealth: o.cardHealth || 0,
+      amount: o.amount || 1,
+      victoryPoints: o.victoryPoints || 0,
+      // Called when a card gets to act.
+      onact: o.onact || marcin,
+      onbuy: o.buy || marcin,
+      onfinish: o.onfinish || marcin,
+      temporaryAttack: o.temporaryAttack || 0,
+      temporaryDefense: o.temporaryDefense || 0,
+      constAttack: o.constAttack || 0,
+      constDefense: o.constDefense || 0,
+      name: o.name,
+      description: o.description || '',
+      cardID: o.cardID || 0,
+    });
   }
+  console.log(array);
+  return array;
 }
 
 var Camp = function SerializableCampFactoryFactoryBeanFactory(o) {
@@ -74,10 +80,11 @@ for (let deck in decksDefinitions) {
   decksDefinitions[deck].skills.forEach(function(skill) {
     skill.type = 'skill';
     skill.cardID = i;
-    decks[deckName].push(C(skill));
+    //decks[deckName].push(C(skill));
+    Array.prototype.push.apply(decks[deckName],C(skill));
     i++;
   });
 }
-console.log(decks);
+//console.log(decks);
 exports.decks = decks;
 exports.camps = [ guantanamo ]
