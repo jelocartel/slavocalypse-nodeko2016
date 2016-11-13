@@ -31,13 +31,12 @@ const skills = [{
 const monsters = [{
   amount: 4,
   name: 'Golem',
-  victoryPoints: 1,
+  victoryPoints: 6,
   cardAttack: 2,
-  cardHealth: 4,
+  cardHealth: 8,
   description: 'When gained, -3 Wounds',
-  onact: function (game, players) {
-  },
   onbuy: function (game, players) {
+    game.players[game.activePlayer].addCoins(-2)
   }
 },
 {
