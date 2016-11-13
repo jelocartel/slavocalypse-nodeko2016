@@ -22,9 +22,16 @@
 <div id='score-container'>
   <div class='score-board'>
     <h3>Score: </h3>
-    <span class="list"></span>
-    <div class="button">
-      <a href="#">Go back to lobby</a>
+    <span class="list">
+      <!-- ko foreach: score -->
+        <div class='player'>
+          <span data-bind="text: id"></span>
+          <span data-bind="text: points"></span>
+        </div>
+      <!-- /ko -->
+    </span>
+    <div class="button" data-bind="click: closeScore">
+      <span>Go back to lobby</span>
     </div>
   </div>
 </div>

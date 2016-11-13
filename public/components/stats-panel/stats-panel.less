@@ -55,6 +55,27 @@ stats-panel {
       padding: 30px;
     }
 
+    .list {
+      display: block;
+      width: 100%;
+
+      .player {
+        display: block;
+        width: 100%;
+        text-align: center;
+
+        span {
+          display: inline-block;
+
+          &:first-child {
+            border-right: solid 1px #000;
+            padding-right: 20px;
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+
     .button {
       display: block;
       width: 200px;
@@ -66,14 +87,6 @@ stats-panel {
       color: #fff;
       text-align: center;
       cursor: pointer;
-
-      a {
-        display: block;
-        width: 100%;
-        height: 100%;
-        text-decoration: none;
-        color: #fff;
-      }
 
       &:hover {
         background-color: #a49999;

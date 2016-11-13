@@ -11,6 +11,6 @@
     <!-- ko foreach: campCard().onfinish -->
       <div class="button" data-bind="text: $data.name, attr: { id: $data.id }, click: function() { $root.network.endTurn($data.id); }"></div>
     <!-- /ko -->
-    <div class="button" data-bind="click: function() { $root.network.endTurn(-1); }">SKIP</div>
+    <div class="button" data-bind="click: function() { $root.network.endTurn(-1); }">CLOSE</div>
   </div>
 </div>
