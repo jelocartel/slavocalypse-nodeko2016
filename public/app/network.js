@@ -105,18 +105,13 @@ define(['knockout'], function(ko) {
           var gameId = localStorage.getItem('gameName');
           if (gameId) {
             console.log('AND I DO HAVE GAME NAME SIR!');
-            var myGame = games().filter(function(game) {
-              return game.name === gameId;
-            });
-            if (myGame.length !== 0) {
-              myGame = myGame[0];
-              joinGame(myGame);
-            }
+            joinGame({name: gameId});
           }
 
         }
         break;
       case 'state':
+        console.log('pszyszet state, ja mam ID: ', playerID());
         // console.log('elo state');
         // console.log('active deck', parsedEvent.activeDeck);
         // console.log('camp card', parsedEvent.campCard);
