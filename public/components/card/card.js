@@ -12,6 +12,8 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       return name.replace(/[^a-zA-Z]/g, "").toLowerCase();
     };
 
+    card.type = card.type || 'c';
+    card.name = card.name || 'ee';
     var cardData = ko.observable({
       name: card.name,
       tempAttack: card.temporaryAttack,
