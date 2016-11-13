@@ -98,7 +98,7 @@ define(['knockout'], function(ko) {
           // console.log('camp card', parsedEvent.campCard);
           activeDeck(parsedEvent.activeDeck);
           campCard(parsedEvent.campCard);
-          playerDecks(parsedEvent.players[parsedEvent.activePlayer].decks);
+          playerDecks(parsedEvent.players[parsedEvent.activePlayer].deck);
           activePlayer(parsedEvent.activePlayer);
           console.log('state activeplayer', activePlayer())
         case 'start':

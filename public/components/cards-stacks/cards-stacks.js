@@ -11,7 +11,7 @@ define(['knockout', 'text!./cards-stacks.html'], function(ko, template) {
 
     // skills = params.deck.skills
     var skills = ko.observableArray([]);
-    skills(params.playerDecks.skills);
+    skills(params.playerDecks.skill);
 
     // monsters = params.deck.monsters
     var monsters = ko.observableArray([]);
