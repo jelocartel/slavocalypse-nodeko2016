@@ -21,6 +21,10 @@ Game.prototype.gameLoop = function(action) {
       this.activePlayerFinishGame(action);
     } else if (action.type === "buy") {
       this.activePlayerBuys(action);
+    } else if(action.type === "useCard") {
+      this.useCard(action);
+      //bo użycie nie zmienia gracza i nie emittujemy zadnych gowien
+      return;
     }
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {
@@ -39,6 +43,22 @@ Game.prototype.gameLoop = function(action) {
     this.emit('gameFinish')
   }
 
+}
+this.useCard = function(action) {
+  switch (this.deckType) {
+    case "monster":
+      deck.monsters[0].onact(this, action);
+      break;
+    case "item":
+      deck.items[0].onact(this, action);
+      break;
+    case "skill":
+      deck.skill[0].onact(this, action);
+      break;
+    case "deity":
+      deck.deity[0].onact(this, action);
+      break;
+  }
 }
 var shuffle = function (arr) {
   var i = 0, j = 0, temp = null;
@@ -94,10 +114,10 @@ Game.prototype.activePlayerBuys = function (action) {
  activePlayerObj.addCoins(-parseInt(action.activeCardNumber));
 
  switch (this.activeDeck[action.activeCardNumber].type) {
-   case "monsters":
+   case "monster":
      deck.monsters.unshift(this.activeDeck[action.activeCardNumber]);
      break;
-   case "items":
+   case "item":
      deck.items.unshift(this.activeDeck[action.activeCardNumber]);
      break;
    case "skill":
