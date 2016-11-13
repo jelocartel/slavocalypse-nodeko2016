@@ -86,7 +86,7 @@ const server = http.createServer((req, res) => {
   res.end()
 })
 
-const wsServer = new ws.Server({ server: server })
+const wsServer = new ws.Server({ server: server, path: '/ws' })
 
 wsServer.on('connection', s => {
   socketList.push(s)
