@@ -51,21 +51,24 @@ var shuffle = function (arr) {
   }
 }
 Game.prototype.start = function () {
-  this.started = true;
+  if (!this.started) {
+    this.started = true;
 
-  var decksNames = Object.keys(cards.decks);
-  shuffle(decksNames);
-  decksNames = decksNames.slice(0, this.players.length);
-  decksNames.forEach(deck => {
-    Array.prototype.push.apply(this.deck, cards.decks[deck]);
-  })
-  shuffle(this.deck);
-  for (var i=0;i<6;i++) {
-    this.activeDeck.push(this.deck.pop());
+    var decksNames = Object.keys(cards.decks);
+    shuffle(decksNames);
+    decksNames = decksNames.slice(0, this.players.length);
+    decksNames.forEach(deck => {
+      Array.prototype.push.apply(this.deck, cards.decks[deck]);
+    });
+
+    shuffle(this.deck);
+    for (var i=0;i<6;i++) {
+      this.activeDeck.push(this.deck.pop());
+    }
+
+    shuffle(cards.camps);
+    this.campCard = cards.camps.slice(0, 1);
   }
-
-  shuffle(cards.camps);
-  this.campCard = cards.camps.slice(0, 1);
 }
 
 Game.prototype.activePlayerBuys = function (action) {
