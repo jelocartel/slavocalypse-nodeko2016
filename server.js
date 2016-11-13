@@ -100,6 +100,7 @@ wsServer.on('connection', s => {
       event: 'set-id',
       id: id
     }))
+    return id
   }
 
   broadcast({ event: 'discover', games: discovery() })
@@ -149,13 +150,13 @@ wsServer.on('connection', s => {
       broadcast({ event: 'discover', games: discovery() })
     }
     else if (event === 'join') {
-      if (game.players.filter(p => p.id === s.id).length === 0) {
-        const user = new User(s.id)
+      if (game.players.filter(p => p.id === id()).length === 0) {
+        const user = new User(id())
         game.addUser(user)
       }
       gamecast(room, {
         event: 'join',
-        id: s.id,
+        id: id(),
         players: game.players.map(p => p.id),
         started: game.started
       })
