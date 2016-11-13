@@ -67,8 +67,6 @@ define(['knockout'], function(ko) {
     }));
   };
 
-  setTimeout(getRooms, 1000);
-
   socket.onmessage = function(event) {
     var parsedEvent = JSON.parse(event.data);
     console.log('new message: ', parsedEvent);
@@ -81,17 +79,41 @@ define(['knockout'], function(ko) {
         enemyPlayers(parsedEvent.players.filter(function(id) {
           return id !== playerID();
         }));
-        break;
-      case 'set-id':
-        playerID(parsedEvent.id);
+        gameStarted(parsedEvent.started);
         break;
       case 'start':
         if (parsedEvent.game === gameName()) {
+          localStorage.setItem('gameName', parsedEvent.game);
           gameStarted(true);
         }
         break;
       case 'set-id':
-        playerID(parsedEvent.id);
+        var savedPlayerId = localStorage.getItem('playerId');
+        if (savedPlayerId && playerID() !== savedPlayerId) {
+          console.log('FOUND PLAYER ID!', savedPlayerId);
+          playerID(savedPlayerId);
+          socket.send(JSON.stringify({
+            event: 'set-id',
+            id: savedPlayerId
+          }));
+        } else if (parsedEvent.id) {
+          localStorage.setItem('playerId', parsedEvent.id);
+          playerID(parsedEvent.id);
+        } else {
+          console.log('ROGER THAT SIR, I DO HAVE A KEY!');
+          var gameId = localStorage.getItem('gameName');
+          if (gameId) {
+            console.log('AND I DO HAVE GAME NAME SIR!');
+            var myGame = games().filter(function(game) {
+              return game.name === gameId;
+            });
+            if (myGame.length !== 0) {
+              myGame = myGame[0];
+              GAMESTATE(STATES.GAME);
+            }
+          }
+
+        }
         break;
       case 'state':
         // console.log('elo state');
@@ -103,11 +125,6 @@ define(['knockout'], function(ko) {
         activePlayer(parsedEvent.activePlayer);
         player(parsedEvent.players[playerID()]);
         console.log('STATE PLAYER', player());
-        break;
-      case 'start':
-        if (parsedEvent.game === gameName()) {
-          gameStarted(true);
-        }
         break;
       default:
         console.log('Unknown event: ' + event.data);
