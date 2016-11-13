@@ -13,6 +13,7 @@ define(['knockout'], function(ko) {
   var enemyPlayers = ko.observableArray([]);
   var activePlayer = ko.observable();
   var player = ko.observable({});
+  var cardsLeft = ko.observable();
 
   var socket = new WebSocket(url);
   var gameStarted = ko.observable(false);
@@ -124,6 +125,7 @@ define(['knockout'], function(ko) {
         playerDecks(parsedEvent.players[playerID()].deck);
         activePlayer(parsedEvent.activePlayer);
         player(parsedEvent.players[playerID()]);
+        cardsLeft(parsedEvent.deckCardsLeft);
         console.log('STATE PLAYER', player());
         break;
       default:
@@ -149,6 +151,7 @@ define(['knockout'], function(ko) {
     socket: socket,
     playerID: playerID,
     activePlayer: activePlayer,
-    player: player
+    player: player,
+    cardsLeft: cardsLeft
   };
 });

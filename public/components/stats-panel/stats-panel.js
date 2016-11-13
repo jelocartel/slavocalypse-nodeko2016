@@ -7,6 +7,7 @@ define(['knockout', 'text!./stats-panel.html'], function(ko, template) {
     var wounds = ko.observable(0);
     var attack = ko.observable(0);
     var defense = ko.observable(0);
+    var cardsLeft = ko.observable(0);
     // console.log(params);
 
     ko.computed(function() {
@@ -14,6 +15,7 @@ define(['knockout', 'text!./stats-panel.html'], function(ko, template) {
       wounds(params.player().health * -1);
       attack(params.player().attack);
       defense(params.player().defense);
+      cardsLeft(params.cardsLeft());
       // console.log(cash())
     });
 
@@ -21,7 +23,8 @@ define(['knockout', 'text!./stats-panel.html'], function(ko, template) {
       cash: cash,
       wounds: wounds,
       attack: attack,
-      defense: defense
+      defense: defense,
+      cardsLeft: cardsLeft
     };
   }
 
