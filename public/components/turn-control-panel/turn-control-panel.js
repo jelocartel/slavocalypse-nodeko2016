@@ -3,45 +3,48 @@ define(['knockout', 'text!./turn-control-panel.html'], function(ko, template) {
 
   function TurnControlPanel(params) {
     params = params;
-    // var endChoiceId = ko.observable(0);
+    
     var campCard = ko.observable({});
-    // var endCampActionId = ko.observable(params.endCampActionId);
-    // initial values, later currrent values for activePlayer
-    var endActionChoice = function() {
-      $('#camp-actions-container').addClass('visible');
+    var pickingActive = params.pickingCardActive;
+    var useCardActive = params.useCardActive;
+    var playerId = params.playerID;
+    var activePlayer = params.activePlayer;
+
+    var endTurn = function() {
+
     };
 
-    var sendEnd = function(data, evt) {
-      // var chosenId = evt.target.id;
-      // console.log(chosenId);
-      // endCampActionId(chosenId);
-      // $root.network.endTurn;
-      // here run network end turn funx=ction with parametr = chosemId
-    };
-
-    var pickCard = function() {
+    var pickCard = function(data, evt) {
+      pickingActive(true);
+      console.log('now pick a card', pickingActive())
       // pick card form journey panel
     };
 
     var stayInCity = function() {
+      $('#camp-actions-container').addClass('visible');
       // do action from city card
     };
 
     var useCard = function() {
+      useCardActive(true);
+      console.log('now use card', useCardActive());
       // use one of your card
     };
 
     ko.computed(function() {
       campCard(params.campCard());
     });
+    // console.log('playerId', playerId());
+    // console.log('activePlayerId', activePlayer());
 
     return {
-      endActionChoice: endActionChoice,
+      endTurn: endTurn,
       pickCard: pickCard,
       stayInCity: stayInCity,
       useCard: useCard,
-      sendEnd: sendEnd,
-      campCard: campCard
+      campCard: campCard,
+      playerId: playerId,
+      activePlayer: activePlayer
     };
   }
 

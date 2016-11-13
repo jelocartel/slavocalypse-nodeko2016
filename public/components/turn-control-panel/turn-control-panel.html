@@ -1,13 +1,16 @@
-<div class='button' data-bind="click: endActionChoice">end turn</div>
-<div class='button' data-bind="click: pickCard">pick card</div>
-<div class='button' data-bind="click: stayInCity">stay in city</div>
-<div class='button' data-bind="click: useCard">use card</div>
+<span data-bind="visible: playerId() === activePlayer()">
+  <!-- <div class='button' data-bind="click: endTurn">end turn</div> -->
+  <div class='button' data-bind="click: pickCard">pick card</div>
+  <div class='button' data-bind="click: stayInCity">stay in camp</div>
+  <div class='button' data-bind="click: useCard">use card</div>
+</span>
+<span data-bind="visible: playerId() !== activePlayer()">Your oponent move</span>
 
 <div id="camp-actions-container">
   <div class="camp-actions">
     <!-- ko foreach: campCard().onfinish -->
       <div class="button" data-bind="text: $data.name, attr: { id: $data.id }, click: function() { $root.network.endTurn($data.id); }"></div>
     <!-- /ko -->
-    <div class="button">SKIP</div>
+    <div class="button" data-bind="click: function() { $root.network.endTurn(-1); }">SKIP</div>
   </div>
 </div>

@@ -1,4 +1,4 @@
 <card class="city" params="card: campCard"></card>
 <!-- ko foreach: journeyDeck -->
-  <card params="card: $data"></card>
+  <card params="card: $data" data-bind="click: $parent.buyCard, attr: { 'data-index': $index }"></card>
 <!-- /ko -->

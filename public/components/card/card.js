@@ -9,7 +9,6 @@ define(['knockout', 'text!./card.html'], function(ko, template) {
       return name.replace(/[^a-zA-Z]/g, "").toLowerCase();
     };
 
-
     ko.computed(function() {
       cardObs(typeof params.card === 'function' ? params.card() : params.card);
 
