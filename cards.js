@@ -55,22 +55,6 @@ var Camp = function SerializableCampFactoryFactoryBeanFactory(o) {
   }
 }
 
-var guantanamo = Camp({
-  name: 'spokojnie Andrzeju...',
-  onfinish: [
-    {
-      id: 1,
-      name: "...to sie wyklepie",
-      action: marcin,
-    },
-    {
-      id: 2,
-      name: "ilu programistow?!",
-      action: marcin,
-    }
-  ]
-})
-
 var decksDefinitions = {
   earth: require('./cards/earth'),
   metal: require('./cards/metal'),
@@ -110,6 +94,12 @@ for (let deck in decksDefinitions) {
     i++;
   });
 }
+
+var camps = [];
+var campsDefinitions = require('./cards/camps');
+campsDefinitions.forEach(function(camp) {
+  camps.push(Camp(camp));
+});
 //console.log(decks);
 exports.decks = decks;
-exports.camps = [ guantanamo ]
+exports.camps = camps;
