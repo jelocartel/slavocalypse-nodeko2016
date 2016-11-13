@@ -1,10 +1,10 @@
-<span>
+<span data-bind="visible: playerId() === activePlayer()">
   <div class='button' data-bind="click: endTurn">end turn</div>
   <div class='button' data-bind="click: pickCard">pick card</div>
   <div class='button' data-bind="click: stayInCity">stay in city</div>
   <div class='button' data-bind="click: useCard">use card</div>
 </span>
-<!-- <span>Your oponent move</span> -->
+<span data-bind="visible: playerId() !== activePlayer()">Your oponent move</span>
 
 <div id="camp-actions-container">
   <div class="camp-actions">

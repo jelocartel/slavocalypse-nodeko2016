@@ -6,6 +6,8 @@ define(['knockout', 'text!./turn-control-panel.html'], function(ko, template) {
     
     var campCard = ko.observable({});
     var pickingActive = params.pickingCardActive;
+    var playerId = params.playerID;
+    var activePlayer = params.activePlayer;
 
     var endTurn = function() {
 
@@ -29,14 +31,17 @@ define(['knockout', 'text!./turn-control-panel.html'], function(ko, template) {
     ko.computed(function() {
       campCard(params.campCard());
     });
-    console.log('elo pickingActive ? ', pickingActive())
+    console.log('playerId', playerId());
+    console.log('activePlayerId', activePlayer());
 
     return {
       endTurn: endTurn,
       pickCard: pickCard,
       stayInCity: stayInCity,
       useCard: useCard,
-      campCard: campCard
+      campCard: campCard,
+      playerId: playerId,
+      activePlayer: activePlayer
     };
   }
 
