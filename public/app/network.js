@@ -69,53 +69,51 @@ define(['knockout'], function(ko) {
 
   setTimeout(getRooms, 1000);
 
-  ko.computed(function() {
-    socket.onmessage = function(event) {
-
-      var parsedEvent = JSON.parse(event.data);
-      console.log('new message: ', parsedEvent);
-      switch (parsedEvent.event) {
-        case 'discover':
-          games(parsedEvent.games);
-          break;
-        case 'join':
-          GAMESTATE(STATES.GAME);
-          enemyPlayers(parsedEvent.players.filter(function(id) {
-            return id !== playerID();
-          }));
-          break;
-        case 'set-id':
-          playerID(parsedEvent.id);
-          break;
-        case 'start':
-          if (parsedEvent.game === gameName()) {
-            gameStarted(true);
-          }
-          break;
-        case 'set-id':
-          playerID(parsedEvent.id);
-          break;
-        case 'state':
-          // console.log('elo state');
-          // console.log('active deck', parsedEvent.activeDeck);
-          // console.log('camp card', parsedEvent.campCard);
-          activeDeck(parsedEvent.activeDeck);
-          campCard(parsedEvent.campCard);
-          playerDecks(parsedEvent.players[playerID()].deck);
-          activePlayer(parsedEvent.activePlayer);
-          player(parsedEvent.players[playerID()]);
-          console.log('STATE PLAYER', player())
-        case 'start':
-          if (parsedEvent.game === gameName()) {
-            gameStarted(true);
-          }
-          break;
-        default:
-          console.log('Unknown event: ' + event.data);
-          break;
-      }
-    };
-  });
+  socket.onmessage = function(event) {
+    var parsedEvent = JSON.parse(event.data);
+    console.log('new message: ', parsedEvent);
+    switch (parsedEvent.event) {
+      case 'discover':
+        games(parsedEvent.games);
+        break;
+      case 'join':
+        GAMESTATE(STATES.GAME);
+        enemyPlayers(parsedEvent.players.filter(function(id) {
+          return id !== playerID();
+        }));
+        break;
+      case 'set-id':
+        playerID(parsedEvent.id);
+        break;
+      case 'start':
+        if (parsedEvent.game === gameName()) {
+          gameStarted(true);
+        }
+        break;
+      case 'set-id':
+        playerID(parsedEvent.id);
+        break;
+      case 'state':
+        // console.log('elo state');
+        // console.log('active deck', parsedEvent.activeDeck);
+        // console.log('camp card', parsedEvent.campCard);
+        activeDeck(parsedEvent.activeDeck);
+        campCard(parsedEvent.campCard);
+        playerDecks(parsedEvent.players[playerID()].deck);
+        activePlayer(parsedEvent.activePlayer);
+        player(parsedEvent.players[playerID()]);
+        console.log('STATE PLAYER', player());
+        break;
+      case 'start':
+        if (parsedEvent.game === gameName()) {
+          gameStarted(true);
+        }
+        break;
+      default:
+        console.log('Unknown event: ' + event.data);
+        break;
+    }
+  };
 
   return {
     games: games,
