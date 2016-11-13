@@ -27,7 +27,6 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
       cardID: o.cardID || 0,
     });
   }
-  console.log(array);
   return array;
 }
 
@@ -80,7 +79,7 @@ for (let deck in decksDefinitions) {
   decksDefinitions[deck].skills.forEach(function(skill) {
     skill.type = 'skill';
     skill.cardID = i;
-    //decks[deckName].push(C(skill));
+    skill.amount = 3;
     Array.prototype.push.apply(decks[deckName],C(skill));
     i++;
   });
