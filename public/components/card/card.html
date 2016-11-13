@@ -1,4 +1,8 @@
 <!-- ko with: cardData-->
+  <span class="type" data-bind="visible: type">
+    <span data-bind="text: type"></span>
+  </span>
+
   <span class="temp attack-value" data-bind="visible: tempAttack">
     <span class="icon"></span>
     <span data-bind="text: tempAttack"></span>
