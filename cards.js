@@ -13,7 +13,7 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
       cardAttack: o.cardAttack || 0,
       cardHealth: o.cardHealth || 0,
       amount: o.amount || 1,
-      victoryPoints: o.victoryPoints || 0,
+      victoryPoints: o.victoryPoints || marcin,
       // Called when a card gets to act.
       onact: o.onact || marcin,
       onbuy: o.buy || marcin,
@@ -35,7 +35,7 @@ var Camp = function SerializableCampFactoryFactoryBeanFactory(o) {
   return {
     type: "camp",
     amount: 0,
-    victoryPoints: o.victoryPoints || 0,
+    victoryPoints: o.victoryPoints || marcin,
     // Called when a card gets to a
     onact: o.onact || marcin,
     onfinish: o.onfinish || [{}],

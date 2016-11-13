@@ -67,7 +67,7 @@ Game.prototype.start = function () {
     }
 
     shuffle(cards.camps);
-    this.campCard = cards.camps.slice(0, 1);
+    this.campCard = cards.camps.slice(0, 1)[0];
   }
 }
 
