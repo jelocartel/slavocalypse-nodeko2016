@@ -61,7 +61,9 @@ Game.prototype.start = function () {
   for (var i=0;i<6;i++) {
     this.activeDeck.push(this.deck.pop());
   }
-  this.campCard = shuffle(cards.camps).slice(0, 1);
+
+  shuffle(cards.camps);
+  this.campCard = cards.camps.slice(0, 1);
 }
 
 Game.prototype.activePlayerBuys = function (action) {
