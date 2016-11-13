@@ -119,9 +119,9 @@ wsServer.on('connection', s => {
     }
     else {
       game = games[room] = new Game()
-      game.hooks.onTurnFinish = () => sendState(room)
-      game.hooks.onRoundFinish = () => sendState(room)
-      game.hooks.onGameFinish = () => sendState(room)
+      game.on('turnFinish', () => sendState(room))
+      game.on('roundFinish', () => sendState(room))
+      game.on('gameFinish', () => sendState(room))
       sockets[room] = [ s ]
       broadcast({ event: 'discover', games: discovery() })
     }

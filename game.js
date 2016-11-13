@@ -1,4 +1,6 @@
 'use strict';
+const util = require('util')
+const EventEmitter = require('events').EventEmitter
 const cards = require('./cards.js');
 
 var Game = function() {
@@ -7,15 +9,11 @@ var Game = function() {
   this.trash = new Array();
   this.players = new Array();
   this.activePlayer = 0;
-  this.startHooks = new Array();
   this.campCard = {};
-  this.hooks =  {
-    onTurnFinish: function(self){},
-    onRoundFinish: function(self){},
-    onGameFinish: function(winObj){}
-  }
   this.started = false
+  EventEmitter.call(this)
 };
+util.inherits(Game, EventEmitter)
 
 Game.prototype.gameLoop = function(action) {
   if (this.deck.length+this.activeDeck.length) {
@@ -31,14 +29,14 @@ Game.prototype.gameLoop = function(action) {
         p.additonalDefense = 0
         p.additonalAttack = 0
       })
-      this.hooks.onRoundFinish(this);
+      this.emit('roundFinish')
     } else {
-      this.hooks.onTurnFinish(this);
+      this.emit('turnFinish')
     }
   } else {
     //Game FINISH
     //podlicz punkty i przygotuj obiekt :D
-    this.hooks.onGameFinish("dupaDupa");
+    this.emit('gameFinish')
   }
 
 }
