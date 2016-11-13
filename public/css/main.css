@@ -221,6 +221,10 @@ stats-panel .param span {
 stats-panel .param span:nth-child(2) {
   font-size: 13px;
 }
+stats-panel .param.cards-counter {
+  float: right;
+  margin-right: 30px;
+}
 turn-control-panel {
   display: inline-block;
   width: 30%;
