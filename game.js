@@ -12,10 +12,11 @@ var Game = function() {
   this.campCard = {};
   this.started = false;
   this.victory = [];
+  this.gameLog = [];
   EventEmitter.call(this)
 };
 util.inherits(Game, EventEmitter)
-
+var logConstructor = function () {}
 Game.prototype.gameLoop = function(action) {
   if ((this.deck.length+this.activeDeck.length) > 0) {
     if (action.type === "endTurn") {
@@ -58,7 +59,7 @@ Game.prototype.gameLoop = function(action) {
   }
 
 }
-this.useCard = function(action) {
+Game.prototype.useCard = function(action) {
   switch (this.deckType) {
     case "monster":
       deck.monsters[0].onact(this, action);
