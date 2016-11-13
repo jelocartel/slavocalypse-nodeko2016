@@ -39,7 +39,7 @@ function sendState(room) {
     campCard: games[room].campCard,
     players: players,
     deckCardsLeft: games[room].deck.length,
-    victory: games[room].vicotry,
+    victory: games[room].victory,
     gameLog: games[room].gameLog,
   }
 
