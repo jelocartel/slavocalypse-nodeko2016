@@ -42,13 +42,9 @@ const monsters = [{
 {
   amount: 8,
   name: 'Miner',
-  cardAttack: 1,
-  cardHealth: 2,
-  description: 'When gained, +2 Wounds to everyone but you',
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  cardAttack: 3,
+  cardHealth: 3,
+  victoryPoints: 3
 }];
 
 const items = [{
