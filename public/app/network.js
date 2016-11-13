@@ -66,11 +66,11 @@ define(['knockout'], function(ko) {
 
   ko.computed(function() {
     socket.onmessage = function(event) {
-      console.log('new message: ', event.data);
+      
       var parsedEvent = JSON.parse(event.data);
+      console.log('new message: ', parsedEvent);
       switch (parsedEvent.event) {
         case 'discover':
-          console.log(parsedEvent.games);
           games(parsedEvent.games);
           break;
         case 'join':
