@@ -33,13 +33,19 @@ function sendState(room) {
     players[player.id] = serializePlayer(player)
   })
 
-  gamecast(room, {
+  var state = {
     event: 'state',
     activeDeck: games[room].activeDeck.map(serializeCard),
     campCard: games[room].campCard,
-    activePlayer: games[room].players[games[room].activePlayer].id,
     players: players
-  })
+  }
+
+  const activePlayer = games[room].activePlayer
+
+  if (games[room].players[activePlayer])
+    state.activePlayer = games[room].players[activePlayer].id
+
+  gamecast(room, state)
 }
 
 function discovery() {
