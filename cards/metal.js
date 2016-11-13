@@ -31,49 +31,47 @@ const skills = [{
 const monsters = [{
   amount: 4,
   name: 'Scavenger',
-  victoryPoints: 1,
-  cardAttack: 2,
+  victoryPoints: 2,
+  cardAttack: 1,
   cardHealth: 4,
   description: 'Trash this for +2 Attack',
-  onact: function (game, players) {
-  },
   onbuy: function (game, players) {
+    const active = game.players[game.activePlayer]
+    players.forEach((p) => {
+      const take = Math.max(2, p.coins)
+      p.coins -= take
+      active.coins += take
+    })
   }
 },
 {
   amount: 8,
   name: 'Wolf',
-  cardAttack: 1,
-  cardHealth: 2,
-  description: '',
-  onact: function (game, players) {
-  },
+  cardAttack: 5,
+  cardHealth: 3,
+  victoryPoints: 4,
   onbuy: function (game, players) {
+    // TODO
   }
 }];
 
 const items = [{
-  name: 'Pipe',
+  name: 'Chair',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
+  victoryPoints: 2,
+  description: 'When gaining this, +$6',
+  ontrash: function (game) {
+    game.players[game.activePlayer].coins += 6
   }
 }, {
   name: 'Machete',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  temporaryAttack: 2,
+  victoryPoints: 1,
+}, {
+  name: 'Pipe',
+  temporaryAttack: 1,
+  constAttack: 1
 }];
 
 module.exports.items = items;

@@ -2,89 +2,76 @@ const deck = 'earth';
 
 const skills = [{
   name: 'Kolovrot',
-  victoryPoints: 1,
-  description: 'Change $2 for 1 Defense',
-  temporaryAttack: -2,
   temporaryDefense: -1,
-  constAttack: 2,
-  constDefense: 1,
-  onact: function (game, players) {
-    game.players[game.activePlayer].coins -= 2
-    game.players[game.activePlayer].additionalDefense += 2
+  onbuy: function (game) {
+    const player = game.players[game.activePlayer]
+    game.on('turnFinish', () => {
+      player.health += 1
+    })
   }
 }, {
   name: 'Rune of Earth',
-  description: 'Trash this for 5 Defense',
-  ontrash: function (game) {
-    game.players[game.activePlayer].additionalDefense += 5
-  }
+  temporaryDefense: 1,
+  constAttack: 2
 }, {
   name: 'Snake sign',
-  description: '+$1 on start of each turn',
-  onact: function (game, players) {
-  },
+  temporaryAttack: 1,
+  temporaryDefense: 1,
   onbuy: function (game, players) {
+    // TODO
   }
 }];
 
 const monsters = [{
-  amount: 4,
+  amount: 8,
   name: 'Earth Mutant',
-  victoryPoints: 1,
+  victoryPoints: 4,
   cardAttack: 2,
-  cardHealth: 4,
-  description: 'When gained, chosen player gets -$2',
-  onbuy: function (game, players) {
-    players[0].coins = Math.max(0, p.coins - 1)
-  }
+  cardHealth: 2,
+  constAttack: -1,
+  constDefense: -1,
+  // description: 'When gained, chosen player gets -$2',
+  // onbuy: function (game, players) {
+  //   players[0].coins = Math.max(0, p.coins - 1)
+  // }
 },
 {
-  amount: 8,
+  amount: 4,
   name: 'Mountain Wolf',
-  cardAttack: 1,
-  cardHealth: 2,
-  description: 'When gained, +$3 for you and -$1 for others',
-  onbuy: function (game, players) {
-    game.players.each(p => {
-      p.coins = Math.max(0, p.coins - 1)
-    })
-    game.players[game.activePlayer].coins += 4
-  }
+  cardAttack: 6,
+  cardHealth: 3,
+  victoryPoints: 5,
+  // description: 'When gained, +$3 for you and -$1 for others',
+  // onbuy: function (game, players) {
+  //   game.players.each(p => {
+  //     p.coins = Math.max(0, p.coins - 1)
+  //   })
+  //   game.players[game.activePlayer].coins += 4
+  // }
 }];
 
 const items = [{
   name: 'Granade',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
+  temporaryAttack: 1,
+  constDefense: 1,
+  victoryPoints: 1,
   onbuy: function (game, players) {
+    game.players[game.activePlayer].health += 2
   }
 }, {
   name: 'Trashbin',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
+  temporaryDefense: 1,
+  constDefense: 1,
+  onfinish: function (game) {
+    game.players[game.activePlayer].coins += 4
   }
 },{
   name: 'Soda Can',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  temporaryDefense: 1
+  // XXX
 }];
 
 module.exports.items = items;
