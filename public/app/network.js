@@ -54,13 +54,11 @@ define(['knockout'], function(ko) {
     }));
   };
 
-  var endTurn = function() {
-    // tu wybor radio z camp card, show pop-up etc
-    
+  var endTurn = function(actionId) {
+    console.log('network endTurn run, and id', actionId);
     socket.send(JSON.stringify({
       event: 'endTurn',
-      // campCardActionId from radio button 
-      campCardActionId: campCardActionId
+      campCardActionId: actionId
     }));
   };
 
@@ -94,9 +92,10 @@ define(['knockout'], function(ko) {
           break;
         case 'state':
           console.log('elo state');
-          console.log(parsedEvent.activeDeck);
+          console.log('active deck', parsedEvent.activeDeck);
+          console.log('camp card', parsedEvent.campCard);
           activeDeck(parsedEvent.activeDeck);
-          campCard(parsedEvent.campCard);
+          campCard(parsedEvent.campCard[0]);
           playerDecks(parsedEvent.players[parsedEvent.activePlayer].decks);
 
         case 'start':
@@ -122,6 +121,7 @@ define(['knockout'], function(ko) {
     STATES: STATES,
     activeDeck: activeDeck,
     campCard: campCard,
-    playerDecks: playerDecks
+    playerDecks: playerDecks,
+    endTurn: endTurn
   };
 });

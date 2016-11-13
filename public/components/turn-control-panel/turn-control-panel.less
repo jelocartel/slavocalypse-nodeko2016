@@ -19,4 +19,55 @@ turn-control-panel {
       background-color: #a49999;
     }
   }  
+
+  #camp-actions-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: block;
+    transition: transform 0.3s;
+    transform: scale(0);
+
+    &.visible {
+      transform: scale(1);
+    }
+
+    .camp-actions {
+      display: block;
+      position: absolute;
+      top: 20%;
+      left: 30%;
+      width: 40%;
+      border: solid 2px #000;
+      color: #000;
+      background-color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+
+      .button {
+        display: block;
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+        background-color: #ccc;
+        margin: auto;
+        margin-top: 20px;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #a49999;
+        }
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
 }
