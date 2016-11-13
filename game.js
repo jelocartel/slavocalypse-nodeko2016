@@ -77,8 +77,8 @@ Game.prototype.activePlayerBuys = function (action) {
    console.log("chujnia nie stac cie!");
    return;
  } else {
-   if (this.activeDeck[action.activeCardNumber].cardHealth < activePlayerObj.getAttack()) {
-     if(this.activeDeck[action.activeCardNumber].cardAttack < activePlayerObj.getDefense()) {
+   if (this.activeDeck[action.activeCardNumber].cardHealth <= activePlayerObj.getAttack()) {
+     if(this.activeDeck[action.activeCardNumber].cardAttack <= activePlayerObj.getDefense()) {
        this.activeDeck[action.activeCardNumber].onbuy(this, action);
      } else {
        console.log("za malo obrony");
