@@ -101,6 +101,7 @@ wsServer.on('connection', s => {
     }))
   }
 
+  broadcast({ event: 'discover', games: discovery() })
   id()
 
   s.once('close', () => {
