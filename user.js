@@ -86,7 +86,7 @@ User.prototype.addCoins = function(val) {
 }
 
 User.prototype.getVictoryPoints = function(game) {
-  var vicotryPoints = this.health
+  var victoryPoints = this.health;
   victoryPoints += Math.min(this.deck.skill.length, this.deck.monsters.lenght);
 
   for(let i=0;i < this.deck.monsters.length;i++) {
