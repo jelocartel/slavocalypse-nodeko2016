@@ -49,37 +49,27 @@ const monsters = [{
 
 const items = [{
   name: 'Knife',
-  description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
-  onbuy: function (game, players) {
-  }
+  temporaryDefense: 1,
+  constDefense: 1,
+  victoryPoints: 2
 }, {
   name: 'Lighter',
   description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
-  onact: function (game, players) {
-  },
+  constDefense: 1,
   onbuy: function (game, players) {
+    // XXX
   }
 },{
   name: 'Rock',
-  description: '',
-  temporaryAttack: 5,
-  temporaryDefense: 3,
-  constAttack: 3,
-  constDefense: 2,
+  description: 'Pay $ 2 for 3 Defense',
+  constDefense: 1,
   onact: function (game, players) {
+    const p = game.players[game.activePlayer]
+    if (p.coins >= 2) {
+      p.addCoins(-2)
+      p.additionalDefense += 3
+    }
   },
-  onbuy: function (game, players) {
-  }
 }];
 
 module.exports.items = items;
