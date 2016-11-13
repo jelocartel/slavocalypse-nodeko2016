@@ -16,13 +16,21 @@ var Game = function() {
   EventEmitter.call(this)
 };
 util.inherits(Game, EventEmitter)
-var logConstructor = function () {}
+
+var logAdd = function (game, msg) {
+  game.gameLog.push({
+    playerId: game.players[game.activePlayer].id,
+    userMsg: msg,
+  });
+}
 Game.prototype.gameLoop = function(action) {
   if ((this.deck.length+this.activeDeck.length) > 0) {
     if (action.type === "endTurn") {
       this.activePlayerFinishGame(action);
     } else if (action.type === "buy") {
-      this.activePlayerBuys(action);
+      if(!this.activePlayerBuys(action)) {
+        return;
+      }
     } else if(action.type === "useCard") {
       this.useCard(action);
       //bo użycie nie zmienia gracza i nie emittujemy zadnych gowien
@@ -31,7 +39,7 @@ Game.prototype.gameLoop = function(action) {
     if ((this.deck.length+this.activeDeck.length) === 0) {
       //Game FINISH
       //podlicz punkty i przygotuj obiekt :D
-      console.log("koniec gry");
+      logAdd(this, "Game finished");
       for(let j=0;j<this.players.length;j++) {
         this.victory.push({
           id: this.playersp[j].id,
@@ -60,6 +68,7 @@ Game.prototype.gameLoop = function(action) {
 
 }
 Game.prototype.useCard = function(action) {
+  logAdd(this, "You are using " + action);
   switch (this.deckType) {
     case "monster":
       deck.monsters[0].onact(this, action);
@@ -109,21 +118,25 @@ Game.prototype.start = function () {
 Game.prototype.activePlayerBuys = function (action) {
   var activePlayerObj = this.players[this.activePlayer];
  if (activePlayerObj.coins < action.activeCardNumber) {
-   console.log("chujnia nie stac cie!");
-   return;
+   logAdd(this, "Sorry, this item is to expensive. You have " + activePlayerObj.coins +
+                "but you need " + action.activeCardNumber + " coins!");
+   return false;
  } else {
    if (this.activeDeck[action.activeCardNumber].cardHealth <= activePlayerObj.getAttack()) {
      if(this.activeDeck[action.activeCardNumber].cardAttack <= activePlayerObj.getDefense()) {
+       logAdd(this, "Just both new item");
        this.activeDeck[action.activeCardNumber].onbuy(this, action);
      } else {
-       console.log("za malo obrony");
+       logAdd(this, "got " +(this.activeDeck[action.activeCardNumber].cardAttack - addHealth(activePlayerObj.getDefense())) +
+                     " new wounds");
        activePlayerObj.addHealth(activePlayerObj.getDefense() - this.activeDeck[action.activeCardNumber].cardAttack)
      }
    } else {
-     console.log("za malo ataku");
-     return;
+     logAdd(this, "Sorry, you need more attack points")
+     return false;
    }
  }
+ logAdd(this, "You both card!")
  var deck = activePlayerObj.getDeck();
 
  activePlayerObj.addCoins(-parseInt(action.activeCardNumber));
@@ -151,6 +164,7 @@ Game.prototype.activePlayerBuys = function (action) {
  if (deck.items.length) deck.items[0].onfinish(this, action);
  if (deck.skill.length) deck.skill[0].onfinish(this, action);
  if (deck.deity.length) deck.deity[0].onfinish(this, action);
+ return true;
 
 };
 
@@ -180,6 +194,7 @@ Game.prototype.activePlayerFinishGame = function (action) {
   this.activeDeck.shift();
   if(this.deck.length > 0)
     this.activeDeck.push(this.deck.pop());
+  logAdd(this, "You finishd your turn");
 }
 
 Game.prototype.addUser = function (val) {
