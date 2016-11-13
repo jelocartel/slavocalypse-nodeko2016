@@ -18,6 +18,7 @@ var C = function SerializableCardFactoryFactoryBeanFactory(o) {
       onact: o.onact || marcin,
       onbuy: o.buy || marcin,
       onfinish: o.onfinish || marcin,
+      ontrash: o.ontrash || marcin,
       temporaryAttack: o.temporaryAttack || 0,
       temporaryDefense: o.temporaryDefense || 0,
       constAttack: o.constAttack || 0,
