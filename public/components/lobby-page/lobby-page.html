@@ -5,9 +5,11 @@
 
 <div data-bind="if: $root.games().length === 0">No games available...</div>
 <div data-bind="foreach: $root.games">
-  <div class="room">
-    <div class="name" data-bind="text: name + ' room'"></div>
-    Players: <span data-bind="text: players"></span>
-    <button data-bind="click: function() { $root.joinGame($data) }">JOIN</button>
+  <div data-bind="if: !started()">
+    <div class="room">
+      <div class="name" data-bind="text: name + ' room'"></div>
+      Players: <span data-bind="text: players"></span>
+      <button data-bind="click: function() { $root.joinGame($data) }">JOIN</button>
+    </div>
   </div>
 </div>
