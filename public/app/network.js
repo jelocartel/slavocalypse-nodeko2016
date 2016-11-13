@@ -12,6 +12,7 @@ define(['knockout'], function(ko) {
   var playerID = ko.observable();
   var enemyPlayers = ko.observableArray([]);
   var activePlayer = ko.observable();
+  var player = ko.observable({});
 
   var socket = new WebSocket(url);
   var gameStarted = ko.observable(false);
@@ -100,7 +101,8 @@ define(['knockout'], function(ko) {
           campCard(parsedEvent.campCard);
           playerDecks(parsedEvent.players[parsedEvent.activePlayer].deck);
           activePlayer(parsedEvent.activePlayer);
-          console.log('state activeplayer', activePlayer())
+          player(parsedEvent.players[parsedEvent.activePlayer]);
+          console.log('STATE PLAYER', player())
         case 'start':
           if (parsedEvent.game === gameName()) {
             gameStarted(true);
@@ -129,6 +131,7 @@ define(['knockout'], function(ko) {
     endTurn: endTurn,
     socket: socket,
     playerID: playerID,
-    activePlayer: activePlayer
+    activePlayer: activePlayer,
+    player: player
   };
 });
