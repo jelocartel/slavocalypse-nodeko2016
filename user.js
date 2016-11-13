@@ -105,9 +105,9 @@ User.prototype.getVictoryPoints = function(game) {
   for(let i=0;i < this.deck.deity.length;i++) {
     victoryPoints += this.deck.deity[i].victoryPointsAction(game, this);
   }
-  vicotryPoints += game.campCard.victoryPointsAction(game, this);
+  victoryPoints += game.campCard.victoryPointsAction(game, this);
 
-  return vicotryPoints;
+  return victoryPoints;
 }
 
 User.prototype.trashCard = function (type) {
