@@ -42,7 +42,7 @@ Game.prototype.gameLoop = function(action) {
       logAdd(this, "Game finished");
       for(let j=0;j<this.players.length;j++) {
         this.victory.push({
-          id: this.playersp[j].id,
+          id: this.players[j].id,
           points: this.players[j].getVictoryPoints(this),
         });
       }
