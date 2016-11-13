@@ -7,6 +7,8 @@ var User = function(id) {
    this.deck.skill = new Array();
    this.deck.deity = new Array();
    this.coins = 5;
+   this.additionalDefense = 0
+   this.additionalAttack = 0
    this.id = id;
 };
 User.prototype.getHealth = function() {
@@ -39,7 +41,7 @@ User.prototype.getDefense = function() {
   }
   if (this.deck.deity.length) points += this.deck.deity[0].temporaryDefense;
 
-  return points;
+  return points + this.additionalDefense;
 }
 User.prototype.getAttack = function() {
   var points = 0;
@@ -64,7 +66,7 @@ User.prototype.getAttack = function() {
   }
   if (this.deck.deity.length) points += this.deck.deity[0].temporaryAttack;
 
-  return points;
+  return points + this.additionalAttack;
 }
 
 User.prototype.addCard = function(card) {
@@ -82,7 +84,6 @@ User.prototype.addCoins = function(val) {
 }
 User.prototype.getVictoryCoins = function() {
   //docelowo suma wszystkich victory pointow typeof int and typeof function(this) plus pary
-  var victoryPoints=0;
   return 33;
 }
 exports.User = User;

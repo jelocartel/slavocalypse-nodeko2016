@@ -27,6 +27,10 @@ Game.prototype.gameLoop = function(action) {
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {
       this.activePlayer = 0;
+      this.players.forEach(p => {
+        p.additonalDefense = 0
+        p.additonalAttack = 0
+      })
       this.hooks.onRoundFinish(this);
     } else {
       this.hooks.onTurnFinish(this);
