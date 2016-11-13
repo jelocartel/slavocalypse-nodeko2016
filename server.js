@@ -151,7 +151,12 @@ wsServer.on('connection', s => {
         const user = new User(s.id)
         game.addUser(user)
       }
-      gamecast(room, { event: 'join', id: s.id, players: game.players.map(p => p.id) })
+      gamecast(room, {
+        event: 'join',
+        id: s.id,
+        players: game.players.map(p => p.id),
+        started: game.started
+      })
       broadcast({ event: 'discover', games: discovery() })
     }
     else if (event === 'buy') {
