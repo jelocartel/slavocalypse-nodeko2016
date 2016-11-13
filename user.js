@@ -83,6 +83,7 @@ User.prototype.getCoins = function() {
 
 User.prototype.addCoins = function(val) {
   this.coins += val;
+  if (this.coins < 0) this.coins = 0;
 }
 
 User.prototype.getVictoryPoints = function(game) {
@@ -112,16 +113,16 @@ User.prototype.getVictoryPoints = function(game) {
 User.prototype.trashCard = function (type) {
   switch (type) {
     case "monster":
-      this.deck.monsters.shift();
+      return this.deck.monsters.shift();
       break;
     case "item":
-      this.deck.items.shift();
+      return this.deck.items.shift();
       break;
     case "skill":
-      this.deck.skill.shift();
+      return this.deck.skill.shift();
       break;
     case "deity":
-      this.deck.deity.shift();
+      return this.deck.deity.shift();
       break;
   }
 }

@@ -39,6 +39,7 @@ function sendState(room) {
     campCard: games[room].campCard,
     players: players,
     deckCardsLeft: games[room].deck.length,
+    victory: games[room].vicotry,
   }
 
   const activePlayer = games[room].activePlayer
@@ -136,7 +137,10 @@ wsServer.on('connection', s => {
       game = games[room] = new Game()
       game.on('turnFinish', () => sendState(room))
       game.on('roundFinish', () => sendState(room))
-      game.once('gameFinish', () => sendState(room))
+      game.once('gameFinish', () => {
+        broadcast({ event: 'finish'});
+        sendState(room);
+      })
       sockets[room] = [ s ]
       broadcast({ event: 'discover', games: discovery() })
     }

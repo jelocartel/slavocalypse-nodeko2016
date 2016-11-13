@@ -10,7 +10,8 @@ var Game = function() {
   this.players = new Array();
   this.activePlayer = 0;
   this.campCard = {};
-  this.started = false
+  this.started = false;
+  this.victory = [];
   EventEmitter.call(this)
 };
 util.inherits(Game, EventEmitter)
@@ -26,6 +27,23 @@ Game.prototype.gameLoop = function(action) {
       //bo użycie nie zmienia gracza i nie emittujemy zadnych gowien
       return;
     }
+    if ((this.deck.length+this.activeDeck.length) === 0) {
+      //Game FINISH
+      //podlicz punkty i przygotuj obiekt :D
+      console.log("koniec gry");
+      for(let j=0;j<this.players.length;j++) {
+        this.victory.push({
+          id: this.playersp[j].id,
+          points: this.players[j].getVictoryPoints(this),
+        });
+      }
+      this.players.forEach(function(p) {
+        console.log(p.getVictoryPoints());
+
+      })
+      this.emit('gameFinish');
+      return;
+    }
     this.activePlayer++;
     if (this.activePlayer === this.players.length) {
       this.activePlayer = 0;
@@ -33,18 +51,10 @@ Game.prototype.gameLoop = function(action) {
         p.additonalDefense = 0
         p.additonalAttack = 0
       })
-      this.emit('roundFinish')
+      this.emit('roundFinish');
     } else {
       this.emit('turnFinish')
     }
-  } else {
-    //Game FINISH
-    //podlicz punkty i przygotuj obiekt :D
-    console.log("koniec gry");
-    this.players.forEach(function(p) {
-      console.log(p.getVictoryPoints());
-    })
-    this.emit('gameFinish')
   }
 
 }
